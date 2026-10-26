@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophie Zhao | Projects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1>Sophie Zhao</h1>
+      <p class="tagline">Computational Physics & Computer Science | Quantitative & Systems Focus</p>
+      <nav>
+        <a href="index.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="projects">
+      <h2>Technical Projects</h2>
+      <div class="project-grid">
+        <!-- Project Card 1: Computational Physics Simulation -->
+        <article class="project-card">
+          <h3>Gravity Assist N-Body Simulator</h3>
+          <p class="tags"><span>Python</span><span>Simulation</span><span>Numerical Integration</span><span>N-Body Dynamics</span></p>
+          <p>
+            Simulated orbital mechanics using VPython to model multi-body gravitational interactions and historical planetary gravity assists (Voyager 1 and 2 flybys across Jupiter, Saturn, Uranus, and Neptune). 
+            Implemented a 4th-Order Runge-Kutta (RK4) numerical integrator to solve gravitational differential equations across an 8-planet system and the Sun. 
+            The simulation dynamically contracts the integration time-step and recalculated visual scale whenever the spacecraft reaches a planet’s Hill sphere. 
+            It plots kinetic and potential energies in real time to demonstrate mechanical energy conservation, alongside a sandbox mode for custom planetary orbital configurations and spacecraft launch trajectories.
+          </p>
+          <div class="links">
+            <a href="https://glowscript.org/#/user/zhaosophie4/folder/MyPrograms/program/ArchivedVoyagerProject" target="_blank" rel="noopener noreferrer">Glowscript VPython</a>
+            <a href="https://glowscript.org/#/user/zhaosophie4/folder/MyPrograms/program/ArchivedVoyagerProject/edit" target="_blank" rel="noopener noreferrer">Source Code</a>  
+        </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Sophie Zhao. Built with static HTML/CSS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
