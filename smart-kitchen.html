@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Kitchen Demo | Sophie Zhao</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <title>Smart Kitchen Demo & Deck | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <header>
@@ -25,28 +25,56 @@
     </div>
 
     <section id="demo-showcase">
-      <h2>Smart Kitchen — System Demo</h2>
+      <h2>Smart Kitchen: Live Demo & Architecture Deck</h2>
       <p class="demo-description">
-        Demonstration of the local inventory tracking engine, automated ingredient reconciliation, 
-        and real-time kitchen status pipeline.
+        Full-stack automated inventory reconciliation and order handoff pipeline built for restaurant operations.
       </p>
 
-      <div class="video-container">
-        <video controls playsinline preload="metadata" poster="">
-          <source src="assets/smart-kitchen-demo.mp4" type="video/mp4">
-          <p>
-            Your browser does not support the video tag. 
-            <a href="assets/smart-kitchen-demo.mp4" download>Download the demo video directly.</a>
-          </p>
-        </video>
+      <!-- Media Block 1: Video Demonstration -->
+      <div class="showcase-block">
+        <div class="showcase-header">
+          <h3>System Demo Video</h3>
+          <span class="media-badge">Video Walkthrough</span>
+        </div>
+        <div class="video-container">
+          <video controls playsinline preload="metadata">
+            <source src="assets/smart-kitchen-demo.mp4" type="video/mp4">
+            <p>
+              Your browser does not support the video tag. 
+              <a href="assets/smart-kitchen-demo.mp4" download>Download the demo video directly.</a>
+            </p>
+          </video>
+        </div>
       </div>
 
+      <!-- Media Block 2: Embedded Slide Deck -->
+      <div class="showcase-block">
+        <div class="showcase-header">
+          <h3>Project Presentation & Technical Breakdown</h3>
+          <!-- Optional direct link or download button -->
+          <a href="assets/smart-kitchen-slides.pdf" class="btn-download-sm" target="_blank" rel="noopener noreferrer">
+            Open Fullscreen / PDF &rarr;
+          </a>
+        </div>
+        <div class="slides-container">
+          <iframe 
+            src="assets/smart-kitchen-slides.pdf#toolbar=0&navpanes=0" 
+            title="Smart Kitchen Presentation Slides">
+            <p>
+              Your browser does not support inline PDF viewing. 
+              <a href="assets/smart-kitchen-slides.pdf" target="_blank">View presentation deck directly.</a>
+            </p>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Technical Architecture Highlights -->
       <div class="demo-details">
-        <h3>Architecture & Features</h3>
+        <h3>System Highlights & Architecture</h3>
         <ul>
           <li><strong>Inventory Synchronization:</strong> Relational state tracking comparing available ingredients against menu availability.</li>
-          <li><strong>Verification Flow:</strong> Multi-step transaction tracking ensuring real-time state integrity across order cycles.</li>
-          <li><strong>Local Deployment:</strong> Fast, isolated local services communicating via lightweight API endpoints.</li>
+          <li><strong>LLM Structured Translation:</strong> Real-time mapping of custom, conversational order requests into strict ingredient deduction schemas.</li>
+          <li><strong>Verification Flow:</strong> Transactional order handoff with QR token verification.</li>
         </ul>
       </div>
     </section>
