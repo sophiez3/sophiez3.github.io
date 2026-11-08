@@ -1,0 +1,7 @@
+# Ignore VS Code configuration and extensions
+.vscode/
+.vscode/extensions/
+
+# OS generated files
+.DS_Store
+Thumbs.db

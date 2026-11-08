@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophie Zhao | Projects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1>Sophie Zhao</h1>
+      <p class="tagline">Computational Physics & Computer Science | Quantitative & Systems Focus</p>
+      <nav>
+        <a href="index.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="projects">
+      <h2>Technical Projects</h2>
+      <div class="project-grid">
+        <!-- Project Card 1: Computational Physics Simulation -->
+        <article class="project-card">
+          <h3>Gravity Assist N-Body Simulator</h3>
+          <p class="tags"><span>Python</span><span>Simulation</span><span>Numerical Integration</span><span>N-Body Dynamics</span></p>
+          <p>
+            Engineered an interactive multi-body orbital dynamics simulator in Python using Web VPython to model the non-linear trajectories and gravity assists of the Voyager 1 and Voyager 2 grand tours alongside an open-ended planetary sandbox. To maintain physical realism across astronomical distances, I implemented a 4th-Order Runge-Kutta (RK4) numerical integrator that computes net vector gravitational accelerations across the Sun, all eight major planets, and the spacecraft at each sub-step. To resolve high-velocity close encounters without global computational lag, I developed an adaptive time-stepping architecture governed by planetary Hill spheres: when Voyager crosses a planet's gravitational sphere of influence, the integrator automatically scales down the time step and shifts the camera frame to the encounter body, preventing artificial energy drift and numerical divergence during periapsis passes. The platform features historical scenario initializations for outer-planet flybys, interactive ray-projected orbital ring snapping and launch vector sliders for arbitrary probe configurations, and real-time phase plotting of kinetic and potential energy to verify orbital energy exchange throughout hyperbolic gravitational assists.
+          </p>
+          <div class="links">
+            <a href="https://glowscript.org/#/user/zhaosophie4/folder/MyPrograms/program/ArchivedVoyagerProject" target="_blank" rel="noopener noreferrer">Glowscript VPython</a>
+            <a href="https://glowscript.org/#/user/zhaosophie4/folder/MyPrograms/program/ArchivedVoyagerProject/edit" target="_blank" rel="noopener noreferrer">Source Code</a>  
+        </div>
+        </article>
+      </div>
+      <div class="project-grid">
+        <!-- Project Card 2: Optimized Food Delivery App -->
+        <article class="project-card">
+          <h3>Smart Kitchen</h3>
+          <p class="tags"><span>Full-Stack</span><span>Agentic AI</span><span>React</span><span>FastAPI</span></p>
+          <p>
+            Smart Kitchen is a full-stack practice project deployed locally in preparation for a generative AI hackathon. It tackles common restaurant pain points on delivery platforms like DoorDash: running out of ingredients mid-service, mixed-up orders at handoff, and business records scattered across invoices and sales reports. The app connects three views to one backend. A customer storefront automatically grays out dishes and marks them “Sold Out” the moment an ingredient runs short. A kitchen dashboard shows live ingredient levels, a real-time order feed, and an AI-assisted supplier-note parser. A mobile-styled driver portal lets drivers scan a unique QR code on each bag to verify pickup before confirming drop-off, so only fully verified deliveries count toward payout and performance metrics. When an order is placed, the system looks up each dish’s recipe, deducts ingredients inside a database transaction (which prevents two customers from buying the last portion at the same moment), and recalculates menu availability automatically. Through the OpenRouter API, LLM features turn free-text requests like “double cheese, hold the onions” into exact inventory changes and convert messy supplier delivery notes into structured stock entries. AI output is treated as untrusted input: it is validated and capped in code, backed by a rule-based fallback, and reviewed by a human before anything is saved. The project uses Python, FastAPI, Pydantic, SQLite/SQL, React (Vite), JavaScript, REST APIs, structured LLM outputs (JSON schema), QR generation and camera scanning, Git, and pytest (39 automated tests). I built it step by step while learning software engineering fundamentals, using an AI assistant as a tutor and pair programmer.
+          </p>
+          <div class="links">
+            <a href="https://github.com/sophiez3/doordash-inventory-hack" target="_blank" rel="noopener noreferrer">Github Repository</a>
+            <a href="smart-kitchen.html" class="highlight-link">View Video Demo &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Sophie Zhao. Built with static HTML/CSS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

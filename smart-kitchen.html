@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Kitchen Demo | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1>Sophie Zhao</h1>
+      <p class="tagline">Computational Physics & Computer Science | Quantitative & Systems Focus</p>
+      <nav>
+        <a href="index.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="back-link">
+      <a href="projects.html">&larr; Back to Projects</a>
+    </div>
+
+    <section id="demo-showcase">
+      <h2>Smart Kitchen — System Demo</h2>
+      <p class="demo-description">
+        Demonstration of the local inventory tracking engine, automated ingredient reconciliation, 
+        and real-time kitchen status pipeline.
+      </p>
+
+      <div class="video-container">
+        <video controls playsinline preload="metadata" poster="">
+          <source src="assets/smart-kitchen-demo.mp4" type="video/mp4">
+          <p>
+            Your browser does not support the video tag. 
+            <a href="assets/smart-kitchen-demo.mp4" download>Download the demo video directly.</a>
+          </p>
+        </video>
+      </div>
+
+      <div class="demo-details">
+        <h3>Architecture & Features</h3>
+        <ul>
+          <li><strong>Inventory Synchronization:</strong> Relational state tracking comparing available ingredients against menu availability.</li>
+          <li><strong>Verification Flow:</strong> Multi-step transaction tracking ensuring real-time state integrity across order cycles.</li>
+          <li><strong>Local Deployment:</strong> Fast, isolated local services communicating via lightweight API endpoints.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Sophie Zhao. Built with static HTML/CSS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
