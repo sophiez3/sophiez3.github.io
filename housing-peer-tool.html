@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Housing Peer Tool | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1>Sophie Zhao</h1>
+      <p class="tagline">Computational Physics & Computer Science | Quantitative & Systems Focus</p>
+      <nav>
+        <a href="index.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="back-link">
+      <a href="projects.html">&larr; Back to Projects</a>
+    </div>
+
+    <section id="demo-showcase">
+      <h2>Housing Peer Tool — 2026 PNC × 180DC Challenge</h2>
+      <p class="demo-description">
+        Proposed solutions to financial institutions using AI to address housing affordability for the 2026 PNC × 180DC Challenge, 
+        accompanied by an interactive Pennsylvania case-study web application.
+      </p>
+
+      <!-- Media Block 1: Video Demonstration -->
+      <div class="showcase-block">
+        <div class="showcase-header">
+          <h3>Application Demo Walkthrough</h3>
+          <span class="media-badge">Video Walkthrough</span>
+        </div>
+        <div class="video-container">
+          <video controls playsinline preload="metadata">
+            <source src="assets/housing-peer-demo.mp4" type="video/mp4">
+            <p>
+              Your browser does not support the video tag. 
+              <a href="assets/housing-peer-demo.mp4" download>Download the demo video directly.</a>
+            </p>
+          </video>
+        </div>
+      </div>
+
+      <!-- Media Block 2: Embedded Slide Deck -->
+      <div class="showcase-block">
+        <div class="showcase-header">
+          <h3>Case Study & Strategy Deck</h3>
+          <a href="assets/housing-peer-slides.pdf" class="btn-download-sm" target="_blank" rel="noopener noreferrer">
+            Open Fullscreen / PDF &rarr;
+          </a>
+        </div>
+        <div class="slides-container">
+          <iframe 
+            src="assets/housing-peer-slides.pdf#toolbar=0&navpanes=0" 
+            title="Targeted Approaches to Housing Affordability Presentation">
+            <p>
+              Your browser does not support inline PDF viewing. 
+              <a href="assets/housing-peer-slides.pdf" target="_blank" rel="noopener noreferrer">View presentation deck directly.</a>
+            </p>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Technical Architecture & Methodology Highlights -->
+      <div class="demo-details">
+        <h3>System Architecture & Methodology</h3>
+        <ul>
+          <li>
+            <strong>Structural Peer Matching & Rent Divergence:</strong> Matches a target city to structural peers across population, income, job mix, housing age, commute, broadband, and homeownership[cite: 6, 7], then fits rent against income to quantify divergence and rank key drivers[cite: 9, 10].
+          </li>
+          <li>
+            <strong>Explainable Neighborhood Scoring:</strong> Scores every tract from 0–1 across four archetypes—vacant sites, transit-adjacent lots, tangled titles and small-landlord rentals, and high energy burden—using threshold-based, explainable weights and peer-tract comparisons[cite: 11, 13, 14].
+          </li>
+          <li>
+            <strong>Bank Product Routing & Governance:</strong> Routes each neighborhood archetype to a targeted bank product with local partners and KPIs, incorporating human and fair-lending review[cite: 5, 13, 26].
+          </li>
+          <li>
+            <strong>Full-Stack & Grounded LLM Pipeline:</strong> Built with a FastAPI backend (pandas, NumPy, CSV validation, and an in-memory dataset store), a dependency-free single-page frontend with custom SVG charts, and an OpenRouter-connected LLM generating recommendation memos strictly from computed outputs.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Sophie Zhao. Built with static HTML/CSS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
