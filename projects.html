@@ -78,6 +78,20 @@
             <a href="sound-vs-fire.html" class="highlight-link">View Research Slides &rarr;</a>
           </div>
         </article>
+        <!-- Project Card: India CareFinder -->
+        <article class="project-card">
+          <h3>India CareFinder</h3>
+          <p class="tags">
+            <span>Databricks</span><span>PySpark</span><span>Spark SQL</span><span>OpenStreetMap</span><span>Python</span>
+          </p>
+          <p>
+            Built for the Databricks Datathon 2026, India Carefinder is a web app that helps patients across India find reliable hospitals for urgent or planned medical procedures. While I used generative AI to help write the SQL, Python, and frontend code faster, the core product ideas and data logic came from my own planning: I figured out which hospital readiness factors mattered most, decided to weight them differently depending on whether a patient's need was an emergency or planned, brought in an outside OpenStreetMap dataset to double-check the provided hospital locations and details, and designed the app's "How We Decide" tab so users can see the exact reasons behind every recommendation. Behind the scenes, I built a Databricks pipeline using PySpark and Spark SQL that cleans the raw hospital data, checks coordinates against Indian PIN codes and OpenStreetMap records to catch location errors, pulls supporting quotes straight from hospital descriptions, and powers the live web app through a Databricks SQL Warehouse.
+          </p>
+          <div class="links">
+            <a href="india-carefinder.html" class="highlight-link">View Video Demo &rarr;</a>
+            <a href="https://github.com/sophiez3/carefinder" target="_blank" rel="noopener noreferrer">Source Code</a>
+          </div>
+        </article>
     </section>
   </main>
 

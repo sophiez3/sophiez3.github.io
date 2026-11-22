@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India CareFinder | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1>Sophie Zhao</h1>
+      <p class="tagline">Computational Physics & Computer Science | Quantitative & Systems Focus</p>
+      <nav>
+        <a href="index.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="back-link">
+      <a href="projects.html">&larr; Back to Projects</a>
+    </div>
+
+    <section id="demo-showcase">
+      <h2>India CareFinder — Databricks Datathon 2026</h2>
+      <p class="demo-description">
+        Full-stack healthcare facility discovery and readiness ranking web application helping patients across India 
+        identify verified hospitals for urgent or planned medical procedures.
+      </p>
+
+      <!-- Media Block: Video Demonstration -->
+      <div class="showcase-block">
+        <div class="showcase-header">
+          <h3>Application Demo Walkthrough</h3>
+          <span class="media-badge">Video Walkthrough</span>
+        </div>
+        <div class="video-container">
+          <video controls playsinline preload="metadata">
+            <source src="assets/carefinder-demo.mp4" type="video/mp4">
+            <p>
+              Your browser does not support the video tag. 
+              <a href="assets/carefinder-demo.mp4" download>Download the demo video directly.</a>
+            </p>
+          </video>
+        </div>
+      </div>
+
+      <!-- Technical Architecture & Product Logic Highlights -->
+      <div class="demo-details">
+        <h3>Product Logic & Data Engineering Architecture</h3>
+        <ul>
+          <li>
+            <strong>Context-Aware Readiness Weighting:</strong> Designed a dual-mode scoring framework that weights hospital readiness factors differently depending on whether a patient's need is an emergency or a planned procedure.
+          </li>
+          <li>
+            <strong>Cross-Source Geospatial Validation:</strong> Built a Databricks pipeline using PySpark and Spark SQL to clean raw facility records and cross-check coordinates against Indian PIN codes and external OpenStreetMap records to flag location discrepancies.
+          </li>
+          <li>
+            <strong>Explainable "How We Decide" Transparency:</strong> Engineered an evidence-extraction step in Spark SQL that pulls supporting quotes directly from hospital descriptions, surfacing transparent reasoning behind every recommendation in a dedicated "How We Decide" tab.
+          </li>
+          <li>
+            <strong>Live Databricks App Deployment:</strong> Powered the interactive frontend directly from curated Unity Catalog tables served via a Databricks SQL Warehouse.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Sophie Zhao. Built with static HTML/CSS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
