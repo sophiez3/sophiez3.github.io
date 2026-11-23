@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sophie Zhao | Portfolio</title>
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
   <header>
@@ -35,14 +35,10 @@
           <a href="#selected-work" class="btn-outline">Explore my work &darr;</a>
         </div>
 
-        <svg class="hero-orbit-art" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="160" cy="160" r="135" stroke="rgba(148,163,184,0.14)" stroke-width="1"/>
-          <ellipse cx="160" cy="160" rx="135" ry="52" transform="rotate(-28 160 160)" stroke="#8ab4f8" stroke-opacity="0.45" stroke-width="1.2"/>
-          <ellipse cx="160" cy="160" rx="95" ry="38" transform="rotate(22 160 160)" stroke="#e2a86b" stroke-opacity="0.6" stroke-width="1.2"/>
-          <circle cx="160" cy="160" r="6" fill="#e2a86b"/>
-          <circle cx="242" cy="116" r="4" fill="#8ab4f8"/>
-          <circle cx="88" cy="192" r="3.5" fill="#e2a86b"/>
-        </svg>
+        <div class="hero-atom-wrapper" title="Hover to trigger radioactive decay">
+          <canvas id="hero-atom-canvas" width="360" height="360"></canvas>
+          <span id="atom-telemetry" class="mono-label atom-telemetry">BOHR MODEL // n = 1, 2, 3, 4</span>
+        </div>
       </div>
     </section>
 
@@ -53,6 +49,9 @@
           <h2 class="serif-title">Different questions. Same curiosity.</h2>
           <p>A quick overview first. Full project write-ups, AI transparency disclosures, demos, and workflow maps are one click away.</p>
         </div>
+
+        <!-- Quick-Jump Project Index Tabs -->
+        <div id="project-jump-tabs" class="project-jump-tabs" aria-label="Jump to project"></div>
 
         <div id="projects-container" class="projects-grid"></div>
 
@@ -74,13 +73,35 @@
     </div>
   </footer>
 
-  <script src="projects-data.js?v=9"></script>
+  <script src="projects-data.js?v=13"></script>
   <script>
+    const jumpTabsContainer = document.getElementById("project-jump-tabs");
     const container = document.getElementById("projects-container");
+
     Object.entries(PROJECTS).forEach(([slug, p]) => {
+      // Build quick-jump tab above the project grid
+      const tabBtn = document.createElement("button");
+      tabBtn.type = "button";
+      tabBtn.className = "jump-tab";
+      tabBtn.innerHTML = `<span class="jump-num">${p.number}</span><span>${p.title}</span>`;
+      tabBtn.addEventListener("click", () => {
+        document.querySelectorAll(".jump-tab").forEach(t => t.classList.remove("active"));
+        tabBtn.classList.add("active");
+
+        const targetCard = document.getElementById(`card-${slug}`);
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+          targetCard.classList.remove("card-highlight-pulse");
+          void targetCard.offsetWidth; // trigger reflow for repeated clicks
+          targetCard.classList.add("card-highlight-pulse");
+        }
+      });
+      jumpTabsContainer.appendChild(tabBtn);
+
+      // Build project card with target anchor ID
       const skillsHtml = p.skills.map(s => `<span class="skill-pill">${s}</span>`).join("");
       container.innerHTML += `
-        <a href="project.html?id=${slug}" class="project-card">
+        <a id="card-${slug}" href="project.html?id=${slug}" class="project-card">
           <div>
             <div class="card-diagram">
               <span class="mono-label">${p.diagramHeader}</span>
@@ -105,6 +126,6 @@
       `;
     });
   </script>
-  <script src="physics-interactions.js?v=9"></script>
+  <script src="physics-interactions.js?v=13"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Overview | Sophie Zhao</title>
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
   <header>
@@ -40,6 +40,12 @@
           <h1 id="ov-title" class="serif-title"></h1>
           <p id="ov-subtitle" class="overview-subtitle"></p>
           <div id="ov-skills" class="skill-pills"></div>
+
+          <div id="ov-live-bar" style="margin-bottom: 1.25rem; display: none;">
+            <a id="ov-live-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              Launch Live Web App &nearr;
+            </a>
+          </div>
 
           <div class="glance-box">
             <span class="mono-label">THE PROJECT AT A GLANCE</span>
@@ -95,9 +101,9 @@
           <div>
             <span class="mono-label mono-amber">02</span>
             <h4>Slides &amp; demo</h4>
-            <p>See the presentation deck, experimental data, and system walkthrough in motion.</p>
+            <p>See the presentation deck, live deployment, and system walkthrough.</p>
           </div>
-          <button class="action-link" onclick="switchTab('media')">View presentation &amp; video &rarr;</button>
+          <button class="action-link" onclick="switchTab('media')">View presentation &amp; demo &rarr;</button>
         </div>
 
         <div class="action-card">
@@ -147,7 +153,7 @@
     </div>
   </footer>
 
-  <script src="projects-data.js?v=9"></script>
+  <script src="projects-data.js?v=13"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get("id") || "voyager-grand-tour";
@@ -166,21 +172,38 @@
     document.getElementById("ov-diag-bot").textContent = p.diagramFooter;
     document.getElementById("ov-github-link").href = p.githubUrl;
 
-    // Render full multi-paragraph technical description
+    if (p.liveUrl) {
+      const liveBar = document.getElementById("ov-live-bar");
+      const liveLink = document.getElementById("ov-live-link");
+      liveBar.style.display = "block";
+      liveLink.href = p.liveUrl;
+    }
+
     document.getElementById("ov-description-body").innerHTML = p.fullDescription
       .map(para => `<p>${para}</p>`)
       .join("");
 
-    // Render AI transparency disclosure
     document.getElementById("ov-ai-badge").textContent = p.aiTransparency.badge;
     document.getElementById("ov-ai-body").innerHTML = p.aiTransparency.paragraphs
       .map(para => `<p>${para}</p>`)
       .join("");
 
-    // Populate Slides & Demo Tab
     document.getElementById("media-meta").textContent = `${p.number} / PRESENTATION & DEMO — ${p.title.toUpperCase()}`;
     const mediaStack = document.getElementById("media-stack");
     let mediaHtml = "";
+
+    if (p.liveUrl) {
+      mediaHtml += `
+        <div class="media-box">
+          <div class="media-box-header">
+            <span class="mono-label mono-amber">LIVE DEPLOYED APPLICATION</span>
+            <a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer" class="action-link">Open ${p.liveUrl} &nearr;</a>
+          </div>
+          <p style="color: var(--text-secondary);">
+            Test the deployed interactive web application directly in your browser or inspect the codebase on GitHub.
+          </p>
+        </div>`;
+    }
 
     if (p.videoMp4) {
       mediaHtml += `
@@ -218,7 +241,6 @@
     }
     mediaStack.innerHTML = mediaHtml;
 
-    // Populate Mindmap Tab
     document.getElementById("proc-meta").textContent = `${p.number} / DESIGN PROCESS — ${p.title.toUpperCase()}`;
     document.getElementById("proc-tradeoff").textContent = p.mindmap.tradeoff;
 
@@ -273,6 +295,6 @@
       btn.addEventListener("click", () => switchTab(btn.dataset.tab));
     });
   </script>
-  <script src="physics-interactions.js?v=9"></script>
+  <script src="physics-interactions.js?v=13"></script>
 </body>
 </html>

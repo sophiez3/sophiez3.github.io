@@ -35,6 +35,7 @@ const PROJECTS = {
     contribution:
       "Independently designed and coded the 10-body RK4 gravitational integrator, Hill-sphere adaptive time-stepping engine, ray-projected orbital sandbox, and live energy diagnostics.",
     githubUrl: "https://github.com/sophiez3",
+    liveUrl: "",
     slidesPdf: "",
     videoMp4: "",
     diagramHeader: "N-BODY / RK4 + HILL SPHERES",
@@ -117,6 +118,7 @@ const PROJECTS = {
     contribution:
       "Defined the 11-factor clinical readiness framework, urgency-dependent dynamic weight rescaling, PySpark/OpenStreetMap geospatial validation strategy, and 'How We Decide' explainability tab.",
     githubUrl: "https://github.com/sophiez3",
+    liveUrl: "",
     slidesPdf: "",
     videoMp4: "assets/carefinder-demo.mp4",
     diagramHeader: "11 FACTORS / 10K × 121K OSM",
@@ -194,6 +196,7 @@ const PROJECTS = {
     contribution:
       "Led housing-problem framing, designed the 4 neighborhood archetypes and threshold rubrics, conducted the Philadelphia/Pittsburgh case-study research, and wrote the prototype specifications.",
     githubUrl: "https://github.com/sophiez3",
+    liveUrl: "",
     slidesPdf: "assets/housing-peer-slides.pdf",
     videoMp4: "assets/housing-peer-demo.mp4",
     diagramHeader: "3-LEVEL PEER MODEL / 4 ARCHETYPES",
@@ -278,6 +281,7 @@ const PROJECTS = {
     contribution:
       "Formulated the damped harmonic oscillator model of flame convection, captured Schlieren and high-speed optical data, executed parameter sweeps, and analyzed experimental error bounds.",
     githubUrl: "https://github.com/sophiez3",
+    liveUrl: "",
     slidesPdf: "assets/sound-fire-research.pdf",
     videoMp4: "",
     diagramHeader: "RESONANCE / 55–65 Hz @ 100–102 dB",
@@ -313,6 +317,83 @@ const PROJECTS = {
           step: "04 ERROR ANALYSIS",
           title: "Apparatus & Environmental Bounds",
           text: "Account for ventilation drafts, uncollimated speaker dispersion, and high-speed tracking uncertainty when generalizing results."
+        }
+      ]
+    }
+  },
+
+  "motme": {
+    number: "05",
+    category: "PRODUCT DESIGN & AI SYSTEMS",
+    subtitle: "Gamified travel and memory-keeping experience | Team hackathon project",
+    title: "MotMe",
+    cardSummary:
+      "MotMe turns exploring a city into a sequence of location-based quests. Completing a challenge with a photo adds the memory to an automatically themed digital scrapbook and reveals a hint for the next destination.",
+    cardNote: "My contribution: Originated the scrapbook & quest-unlocking concept, product architecture, and Figma UI.",
+    skills: [
+      "Figma",
+      "Gemini API",
+      "Neon",
+      "Vercel",
+      "Generative AI-assisted development"
+    ],
+    fullDescription: [
+      "MotMe is a gamified travel application created by a four-person hackathon team. It encourages travelers to experience a city through a sequence of location-based quests rather than following a conventional itinerary.",
+      "For each destination, the application presents the user with a challenge and a clue leading to a notable local place. When the user completes the challenge by submitting a photo, the image is automatically incorporated into a scrapbook styled around that city. Completing one quest also unlocks a hint for the next, creating a progression loop that connects exploration, discovery, and memory keeping.",
+      "I originated the idea of combining automatic scrapbooking with sequential quest unlocking. I also helped design the interface in Figma and shape the user journey across destination selection, quest discovery, photo submission, scrapbook creation, and clue progression.",
+      "The team designed the application’s general architecture and used generative AI to accelerate its visual design and implementation. The Gemini API supplies location-specific destination and quest content. A teammate was responsible for connecting the application to Neon so that user, trip, quest, and scrapbook information could persist across sessions.",
+      "My work centered on product ideation, interaction design, and defining how the application’s features should operate together. I contributed to the implementation process with AI assistance, but I do not claim sole authorship of the generated code or ownership of the database integration."
+    ],
+    aiTransparency: {
+      badge: "4-PERSON HACKATHON TEAM // AI-ASSISTED BUILD",
+      paragraphs: [
+        "MotMe was created by a four-person team. I originated the automatic scrapbook and sequential quest-unlocking concepts, contributed to the overall product architecture, and helped design the user interface in Figma. Another teammate led the Neon database integration.",
+        "We used generative AI to assist with interface design, integration, and application functionality, while the central product concept and user workflow were developed by the team."
+      ]
+    },
+    question:
+      "Transform rigid sightseeing itineraries into an interactive progression loop that pairs real-world city discovery with automatic digital memory keeping.",
+    contribution:
+      "Originated the automatic scrapbook and sequential quest-unlocking loop, co-designed the Figma interface, and shaped the end-to-end user journey and product architecture.",
+    githubUrl: "https://github.com/sophiez3/motme-travel-app",
+    liveUrl: "https://motme.vercel.app/",
+    slidesPdf: "",
+    videoMp4: "",
+    diagramHeader: "QUEST_LOOP / SCRAPBOOK × CLUES",
+    diagramFooter: "Photo Capture → Auto-Theme → Next Hint",
+    svgDiagram: `
+      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M55 70 C 55 32, 145 32, 160 70 C 175 108, 265 108, 265 70 C 265 32, 175 32, 160 70 C 145 108, 55 108, 55 70 Z" stroke="#8ab4f8" stroke-opacity="0.45" stroke-width="1.3"/>
+        <circle cx="72" cy="52" r="4.5" fill="#e2a86b"/>
+        <circle cx="160" cy="70" r="5" fill="#fff1cc"/>
+        <circle cx="248" cy="88" r="4.5" fill="#8ab4f8"/>
+        <text x="38" y="34" fill="#e2a86b" font-family="monospace" font-size="8.5">Quest &amp; Clue</text>
+        <text x="128" y="26" fill="#94a3b8" font-family="monospace" font-size="8.5">Photo Verify</text>
+        <text x="212" y="114" fill="#8ab4f8" font-family="monospace" font-size="8.5">City Scrapbook</text>
+      </svg>`,
+    mindmap: {
+      centralQuestion: "How can travel software turn passive sightseeing into an active discovery and memory-keeping loop?",
+      tradeoff: "Balancing structured sequential quest progression with flexible photo-driven scrapbook assembly across diverse cities.",
+      nodes: [
+        {
+          step: "01 CORE IDEATION",
+          title: "Sequential Quest + Scrapbook Loop",
+          text: "Combine progressive clue unlocking with automatic city-themed scrapbook generation upon photo completion."
+        },
+        {
+          step: "02 INTERFACE DESIGN",
+          title: "Figma User Journey",
+          text: "Design intuitive flows across city selection, quest clues, camera/photo submission, and real-time album layouts."
+        },
+        {
+          step: "03 AI CONTENT ENGINE",
+          title: "Gemini API Quest Generation",
+          text: "Generate location-specific destination challenges and progressive hints tailored to each selected city."
+        },
+        {
+          step: "04 FULL-STACK PERSISTENCE",
+          title: "Neon Database & Vercel Deployment",
+          text: "Persist user trips, unlocked clues, and scrapbook entries across sessions (teammate-led Neon integration) hosted on Vercel."
         }
       ]
     }
