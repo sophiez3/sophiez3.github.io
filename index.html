@@ -3,75 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sophie Zhao | About</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Sophie Zhao | Portfolio</title>
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
   <header>
-    <div class="container header-container">
-      <h1>Sophie Zhao</h1>
-      <p class="tagline">Computational Physics & Computer Science</p>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">[SZ]</span>
+        <span>SOPHIE ZHAO</span>
+      </a>
       <nav>
-        <a href="index.html" class="active">About</a>
-        <a href="projects.html">Projects</a>
+        <a href="index.html" class="active">Projects</a>
+        <a href="about.html">About me</a>
         <a href="contact.html">Contact</a>
+        <a href="about.html#resume">Résumé</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        Computational Physics and CS undergraduate at Carnegie Mellon University with a strong mathematical foundation in discrete proofs, vector calculus, and classical dynamics. 
-        I specialize in scientific computing and numerical analysis, with hands-on experience implementing multi-body differential equation solvers, energy-conserving numerical integrators, and quantitative analytical pipelines in Python and C++. 
-        Actively seeking opportunities in quantitative research, computational modeling, and core software engineering.
-      </p>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="mono-label mono-amber">PERSONAL PORTFOLIO / IDEAS INTO PRACTICE</span>
+          <h1 class="serif-title">Curiosity,<br>put to work.</h1>
+          <p class="hero-sub">
+            I study Computational Physics &amp; Computer Science at Carnegie Mellon University. 
+            I build useful software, explore complex physical and quantitative models, and turn curiosity into working systems.
+          </p>
+          <a href="#selected-work" class="btn-outline">Explore my work &darr;</a>
+        </div>
+
+        <svg class="hero-orbit-art" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="160" r="135" stroke="rgba(148,163,184,0.14)" stroke-width="1"/>
+          <ellipse cx="160" cy="160" rx="135" ry="52" transform="rotate(-28 160 160)" stroke="#8ab4f8" stroke-opacity="0.45" stroke-width="1.2"/>
+          <ellipse cx="160" cy="160" rx="95" ry="38" transform="rotate(22 160 160)" stroke="#e2a86b" stroke-opacity="0.6" stroke-width="1.2"/>
+          <circle cx="160" cy="160" r="6" fill="#e2a86b"/>
+          <circle cx="242" cy="116" r="4" fill="#8ab4f8"/>
+          <circle cx="88" cy="192" r="3.5" fill="#e2a86b"/>
+        </svg>
+      </div>
     </section>
 
-    <section id="education-skills">
-      <h2>Education & Core Skills</h2>
-      <div class="skills-block">
-        <h3>Education</h3>
-        <p><strong>Carnegie Mellon University</strong> — B.S. in Computational Physics & Computer Science (Expected 2030)</p>
-        <p><strong>Stuyvesant High School</strong> — Graduated 2026</p>
-      </div>
-      <div class="skills-block">
-        <h3>Languages & Frameworks</h3>
-        <div class="tags">
-          <span>Python</span><span>C++</span><span>Java</span><span>LaTeX</span>
-          <span>Jupyter Notebook</span><span>CLI</span>
+    <section id="selected-work" class="section-block">
+      <div class="container">
+        <div class="section-header">
+          <span class="mono-label mono-amber">01 &nbsp; SELECTED WORK</span>
+          <h2 class="serif-title">Different questions. Same curiosity.</h2>
+          <p>A quick overview first. Full project write-ups, AI transparency disclosures, demos, and workflow maps are one click away.</p>
         </div>
-      </div>
-    </section>
-    <section id="resume">
-      <div class="resume-header">
-        <h2>Resume</h2>
-        <a href="assets/resume.pdf" class="btn-download" target="_blank" rel="noopener noreferrer">
-          Download PDF
-        </a>
-      </div>
-      <div class="pdf-container">
-        <iframe 
-          src="assets/resume.pdf" 
-          width="100%" 
-          height="100%" 
-          title="Sophie Zhao Resume">
-          <p>
-            Your browser does not support inline frames. 
-            <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Download the resume PDF directly.</a>
-          </p>
-        </iframe>
+
+        <div id="projects-container" class="projects-grid"></div>
+
+        <div class="philosophy-strip">
+          <div>
+            <h3>Not just the result.</h3>
+            <p>Every project documents its technical architecture, explicit AI-usage boundaries, and design workflow.</p>
+          </div>
+          <span class="mono-label">COMPUTATIONAL PHYSICS &bull; AI &amp; DATA &bull; SYSTEMS</span>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2026 Sophie Zhao. Built with static HTML/CSS.</p>
+    <div class="container footer-inner">
+      <span>SOPHIE ZHAO / PORTFOLIO — Built with curiosity. Grounded in first principles.</span>
+      <span class="mono-label">CMU &bull; 2026</span>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="projects-data.js?v=9"></script>
+  <script>
+    const container = document.getElementById("projects-container");
+    Object.entries(PROJECTS).forEach(([slug, p]) => {
+      const skillsHtml = p.skills.map(s => `<span class="skill-pill">${s}</span>`).join("");
+      container.innerHTML += `
+        <a href="project.html?id=${slug}" class="project-card">
+          <div>
+            <div class="card-diagram">
+              <span class="mono-label">${p.diagramHeader}</span>
+              ${p.svgDiagram}
+              <span class="mono-label" style="font-size:0.65rem; color:#64748b;">${p.diagramFooter}</span>
+            </div>
+            <div class="card-meta">
+              <span class="mono-label mono-amber">${p.number}</span>
+              <span class="mono-label">${p.category}</span>
+            </div>
+            <h3>${p.title}</h3>
+            <p class="card-subtitle">${p.subtitle}</p>
+            <p class="card-desc">${p.cardSummary}</p>
+            <div class="skill-pills">${skillsHtml}</div>
+            <p class="card-dev-note">${p.cardNote}</p>
+          </div>
+          <div class="card-footer">
+            <span>View project details &amp; AI disclosure</span>
+            <span>&nearr;</span>
+          </div>
+        </a>
+      `;
+    });
+  </script>
+  <script src="physics-interactions.js?v=9"></script>
 </body>
 </html>

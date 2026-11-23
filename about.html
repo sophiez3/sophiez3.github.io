@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">[SZ]</span>
+        <span>SOPHIE ZHAO</span>
+      </a>
+      <nav>
+        <a href="index.html">Projects</a>
+        <a href="about.html" class="active">About me</a>
+        <a href="contact.html">Contact</a>
+        <a href="#resume">Résumé</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="two-col-layout">
+      <div>
+        <span class="mono-label mono-amber">02 &nbsp; ABOUT ME</span>
+        <h1 class="serif-title" style="font-size: clamp(2.6rem, 4.5vw, 3.8rem); margin: 0.6rem 0 1.5rem;">
+          A little about the person behind the projects.
+        </h1>
+
+        <div class="bio-card">
+          <p style="margin-bottom: 1.1rem; font-size: 1.05rem;">
+            I'm <strong>Sophie Zhao</strong>, a student at <strong>Carnegie Mellon University</strong> studying Computational Physics and Computer Science.
+          </p>
+          <p style="color: var(--text-secondary); margin-bottom: 1.1rem;">
+              I have a strong mathematical foundation in discrete proofs, vector calculus, and classical dynamics. I specialize in scientific computing and numerical analysis, with hands-on experience implementing multi-body differential equation solvers, energy-conserving numerical integrators, and quantitative analytical pipelines in Python and C++. 
+          </p>
+          <p style="color: var(--text-secondary);">
+            I am pursuing technical roles where rigorous analytical thinking and hands-on engineering meet: software engineering, computational physics, quantitative research, and data science.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-card">
+          <span class="mono-label mono-amber">HOW I APPROACH A PROBLEM</span>
+          <ul class="approach-steps">
+            <li><span>Question.</span><span class="mono-label">01</span></li>
+            <li><span>Model.</span><span class="mono-label">02</span></li>
+            <li><span>Build.</span><span class="mono-label">03</span></li>
+            <li><span>Repeat.</span><span class="mono-label">04</span></li>
+          </ul>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 1.25rem;">
+            Stay curious. Make the thinking visible.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section style="padding-bottom: 4rem;">
+      <span class="mono-label mono-amber">AWAY FROM THE KEYBOARD</span>
+      <h2 class="serif-title" style="font-size: 2.3rem; margin-top: 0.4rem;">A few things that keep me curious.</h2>
+
+      <div class="hobbies-grid">
+        <div class="hobby-card">
+          <span class="mono-label mono-amber">01 / OUTDOORS</span>
+          <h4>Exploring &amp; Long Walks</h4>
+          <p>Finding a different perspective away from screens—walking new neighborhoods and trails to think through problems.</p>
+        </div>
+        <div class="hobby-card">
+          <span class="mono-label mono-amber">02 / READING</span>
+          <h4>Following a Good Question</h4>
+          <p>Reading across physics history, complex systems, and how everyday infrastructure actually works.</p>
+        </div>
+        <div class="hobby-card">
+          <span class="mono-label mono-amber">03 / TINKERING</span>
+          <h4>Building Without a Deadline</h4>
+          <p>Small hardware, acoustics, and creative coding experiments built purely out of curiosity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" style="padding-bottom: 5rem;">
+      <div class="media-box">
+        <div class="media-box-header">
+          <div>
+            <span id="wf-status-text" class="mono-label mono-amber">SUPERPOSITION STATE // HOVER TO OBSERVE &amp; COLLAPSE |ψ⟩</span>
+            <h2 class="serif-title" style="font-size: 2.1rem; margin-top: 0.25rem;">Résumé</h2>
+          </div>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-outline">
+            Download PDF &darr;
+          </a>
+        </div>
+
+        <div id="wavefunction-shell" class="wavefunction-shell">
+          <canvas id="wavefunction-canvas"></canvas>
+          <iframe src="assets/resume.pdf#toolbar=0&navpanes=0" title="Sophie Zhao Resume"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>SOPHIE ZHAO / PORTFOLIO — Built with curiosity. Grounded in first principles.</span>
+      <span class="mono-label">CMU &bull; 2026</span>
+    </div>
+  </footer>
+  <script src="physics-interactions.js?v=9"></script>
+</body>
+</html>

@@ -3,53 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sophie Zhao | Contact</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Contact | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
   <header>
-    <div class="container header-container">
-      <h1>Sophie Zhao</h1>
-      <p class="tagline">Computational Physics & Computer Science</p>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">[SZ]</span>
+        <span>SOPHIE ZHAO</span>
+      </a>
       <nav>
-        <a href="index.html">About</a>
-        <a href="projects.html">Projects</a>
+        <a href="index.html">Projects</a>
+        <a href="about.html">About me</a>
         <a href="contact.html" class="active">Contact</a>
+        <a href="about.html#resume">Résumé</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Feel free to reach out regarding quantitative research, engineering roles, or project collaborations:</p>
-      <ul class="contact-list">
-        <li>
-          <strong>University Email:</strong> 
-          <a href="mailto:sophiez3@andrew.cmu.edu">sophiez3@andrew.cmu.edu</a>
-        </li>
-        <li>
-          <strong>LinkedIn:</strong> 
-          <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sophie-zhao-0b7b07269/</a>
-        </li>
-        <li>
-          <strong>GitHub:</strong> 
-          <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer">github.com/sophiez3</a>
-        </li>
-        <li>
-          <strong>Personal Email:</strong> 
-          <a href="mailto:zhaosophie4@andrew.cmu.edu">zhaosophie4@andrew.cmu.edu</a>
-        </li>
-      </ul>
-    </section>
+    <div class="two-col-layout">
+      <div>
+        <span class="mono-label mono-amber">03 &nbsp; CONTACT CIRCUIT</span>
+        <h1 class="serif-title" style="font-size: clamp(2.8rem, 5vw, 4.2rem); margin: 0.6rem 0 1.25rem;">
+          Let's work on<br>a good question.
+        </h1>
+        <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2.25rem; max-width: 480px;">
+          Have an opportunity in software engineering, computational physics, research, or data science? Close the circuit below.
+        </p>
+
+        <div class="circuit-board">
+          <div class="circuit-bus"></div>
+
+          <div class="circuit-source-badge">
+            <span class="mono-label mono-amber">V_CC = +5.0V &nbsp;|&nbsp; ACTIVE SIGNAL BUS</span>
+          </div>
+
+          <a href="mailto:sophiez3@andrew.cmu.edu" class="circuit-node">
+            <span class="branch-pulse"></span>
+            <div>
+              <span class="mono-label mono-amber" style="display:block;">NODE 01 // UNIVERSITY EMAIL</span>
+              <strong>sophiez3@andrew.cmu.edu</strong>
+            </div>
+            <div class="node-telemetry">
+              <span class="current-indicator">I₁ &rarr; 12.4 mA</span>
+              <span>&nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer" class="circuit-node">
+            <span class="branch-pulse"></span>
+            <div>
+              <span class="mono-label mono-amber" style="display:block;">NODE 02 // GITHUB REPOSITORIES</span>
+              <strong>@sophiez3</strong>
+            </div>
+            <div class="node-telemetry">
+              <span class="current-indicator">I₂ &rarr; 8.2 mA</span>
+              <span>&nearr;</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer" class="circuit-node">
+            <span class="branch-pulse"></span>
+            <div>
+              <span class="mono-label mono-amber" style="display:block;">NODE 03 // LINKEDIN NETWORK</span>
+              <strong>/in/sophie-zhao-0b7b07269</strong>
+            </div>
+            <div class="node-telemetry">
+              <span class="current-indicator">I₃ &rarr; 6.8 mA</span>
+              <span>&nearr;</span>
+            </div>
+          </a>
+
+          <div class="circuit-ground">
+            <span class="mono-label" style="color:#64748b;">GND (0.0V) // PITTSBURGH, PA</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-card">
+          <span class="mono-label mono-amber">AREAS OF INTEREST</span>
+          <ul class="approach-steps" style="margin-bottom: 1.75rem;">
+            <li style="font-size: 1.25rem;"><span>Software engineering</span></li>
+            <li style="font-size: 1.25rem;"><span>Computational physics &amp; research</span></li>
+            <li style="font-size: 1.25rem;"><span>Data science &amp; applied math</span></li>
+            <li style="font-size: 1.25rem;"><span>AI systems &amp; scientific computing</span></li>
+          </ul>
+          <a href="index.html#selected-work" class="action-link">Back to selected projects &rarr;</a>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2026 Sophie Zhao. Built with static HTML/CSS.</p>
+    <div class="container footer-inner">
+      <span>SOPHIE ZHAO / PORTFOLIO — Built with curiosity. Grounded in first principles.</span>
+      <span class="mono-label">CMU &bull; 2026</span>
     </div>
   </footer>
-
-  <script src="script.js"></script>
+  <script src="physics-interactions.js?v=9"></script>
 </body>
 </html>
