@@ -118,7 +118,8 @@ const PROJECTS = {
     contribution:
       "Defined the 11-factor clinical readiness framework, urgency-dependent dynamic weight rescaling, PySpark/OpenStreetMap geospatial validation strategy, and 'How We Decide' explainability tab.",
     githubUrl: "https://github.com/sophiez3",
-    liveUrl: "",
+    liveUrl: "https://india-carefinder-2l5k0amix-red-pandas1.vercel.app/",
+    liveLabel: "Launch Vercel Sample Demo ↗",
     slidesPdf: "",
     videoMp4: "assets/carefinder-demo.mp4",
     diagramHeader: "11 FACTORS / 10K × 121K OSM",

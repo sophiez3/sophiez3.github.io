@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Résumé | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=15">
+</head>
+<body>
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">[SZ]</span>
+        <span>SOPHIE ZHAO</span>
+      </a>
+      <nav>
+        <a href="index.html">Projects</a>
+        <a href="about.html">About me</a>
+        <a href="contact.html">Contact</a>
+        <a href="resume.html" class="active">Résumé</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="resume" style="padding: 4rem 0 5rem;">
+      <span class="mono-label mono-amber">04 &nbsp; CURRICULUM VITAE</span>
+      <h1 class="serif-title" style="font-size: clamp(2.6rem, 4.5vw, 3.8rem); margin: 0.6rem 0 1.5rem;">
+        Résumé
+      </h1>
+
+      <div class="media-box">
+        <div class="media-box-header">
+          <div>
+            <span id="wf-status-text" class="mono-label mono-amber">SUPERPOSITION STATE // HOVER TO OBSERVE &amp; COLLAPSE |ψ⟩</span>
+          </div>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-outline">
+            Download PDF &darr;
+          </a>
+        </div>
+
+        <div id="wavefunction-shell" class="wavefunction-shell">
+          <canvas id="wavefunction-canvas"></canvas>
+          <iframe src="assets/resume.pdf#toolbar=0&navpanes=0" title="Sophie Zhao Resume"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>SOPHIE ZHAO / PORTFOLIO — Built with curiosity. Grounded in first principles.</span>
+      <span class="mono-label">CMU &bull; 2026</span>
+    </div>
+  </footer>
+  <script src="physics-interactions.js?v=15"></script>
+</body>
+</html>

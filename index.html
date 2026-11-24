@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sophie Zhao | Portfolio</title>
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
   <header>
@@ -17,7 +17,7 @@
         <a href="index.html" class="active">Projects</a>
         <a href="about.html">About me</a>
         <a href="contact.html">Contact</a>
-        <a href="about.html#resume">Résumé</a>
+        <a href="resume.html">Résumé</a>
       </nav>
     </div>
   </header>
@@ -73,7 +73,7 @@
     </div>
   </footer>
 
-  <script src="projects-data.js?v=13"></script>
+  <script src="projects-data.js?v=15"></script>
   <script>
     const jumpTabsContainer = document.getElementById("project-jump-tabs");
     const container = document.getElementById("projects-container");
@@ -98,8 +98,17 @@
       });
       jumpTabsContainer.appendChild(tabBtn);
 
-      // Build project card with target anchor ID
+      // Build project card with target anchor ID and consistent AI / Team transparency block
       const skillsHtml = p.skills.map(s => `<span class="skill-pill">${s}</span>`).join("");
+      const aiTransparencyHtml = p.aiTransparency
+        ? `
+          <div class="card-ai-box">
+            <span class="card-ai-badge">${p.aiTransparency.badge}</span>
+            <p class="card-ai-text">${p.aiTransparency.paragraphs.join(" ")}</p>
+          </div>
+        `
+        : "";
+
       container.innerHTML += `
         <a id="card-${slug}" href="project.html?id=${slug}" class="project-card">
           <div>
@@ -116,16 +125,16 @@
             <p class="card-subtitle">${p.subtitle}</p>
             <p class="card-desc">${p.cardSummary}</p>
             <div class="skill-pills">${skillsHtml}</div>
-            <p class="card-dev-note">${p.cardNote}</p>
+            ${aiTransparencyHtml}
           </div>
           <div class="card-footer">
-            <span>View project details &amp; AI disclosure</span>
+            <span>View project details</span>
             <span>&nearr;</span>
           </div>
         </a>
       `;
     });
   </script>
-  <script src="physics-interactions.js?v=13"></script>
+  <script src="physics-interactions.js?v=15"></script>
 </body>
 </html>
