@@ -1187,3 +1187,20 @@ footer {
   color: var(--text-secondary);
   font-size: 0.76rem;
 }
+
+
+/* ==========================================================================
+   ABOUT ME PORTRAIT PHOTO FRAME
+   ========================================================================== */
+.about-photo-card {
+  border-color: var(--border-amber);
+  overflow: hidden;
+}
+
+.about-portrait-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+}
