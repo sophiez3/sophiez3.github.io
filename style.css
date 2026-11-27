@@ -1210,3 +1210,20 @@ footer {
   border-radius: 4px;
   object-fit: cover;
 }
+
+
+.about-photo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+@media (max-width: 860px) {
+  .about-photo-stack {
+    align-items: center;
+  }
+  .about-photo-card {
+    margin-left: 0;
+  }
+}
