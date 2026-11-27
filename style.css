@@ -1174,3 +1174,16 @@ footer {
   line-height: 1.5;
   color: var(--text-secondary);
 }
+
+.card-notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.card-notes-list .card-dev-note {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+}

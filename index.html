@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sophie Zhao | Portfolio</title>
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
   <header>
@@ -73,7 +73,7 @@
     </div>
   </footer>
 
-  <script src="projects-data.js?v=15"></script>
+  <script src="projects-data.js?v=16"></script>
   <script>
     const jumpTabsContainer = document.getElementById("project-jump-tabs");
     const container = document.getElementById("projects-container");
@@ -98,8 +98,11 @@
       });
       jumpTabsContainer.appendChild(tabBtn);
 
-      // Build project card with target anchor ID and consistent AI / Team transparency block
+      // Build project card with target anchor ID, card notes, and consistent AI / Team transparency block
       const skillsHtml = p.skills.map(s => `<span class="skill-pill">${s}</span>`).join("");
+      const cardNotesHtml = (p.cardNotes && p.cardNotes.length > 0)
+        ? `<div class="card-notes-list">${p.cardNotes.map(n => `<p class="card-dev-note">${n}</p>`).join("")}</div>`
+        : "";
       const aiTransparencyHtml = p.aiTransparency
         ? `
           <div class="card-ai-box">
@@ -124,6 +127,7 @@
             <h3>${p.title}</h3>
             <p class="card-subtitle">${p.subtitle}</p>
             <p class="card-desc">${p.cardSummary}</p>
+            ${cardNotesHtml}
             <div class="skill-pills">${skillsHtml}</div>
             ${aiTransparencyHtml}
           </div>
@@ -135,6 +139,6 @@
       `;
     });
   </script>
-  <script src="physics-interactions.js?v=15"></script>
+  <script src="physics-interactions.js?v=16"></script>
 </body>
 </html>

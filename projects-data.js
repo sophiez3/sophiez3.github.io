@@ -2,11 +2,13 @@ const PROJECTS = {
   "voyager-grand-tour": {
     number: "01",
     category: "COMPUTATIONAL PHYSICS",
-    subtitle: "Independent computational-physics project",
+    subtitle: "AP Physics C 2026 Final Project",
     title: "Voyager Grand Tour Simulator",
     cardSummary:
-      "An interactive multi-body orbital simulator that models the Voyager 1 and Voyager 2 grand tours and allows users to design their own planetary missions. Combines fourth-order Runge–Kutta integration with encounter-aware time-step refinement to resolve gravity assists across vastly different spatial and temporal scales.",
-    cardNote: "Development: Designed and implemented independently without generative AI.",
+      "An interactive multi-body orbital simulator that models the Voyager 1 and Voyager 2 grand tours and lets users design their own planetary missions. The simulator uses fourth-order Runge–Kutta numerical integration with specific time-step refinement when the spacecraft enters planetary Hill Spheres.",
+    cardNotes: [
+      "Development: Designed and implemented on Glowscript VPython independently without generative AI."
+    ],
     skills: [
       "Python",
       "Web VPython",
@@ -18,22 +20,21 @@ const PROJECTS = {
       "Interactive 3D visualization"
     ],
     fullDescription: [
-      "The Voyager Grand Tour Simulator is an interactive computational-physics application that models the nonlinear trajectories and planetary gravity assists of Voyager 1 and Voyager 2. In addition to historical mission scenarios, it provides an open-ended sandbox for configuring and exploring arbitrary spacecraft trajectories within the Solar System.",
-      "I implemented a fourth-order Runge–Kutta numerical integrator that evaluates the net vector gravitational acceleration acting on each simulated body at every RK4 sub-step. The model incorporates the Sun, all eight major planets, and the spacecraft, allowing curved heliocentric trajectories and close planetary flybys to emerge from the gravitational equations rather than from predetermined animation paths.",
-      "A fixed integration step presents a numerical challenge: a step large enough to simulate years of interplanetary travel efficiently can lose accuracy during a fast, close planetary encounter. To address this, I developed an encounter-aware time-stepping system based on planetary Hill spheres. When a Voyager spacecraft enters a planet’s surrounding encounter region, the simulator reduces the integration step to resolve the rapid change in gravitational acceleration near periapsis. It also shifts the viewing frame toward the encounter body, making the geometry and deflection of the flyby easier to examine.",
-      "The application includes historical initial conditions for outer-planet encounters and an interactive mission-design sandbox. Users can place probes using ray-projected orbital-ring snapping, adjust launch-vector components, and observe the resulting trajectories in real time. Live kinetic- and potential-energy plots provide diagnostic insight into energy changes during hyperbolic gravity assists and help reveal numerical instability."
+      "The Voyager Grand Tour Simulator models the nonlinear trajectories and planetary gravity assists of Voyager 1 and Voyager 2. In addition to historical mission scenarios, it provides an experimental mode for users to explore arbitrary spacecraft trajectories and gravity-assist sequences within the Solar System.",
+      "I implemented fourth-order Runge–Kutta numerical integration that evaluates the net gravitational force acting on each planet and spacecraft at every RK4 sub-step. The model includes the gravitational influences of the Sun, all eight major planets, and the spacecraft. As a result, the curved heliocentric trajectories and close planetary flybys emerge from real-time physics calculations rather than predetermined animation paths.",
+      "A major challenge I faced was having a fixed integration step: a big step corresponding to multiple years can lose accuracy during a fast, close planetary encounter. However, only using a very small time step would result in a very slow simulation. To address this challenge, I modified the time-step when the spacecraft enters a planet’s Hill sphere. When a spacecraft enters this region, the simulator reduces the integration step for greater accuracy. This ensures that the spacecraft can be effectively accelerated during the flyby. When the spacecraft is within the Hill Sphere, the simulator also zooms the viewing frame in toward the planetary encounter, making the trajectory geometry and deflection easier to visualize.",
+      "The simulator also includes an interactive mission-design sandbox. Users can configure specific planetary and spacecraft positions, adjust the spacecraft’s angle, and observe the resulting trajectories in real time. Live kinetic and potential energy plots provide insight into energy changes during gravity assists."
     ],
     aiTransparency: {
       badge: "INDEPENDENT IMPLEMENTATION // NO GENERATIVE AI",
       paragraphs: [
-        "This project was designed and programmed independently without generative AI assistance, including the physical model, RK4 integrator, adaptive encounter logic, interaction design, implementation, and debugging.",
-        "It demonstrates my ability to translate physical laws into numerical algorithms, reason about accuracy and computational cost, and build interactive scientific software around a mathematical model."
+        "Developed independently without generative AI assistance, including the physical model, adaptive encounter logic, and UI."
       ]
     },
     question:
-      "Resolve multi-year interplanetary trajectories and rapid hyperbolic planetary gravity assists simultaneously without sacrificing numerical stability or frame rate.",
+      "Resolve multi-year interplanetary trajectories and rapid hyperbolic planetary gravity assists simultaneously without sacrificing numerical accuracy or simulation speed.",
     contribution:
-      "Independently designed and coded the 10-body RK4 gravitational integrator, Hill-sphere adaptive time-stepping engine, ray-projected orbital sandbox, and live energy diagnostics.",
+      "Designed and implemented on Glowscript VPython independently without generative AI, including the physical model, RK4 integrator, Hill-sphere adaptive encounter logic, and UI.",
     githubUrl: "https://github.com/sophiez3",
     liveUrl: "",
     slidesPdf: "",
@@ -51,28 +52,28 @@ const PROJECTS = {
         <circle cx="204" cy="42" r="3" fill="#fff1cc"/>
       </svg>`,
     mindmap: {
-      centralQuestion: "How can an interactive N-body solver accurately resolve fast planetary gravity assists across multi-year heliocentric timescales?",
-      tradeoff: "Fixed large time steps distort periapsis deflection, while globally tiny steps stall multi-year cruises—solved via Hill-sphere adaptive step refinement.",
+      centralQuestion: "How can an N-body orbital solver accurately resolve fast planetary gravity assists across multi-year heliocentric timescales?",
+      tradeoff: "Fixed large time steps distort periapsis deflection, while globally tiny steps slow down the simulation—solved via Hill-sphere adaptive step refinement and camera zoom.",
       nodes: [
         {
           step: "01 FRAME THE PHYSICS",
           title: "10-Body Gravitational Dynamics",
-          text: "Model the Sun, all eight major planets, and spacecraft probes so hyperbolic flybys emerge purely from Newtonian vector accelerations."
+          text: "Model the Sun, all eight major planets, and the spacecraft so curved heliocentric trajectories and flybys emerge from real-time forces."
         },
         {
           step: "02 NUMERICAL SOLVER",
           title: "Fourth-Order Runge–Kutta (RK4)",
-          text: "Evaluate net gravitational acceleration across all four RK4 sub-steps per frame to preserve orbital energy over multi-year tours."
+          text: "Evaluate net gravitational force acting on each planet and spacecraft at every RK4 sub-step."
         },
         {
           step: "03 ADAPTIVE REFINEMENT",
           title: "Hill-Sphere Encounter Trigger",
-          text: "Shrink Δt and shift camera focus onto the encounter planet whenever a probe enters its gravitational Hill sphere."
+          text: "Reduce integration Δt and zoom the viewing frame toward the encounter body whenever a spacecraft enters a planet's Hill sphere."
         },
         {
           step: "04 MISSION SANDBOX",
-          title: "Interactive Probe Placement & Energy Plots",
-          text: "Combine ray-projected orbital-ring snapping and live kinetic/potential energy charts to diagnose slingshot Δv and numerical drift."
+          title: "Configurable Trajectories & Energy Plots",
+          text: "Configure planetary/spacecraft positions and launch angles in real time with live kinetic and potential energy plots."
         }
       ]
     }
@@ -81,11 +82,14 @@ const PROJECTS = {
   "india-carefinder": {
     number: "02",
     category: "DATA ENGINEERING & AI",
-    subtitle: "Explainable healthcare-facility recommender | Databricks Datathon 2026",
+    subtitle: "Databricks Datathon 2026 Submission",
     title: "India CareFinder",
     cardSummary:
-      "An explainable decision-support application that helps patients and community health workers compare Indian hospitals for services such as dialysis, emergency C-sections, NICU care, and trauma treatment. Ranks facilities using urgency-specific criteria, shows supporting evidence, and warns when data is incomplete or contradictory.",
-    cardNote: "Built with Databricks, PySpark, Spark SQL, FastAPI, React, TypeScript & OpenStreetMap.",
+      "Collaborated with a teammate to design a healthcare-facility recommending web app that helps users compare Indian hospitals for emergency services such as dialysis, emergency C-sections, NICU care, and trauma treatment. CareFinder ranks facilities using urgency-specific criteria, displays the evidence supporting each match, and warns users when location or service data is incomplete or contradictory.",
+    cardNotes: [
+      "My contributions: Helped determine the facility-selection factors, found an external OpenStreetMap dataset for validating the provided facility records, and deployed the web app on Databricks.",
+      "Team implementation: My teammate used generative AI to assist with developing the analytical pipeline and application code."
+    ],
     skills: [
       "Databricks",
       "PySpark",
@@ -100,29 +104,28 @@ const PROJECTS = {
       "Geospatial validation"
     ],
     fullDescription: [
-      "India CareFinder is an explainable hospital-recommendation application developed for the Databricks Datathon 2026. It helps patients, community health workers, and healthcare planners identify facilities for urgent or planned medical services without treating incomplete directory data as unquestionable fact.",
-      "A user enters a needed service or related condition, a location, and practical preferences such as urgency, travel radius, budget, and insurance. The application then ranks nearby facilities and explains each result through source-text quotations, a factor-by-factor score breakdown, and warnings about missing or conflicting information.",
-      "I designed the ranking framework around 11 interpretable factors, including travel time, strength of service evidence, operating availability, relevant specialists and equipment, outside verification, cost, insurance, location confidence, and facility capacity. The weights change with the clinical context: emergency searches emphasize speed and availability, while planned-care searches place more weight on evidence, affordability, and insurance. When a field such as wait time is unavailable, the system excludes it and rescales the remaining weights instead of inventing a value. Facilities supported by only weak service evidence are prevented from outranking better-supported options.",
-      "Behind the application, a Databricks pipeline built with PySpark and Spark SQL standardizes approximately 10,000 Virtue Foundation facility records, identifies service evidence across multiple fields, extracts supporting quotations, and checks facility coordinates against Indian PIN-code geography. I also incorporated an external OpenStreetMap dataset of more than 121,000 healthcare locations to cross-check facility identity and proximity and supplement ownership information where available.",
-      "The deployed Databricks version connects a React and TypeScript interface to a FastAPI backend and Databricks SQL Warehouse. A separate Vercel deployment demonstrates the interface using sample data. The “How We Decide” view exposes the weights, rubrics, assumptions, and tradeoffs behind every score so users can inspect the recommendation rather than being asked to trust a black box."
+      "CareFinder helps users identify facilities for urgent or planned medical services. A user enters a needed service or related condition, a location, and practical preferences such as urgency, travel radius, budget, and insurance. The application then ranks nearby facilities and explains its decision, including a factor-by-factor score breakdown for each factor and warnings about missing or conflicting information.",
+      "I contributed to determining which factors should influence facility selection. These included travel time, strength of service evidence, operating availability, relevant specialists and equipment, outside verification, cost, insurance, location confidence, and facility capacity. The weights change depending on the context: emergency searches emphasize speed and availability, while planned-care searches place more weight on affordability and insurance. When a characteristic like wait time is unavailable, the system excludes it and rescales the remaining weights.",
+      "Behind CareFinder, a Databricks pipeline built with PySpark and Spark SQL standardizes ~10,000 Virtue Foundation facility records, identifies specialized services available at each facility, and checks facility coordinates against Indian PIN-codes. I also incorporated an external OpenStreetMap dataset of over 121,000 healthcare locations to cross-check facility identity, proximity, and ownership information. This helped flag any contradictory or missing data in the original dataset.",
+      "My other primary responsibility was deploying the team’s code and app on Databricks in our local workspace. The deployed Databricks version connects a React and TypeScript interface to a FastAPI backend and Databricks SQL Warehouse. A separate Vercel deployment demonstrates the interface using sample data. The “How We Decide” view exposes the weights, rubrics, assumptions, and tradeoffs behind every recommendation, so users can develop greater trust in the app through this transparency."
     ],
     aiTransparency: {
-      badge: "AI-ASSISTED IMPLEMENTATION // HUMAN-DESIGNED LOGIC",
+      badge: "TWO-PERSON TEAM // AI-ASSISTED IMPLEMENTATION",
       paragraphs: [
-        "I used generative AI as a coding assistant and technical tutor while developing India CareFinder. It helped me translate my specifications into SQL, Python, and frontend code, understand unfamiliar Databricks workflows, and iterate more quickly during the hackathon.",
-        "I defined the product concept, selected and weighted the readiness factors, designed the emergency and planned-care decision logic, chose the external validation strategy, and specified how evidence and uncertainty should be communicated. I reviewed, adapted, integrated, and tested the generated implementation rather than treating generated code as automatically correct."
+        "India CareFinder was a two-person project. I helped determine the factors used to evaluate facilities, found an external OpenStreetMap dataset to validate information from the datathon dataset, and deployed the application on Databricks. My teammate led the implementation and used generative AI to assist with developing the code.",
+        "Generative AI was used as a coding assistant and technical tutor while developing India CareFinder. It helped translate our specifications into SQL, Python, and frontend code, understand unfamiliar Databricks workflows, and iterate more quickly during the hackathon. We reviewed, tested, and adapted the generated implementation rather than automatically using the generated code."
       ]
     },
     question:
-      "Rank Indian healthcare facilities for urgent vs. planned care while exposing missing data, coordinate errors, and supporting source evidence transparently.",
+      "Rank Indian healthcare facilities for urgent vs. planned care while exposing missing data, coordinate errors, and supporting evidence transparently.",
     contribution:
-      "Defined the 11-factor clinical readiness framework, urgency-dependent dynamic weight rescaling, PySpark/OpenStreetMap geospatial validation strategy, and 'How We Decide' explainability tab.",
+      "Helped determine the facility-selection factors, incorporated an external OpenStreetMap dataset of 121,000+ locations to validate records, and deployed the web app on Databricks.",
     githubUrl: "https://github.com/sophiez3",
     liveUrl: "https://india-carefinder-2l5k0amix-red-pandas1.vercel.app/",
     liveLabel: "Launch Vercel Sample Demo ↗",
     slidesPdf: "",
     videoMp4: "assets/carefinder-demo.mp4",
-    diagramHeader: "11 FACTORS / 10K × 121K OSM",
+    diagramHeader: "SELECTION FACTORS / 10K × 121K OSM",
     diagramFooter: "Dynamic Weight Rescaling   |   PIN Validation",
     svgDiagram: `
       <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,40 +139,128 @@ const PROJECTS = {
       </svg>`,
     mindmap: {
       centralQuestion: "How do we recommend hospitals safely when directory records contain gaps, weak claims, or coordinate errors?",
-      tradeoff: "Exclude missing fields and dynamically rescale the 11 weights rather than imputing synthetic values that could mislead urgent care decisions.",
+      tradeoff: "Exclude missing fields and dynamically rescale remaining weights rather than inventing values that could mislead urgent care decisions.",
       nodes: [
         {
           step: "01 CLINICAL CONTEXT",
-          title: "11-Factor Readiness Rubrics",
-          text: "Shift factor weights dynamically between emergency speed/availability and planned-care evidence, cost, and insurance."
+          title: "Urgency-Specific Selection Factors",
+          text: "Shift factor weights between emergency speed/availability and planned-care affordability and insurance, rescaling when fields are missing."
         },
         {
           step: "02 GEOSPATIAL PIPELINE",
-          title: "10K Records × 121K OSM Check",
-          text: "Standardize Virtue Foundation directories in PySpark, verify coordinates against Indian PIN boundaries, and cross-match OpenStreetMap."
+          title: "~10K Records × 121K OSM Check",
+          text: "Standardize Virtue Foundation records in PySpark/Spark SQL, check Indian PIN-codes, and cross-validate identity and proximity against OpenStreetMap."
         },
         {
-          step: "03 UNCERTAINTY GUARDRAILS",
-          title: "Weight Rescaling & Evidence Caps",
-          text: "Rescale weights when fields are missing and cap weak-evidence facilities from outranking verified hospitals."
+          step: "03 TRANSPARENCY",
+          title: "'How We Decide' & Warnings",
+          text: "Expose weights, rubrics, factor-by-factor score breakdowns, and warnings about missing or conflicting directory information."
         },
         {
-          step: "04 EXPLAINABLE UI",
-          title: "'How We Decide' & Verbatim Quotes",
-          text: "Surface source-text quotations, factor breakdowns, and contradiction warnings via FastAPI and Databricks SQL Warehouse."
+          step: "04 DEPLOYMENT",
+          title: "Databricks SQL Warehouse & React UI",
+          text: "Deploy the React/TypeScript frontend, FastAPI backend, and Databricks SQL Warehouse in the local Databricks workspace."
+        }
+      ]
+    }
+  },
+
+  "smart-kitchen": {
+    number: "03",
+    category: "FULL-STACK AI SYSTEMS",
+    subtitle: "NOVA Generative AI Hackathon 2026 Submission",
+    title: "Smart Kitchen",
+    cardSummary:
+      "An AI-assisted restaurant operations system that synchronizes ordering, ingredient inventory, supplier records, and delivery verification. Smart Kitchen automatically updates the kitchen’s inventory database as customers order specific dishes. It simultaneously updates menu availability based on inventory updates. It also structures food modifications and supplier notes into readable format, and uses bag-specific QR codes to ensure deliverers pick up the right bag. Additionally, owners can obtain AI-generated insights on the profitability of certain food items, including recommendations on what ingredients to purchase more of.",
+    cardNotes: [],
+    skills: [
+      "Python",
+      "FastAPI",
+      "Pydantic",
+      "SQLite/SQL",
+      "React",
+      "Vite",
+      "JavaScript",
+      "REST APIs",
+      "OpenRouter",
+      "Structured LLM outputs",
+      "QR scanning",
+      "Git",
+      "pytest"
+    ],
+    fullDescription: [
+      "Smart Kitchen is a locally deployed full-stack prototype to address DoorDash’s customer-facing and kitchen-facing problems. It addresses three recurring problems in online food delivery operations: selling dishes after ingredients have run out, handing drivers the wrong orders, and maintaining operational data across disconnected invoices and sales records.",
+      "The system connects three role-specific interfaces to a shared FastAPI backend. On the customer end, customers see dishes become unavailable automatically when required ingredients run short. On the kitchen side, staff can monitor inventory, follow incoming orders, and review AI-parsed supplier notes. On the driver side, drivers scan a unique QR code attached to each order before confirming pickup and delivery, ensuring that they picked up the right order.",
+      "Behind each order, the backend retrieves the selected dishes’ recipes and deducts the required ingredients from the ingredients database within a SQLite transaction. This prevents a dish from being shown as available on the delivery app even though the kitchen ran out of ingredients for that dish. OpenRouter-powered features interpret users’ written food customizations and automatically make inventory adjustments. Smart Kitchen also automatically converts inconsistently-structured supplier notes into changes in the kitchen inventory database.",
+      "Because LLM output can be incomplete or incorrect, the web app does not trust it directly. Generated data is constrained through structured JSON schemas, validated with Pydantic, and presented for human confirmation before being saved."
+    ],
+    aiTransparency: {
+      badge: "ITERATIVE DEVELOPMENT // AI PAIR PROGRAMMER",
+      paragraphs: [
+        "I developed Smart Kitchen iteratively, using an AI assistant as a tutor and pair programmer. I defined the problem, designed the workflows and system behavior, tested each prototype, and debugged the application. AI helped me understand unfamiliar technologies, generate and revise portions of code, diagnose errors, and improve testing and documentation. I remained responsible for the project’s design decisions, integration, validation, and final behavior."
+      ]
+    },
+    question:
+      "Prevent overselling out-of-stock dishes, driver handoff mix-ups, and disconnected supplier records across restaurant delivery operations.",
+    contribution:
+      "Defined the problem, designed the three role-specific workflows, transactional SQLite inventory engine, Pydantic-validated LLM parsing pipeline, and QR handoff verification.",
+    githubUrl: "https://github.com/sophiez3",
+    liveUrl: "",
+    slidesPdf: "assets/smart-kitchen-slides.pdf",
+    videoMp4: "assets/smart-kitchen-demo.mp4",
+    diagramHeader: "STATE_SYNC / SQLITE + PYDANTIC",
+    diagramFooter: "Order → Schema → Deduction → QR Handoff",
+    svgDiagram: `
+      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="52" width="68" height="36" rx="4" fill="#131c2e" stroke="#8ab4f8"/>
+        <text x="42" y="74" fill="#8ab4f8" font-family="monospace" font-size="9">NL Order</text>
+        <path d="M98 70 H 126" stroke="#e2a86b" stroke-width="1.5"/>
+        <rect x="126" y="46" width="68" height="48" rx="4" fill="#182236" stroke="#e2a86b"/>
+        <text x="136" y="67" fill="#e2a86b" font-family="monospace" font-size="9">Pydantic</text>
+        <text x="136" y="80" fill="#f1f5f9" font-family="monospace" font-size="9">Schema</text>
+        <path d="M194 70 H 222" stroke="#e2a86b" stroke-width="1.5"/>
+        <rect x="222" y="52" width="68" height="36" rx="4" fill="#131c2e" stroke="#8ab4f8"/>
+        <text x="233" y="74" fill="#8ab4f8" font-family="monospace" font-size="9">DB &amp; QR</text>
+      </svg>`,
+    mindmap: {
+      centralQuestion: "How do we synchronize customer ordering, unstructured modifications, supplier notes, and driver pickup in real time?",
+      tradeoff: "Constrain OpenRouter LLM outputs with JSON schemas and Pydantic validation plus human confirmation before committing database changes.",
+      nodes: [
+        {
+          step: "01 TRANSACTIONAL INVENTORY",
+          title: "SQLite Recipe Deductions",
+          text: "Deduct required recipe ingredients atomically upon order placement and automatically toggle customer menu availability."
+        },
+        {
+          step: "02 VALIDATED LLM PARSING",
+          title: "OpenRouter + Pydantic Schemas",
+          text: "Structure written food customizations and supplier invoices into typed schemas requiring human confirmation before saving."
+        },
+        {
+          step: "03 DRIVER VERIFICATION",
+          title: "Bag-Specific QR Code Handoff",
+          text: "Require drivers to scan each bag's unique QR code before confirming pickup and delivery."
+        },
+        {
+          step: "04 OWNER ANALYTICS",
+          title: "Profitability & Restock Insights",
+          text: "Generate AI-assisted item profitability insights and ingredient purchasing recommendations."
         }
       ]
     }
   },
 
   "housing-peer-tool": {
-    number: "03",
+    number: "04",
     category: "AI & QUANTITATIVE POLICY",
-    subtitle: "Explainable housing-affordability framework | PNC x 180DC Challenge 2026",
+    subtitle: "PNC x 180DC Challenge 2026 Submission",
     title: "Housing Peer Tool",
     cardSummary:
-      "A team-designed decision-support framework that helps financial institutions identify why housing affordability differs across comparable communities and select targeted interventions. Compares peer cities, scores neighborhoods across four locally defined housing archetypes, checks for unequal outcomes, and connects each archetype to bank products, partners, safeguards, and KPIs.",
-    cardNote: "My role: Problem framing, archetype/factor design, case study, and prototype specs.",
+      "Collaborated with a teammate to design a framework that helps financial institutions identify targeted solutions to housing affordability across different neighborhoods. The prototype compares peer cities, scores neighborhoods across four housing archetypes, checks for unequal outcomes among similar areas, and connects each archetype to a bank product, community partners, safeguards, and KPIs.",
+    cardNotes: [
+      "My contribution: Housing affordability solutions, creating neighborhood archetypes, Philadelphia case-study, and prototype specifications.",
+      "AI’s contribution: AI was used to implement a web app from our specifications, assisting with research and presentation development, and producing recommendation memos from calculated results."
+    ],
     skills: [
       "FastAPI",
       "Python",
@@ -179,29 +270,30 @@ const PROJECTS = {
       "Policy & Financial Design"
     ],
     fullDescription: [
-      "The Housing Peer Tool was developed for the 2026 PNC x 180 Degrees Consulting Challenge as a proposal for how financial institutions could use data and AI to target housing-affordability interventions more precisely.",
-      "Our team designed a three-level framework. At the city level, the tool identifies structurally similar peers using characteristics such as population, income, employment mix, housing age, commute patterns, broadband access, and homeownership. It then fits rent against income across the peer group to estimate whether a selected city’s rent is higher or lower than its income would predict and highlights the factors on which that city differs most from its peers.",
-      "Within a city, neighborhoods receive separate scores from 0 to 1 for four human-defined housing archetypes: (1) vacant or obsolete properties suitable for adaptive reuse, (2) underused land near transit in low-car-ownership communities, (3) tangled-title properties and unsubsidized small-landlord rentals, and (4) older homes facing high energy and repair burdens. Our team selected these categories, researched the local conditions behind them, defined the relevant factors and thresholds, and designed a corresponding financial intervention for each—including an adaptive-reuse facility, a transit-oriented ground-lease and pooled fund, title legal assistance with landlord repair financing, and an energy-efficiency rehabilitation loan, complete with partners, KPIs, and human and fair-lending review.",
-      "We accompanied the proposal with an AI-assisted web prototype using sample data for Philadelphia, Pittsburgh, and comparison cities. The FastAPI backend uses pandas and NumPy to validate uploaded CSV files, identify city peers, calculate rent-income divergence, score neighborhood archetypes, and compare similar neighborhoods for unequal access, while a dependency-free frontend renders interactive SVG charts.",
-      "The prototype’s core classifications are transparent, threshold-based calculations rather than opaque LLM judgments. An OpenRouter-connected language model is used only after the analysis: it converts the computed findings into a recommendation memo and is instructed to rely exclusively on facts supplied by the analytical pipeline."
+      "The Housing Peer Tool was developed for the 2026 PNC x 180 Degrees Consulting Challenge as a proposal for how financial institutions could use AI to target housing-affordability interventions more precisely.",
+      "At the city level, the tool identifies structurally similar peer cities using characteristics such as population, income, employment distribution, housing age, commute patterns, and home-ownership. It then compares the target city’s rent against income with peer cities to estimate whether a selected city’s rent is higher or lower than its income. The tool then predicts and highlights the factors on which that city differs most from its peers.",
+      "Within a city, neighborhoods receive separate scores from 0 to 1 for the housing archetypes: (1) Vacant or obsolete properties that can be repurposed into new, affordable housing; (2) Underused land near transit lines in low-car-ownership communities; (3) Tangled-title properties and unsubsidized small-landlord rentals; and (4) Older homes facing high energy and repair burdens.",
+      "Our team selected these categories, defined the relevant factors and thresholds that determine a neighborhood’s category, and designed a corresponding financial intervention for each. For Type 1 neighborhoods, financial institutions can invest in repurposing abandoned buildings. For Type 2 neighborhoods near major transit lines, homes could be built without parking spaces, lowering housing and rent costs. For Type 3 neighborhoods with inheritance homes with unclear ownership, financial institutions can help with title legal assistance for unsubsidized small-landlord rentals. For Type 4 neighborhoods with old buildings with energy-inefficient heating and cooling systems, financial institutions can provide a home-renovation loan that enables homeowners to pay less in utility fees.",
+      "We accompanied our proposal with an AI-assisted web prototype using sample data for Philadelphia, Pittsburgh, and a set of comparison cities. The FastAPI backend uses pandas and NumPy to validate uploaded CSV files, identify city peers, calculate rent-income differences, classify neighborhood archetypes, and compare similar neighborhoods for unequal access. The frontend presents the results including the different neighborhoods and their classifications in a certain city, as well as the targeted solutions for specific neighborhoods.",
+      "The prototype’s core classifications are transparent, threshold-based calculations. An OpenRouter-connected language model is used only after the analysis: it converts the computed findings into a recommendation memo and is instructed to rely exclusively on facts supplied by the earlier analysis. This reduces the risk of AI hallucinations.",
+      "Generative AI produced most of the algorithms and application code from our requirements. Our substantive contribution was determining what the system should measure, defining the neighborhood categories and factors, researching Philadelphia neighborhoods as a case study, designing the targeted financial solutions, and ensuring the prototype represented our intended framework."
     ],
     aiTransparency: {
       badge: "TEAM-DESIGNED FRAMEWORK // AI-IMPLEMENTED PROTOTYPE",
       paragraphs: [
-        "This was a team-designed, AI-implemented prototype. We developed the housing-affordability framework, selected the four neighborhood archetypes, defined the relevant factors and targeted interventions, researched the case study, and established the human and fair-lending safeguards.",
-        "Generative AI translated those specifications into the analytical algorithms and web application, assisted with research and presentation development, and generated recommendation memos from the tool’s calculated results. I do not present the application code or algorithms as independently programmed by me."
+        "This was a team-designed, AI-implemented prototype. We developed the housing-affordability framework, determined the four neighborhood archetypes, defined the relevant factors and targeted interventions, and researched Philadelphia neighborhoods for our case study. Generative AI transformed those specifications into specific algorithms and a web app."
       ]
     },
     question:
-      "Help financial institutions diagnose why housing affordability diverges across comparable cities and deploy fair-lending-reviewed interventions at the neighborhood level.",
+      "Help financial institutions diagnose why housing affordability diverges across comparable cities and deploy targeted solutions across four neighborhood archetypes.",
     contribution:
-      "Led housing-problem framing, designed the 4 neighborhood archetypes and threshold rubrics, conducted the Philadelphia/Pittsburgh case-study research, and wrote the prototype specifications.",
+      "Designed the housing affordability solutions, created the four neighborhood archetypes, conducted the Philadelphia case-study research, and wrote the prototype specifications.",
     githubUrl: "https://github.com/sophiez3",
     liveUrl: "",
     slidesPdf: "assets/housing-peer-slides.pdf",
     videoMp4: "assets/housing-peer-demo.mp4",
-    diagramHeader: "3-LEVEL PEER MODEL / 4 ARCHETYPES",
-    diagramFooter: "Score ∈ [0, 1]   |   Fair-Lending Guardrails",
+    diagramHeader: "PEER CITIES / 4 ARCHETYPES",
+    diagramFooter: "Score ∈ [0, 1]   |   Fact-Grounded Memos",
     svgDiagram: `
       <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="75" y1="35" x2="160" y2="70" stroke="#8ab4f8" stroke-opacity="0.5" stroke-width="1.3"/>
@@ -220,56 +312,56 @@ const PROJECTS = {
         <text x="223" y="101" fill="#94a3b8" font-family="monospace" font-size="9">Grounded Memo</text>
       </svg>`,
     mindmap: {
-      centralQuestion: "How can banks target housing capital using explainable peer benchmarks rather than opaque black-box scoring?",
-      tradeoff: "Deterministic threshold-based archetype scoring and mandatory fair-lending review over autonomous LLM classification.",
+      centralQuestion: "How can financial institutions target housing-affordability interventions across comparable cities and neighborhoods?",
+      tradeoff: "Transparent threshold-based calculations for classification, restricting the OpenRouter LLM strictly to post-analysis memo generation from verified facts.",
       nodes: [
         {
           step: "01 CITY PEER FIT",
-          title: "Structural Peer Regression",
-          text: "Match cities across 7 socioeconomic/infrastructure metrics and fit rent on income to quantify affordability divergence."
+          title: "Structural Peer Comparison",
+          text: "Identify peer cities by population, income, employment distribution, housing age, commute, and homeownership to estimate rent-income divergence."
         },
         {
           step: "02 NEIGHBORHOOD TRIAGE",
-          title: "4 Human-Defined Archetypes",
-          text: "Score tracts 0–1 for vacant sites, transit-adjacent lots, tangled titles/small rentals, and severe energy burden."
+          title: "4 Housing Archetypes (0–1)",
+          text: "Score neighborhoods across adaptive reuse, transit-adjacent low-car land, tangled-title small rentals, and energy-burdened older homes."
         },
         {
-          step: "03 TARGETED PRODUCTS",
-          title: "Bank Solutions, Partners & KPIs",
-          text: "Route each archetype to tailored lending facilities, local CDC/legal-aid partners, and measurable outcomes."
+          step: "03 TARGETED SOLUTIONS",
+          title: "Financial Products & Partners",
+          text: "Match each archetype to tailored bank lending, parking-free transit housing, title legal aid, or energy-efficiency renovation loans."
         },
         {
-          step: "04 GROUNDED SYNTHESIS",
+          step: "04 HALLUCINATION CONTROL",
           title: "Fact-Constrained LLM Memo",
-          text: "Use OpenRouter strictly after pandas/NumPy computation to draft memos bound solely to verified pipeline outputs."
+          text: "Run pandas/NumPy classification first and instruct OpenRouter to rely exclusively on supplied analytical outputs."
         }
       ]
     }
   },
 
   "sound-vs-fire": {
-    number: "04",
+    number: "05",
     category: "EXPERIMENTAL PHYSICS",
-    subtitle: "Independent high-school physics research",
+    subtitle: "Independent high school physics research",
     title: "Sound-Based Fire Suppression",
     cardSummary:
-      "An experimental and theoretical investigation of acoustic flame suppression. Modeled flame convection as an oscillatory system and used controlled acoustic trials, Schlieren imaging, high-speed video, and sensor measurements to study how frequency, sound intensity, and flame geometry influence extinction.",
-    cardNote: "Development: Conducted independently without generative AI.",
+      "An experimental and theoretical investigation of acoustic flame suppression. I studied how sound frequency, sound intensity, and flame geometry influence flame extinction. I modeled flame convection as a damped-oscillator system and conducted experiments using stereo speakers, Schlieren imaging, high-speed cameras, and sensor measurements.",
+    cardNotes: [
+      "Development: Conducted independently without generative AI."
+    ],
     skills: [
       "Damped harmonic motion",
       "Acoustic resonance",
-      "Logarithmic decrement",
       "Schlieren imaging",
       "High-speed video analysis",
-      "Temperature & light sensing",
-      "Controlled parameter sweeps"
+      "Temperature and light sensors"
     ],
     fullDescription: [
-      "Sound-Based Fire Suppression was an independent high-school physics research project investigating how low-frequency sound can extinguish a small flame. I combined a theoretical model of flame oscillation with controlled experiments to study the effects of acoustic frequency, sound intensity, and flame size.",
-      "I treated the convective flame body as an oscillatory system subject to damping. Temperature and light-intensity measurements provided evidence of periodic flame behavior, while high-speed video enabled displacement measurements and logarithmic decrement analysis. Schlieren imaging was used to visualize the motion of air around the flame under acoustic excitation.",
-      "To determine the most effective acoustic conditions, I placed the flame at a controlled distance from a speaker and performed frequency sweeps with a function generator. For a single-wick flame, extinction occurred most effectively between approximately 55 and 65 Hz, with the shortest recorded extinction time occurring near 60 Hz. I then varied sound intensity and found an effective experimental range near 100–102 dB under the tested conditions.",
-      "I also investigated the effect of flame geometry by comparing single- and dual-wick flames. The larger dual-wick flame required substantially longer acoustic exposure and extinguished across a narrower frequency interval, demonstrating that an effective suppression regime does not scale independently of flame size.",
-      "Finally, I evaluated limitations including ambient airflow from the school ventilation system, the restricted output range of the speaker, the absence of a sound collimator, and uncertainty in video-based displacement measurements. These limitations informed how cautiously the observed resonance and intensity ranges could be generalized beyond the experimental apparatus."
+      "This was an independent high school physics research project investigating how low-frequency sound can extinguish a small candle flame. I created a theoretical model of flame oscillation that I compared with controlled experiments to study the effects of acoustic frequency, sound intensity, and flame size.",
+      "I approximated the convective flame body as a damped oscillator. Fluctuations in temperature and light-intensity measurements supported the idea of periodic flame behavior. I used high-speed videos of the candle and Pasco Capstone to record flame displacement measurements and apply Fast Fourier Transform to determine the flame’s natural frequency. Schlieren imaging was used to visualize the motion of air around the flame under the influence of sound.",
+      "I placed the flame at a controlled distance from a speaker and played different frequencies of sound. For a single-wick flame, extinction occurred most effectively at sounds between 55 and 65 Hz, with the shortest recorded extinction time occurring near 60 Hz. I then varied sound intensity and found an effective experimental range near 100–102 dB under the tested conditions.",
+      "I also investigated the effect of flame geometry by comparing single-wick and dual-wick flames. The larger dual-wick flame required substantially longer sound exposure and was extinguished across a narrower frequency interval. Hence, conditions for flame extinction do not scale independently of flame size.",
+      "Finally, I evaluated sources of experimental error. Error can originate from ambient airflow from the school ventilation system, the restricted output range of the speaker, the absence of a sound collimator, and uncertainty in video-based displacement measurements."
     ],
     aiTransparency: {
       badge: "INDEPENDENT RESEARCH // NO GENERATIVE AI",
@@ -278,15 +370,15 @@ const PROJECTS = {
       ]
     },
     question:
-      "Investigate the acoustic frequency, sound intensity, and flame geometry parameters that govern low-frequency acoustic flame extinction.",
+      "Investigate how sound frequency, sound intensity, and flame geometry influence low-frequency acoustic flame extinction.",
     contribution:
-      "Formulated the damped harmonic oscillator model of flame convection, captured Schlieren and high-speed optical data, executed parameter sweeps, and analyzed experimental error bounds.",
+      "Created the damped-oscillator theoretical model, extracted natural frequency via FFT in Pasco Capstone, captured Schlieren and high-speed optical measurements, and evaluated experimental error.",
     githubUrl: "https://github.com/sophiez3",
     liveUrl: "",
     slidesPdf: "assets/sound-fire-research.pdf",
     videoMp4: "",
     diagramHeader: "RESONANCE / 55–65 Hz @ 100–102 dB",
-    diagramFooter: "Damped Oscillator   |   Schlieren Flow",
+    diagramFooter: "Damped Oscillator + FFT   |   Schlieren Flow",
     svgDiagram: `
       <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 70 Q 45 20, 80 70 T 150 70 T 220 70 T 290 70" stroke="#8ab4f8" stroke-width="1.5"/>
@@ -296,41 +388,43 @@ const PROJECTS = {
         <circle cx="150" cy="70" r="14" stroke="#e2a86b" stroke-dasharray="3 3" stroke-opacity="0.7"/>
       </svg>`,
     mindmap: {
-      centralQuestion: "How do acoustic frequency, pressure intensity, and flame size interact to extinguish a convective flame?",
-      tradeoff: "Optimal suppression requires matching the flame's resonant band (55–65 Hz) at 100–102 dB without inducing excessive turbulent oxygen replenishment.",
+      centralQuestion: "How do acoustic frequency, sound intensity, and flame geometry interact to extinguish a convective flame?",
+      tradeoff: "Optimal suppression occurs near the flame's natural frequency (55–65 Hz, peak at 60 Hz) at 100–102 dB, while larger dual-wick flames narrow the effective frequency window.",
       nodes: [
         {
-          step: "01 OSCILLATOR MODEL",
-          title: "Convective Damping & Logarithmic Decrement",
-          text: "Verify periodic temperature/light oscillations and extract damping ratios from high-speed flame displacement videos."
+          step: "01 OSCILLATOR & FFT MODEL",
+          title: "Damped Oscillator & Pasco Capstone FFT",
+          text: "Verify periodic temperature/light fluctuations and apply Fast Fourier Transform to high-speed video displacements to find natural frequency."
         },
         {
           step: "02 OPTICAL FLOW",
           title: "Schlieren Imaging",
-          text: "Visualize acoustic pressure waves displacing hot combustion gases and starving the flame boundary layer of oxygen."
+          text: "Visualize the motion of air around the candle flame under acoustic excitation."
         },
         {
           step: "03 PARAMETER SWEEPS",
-          title: "Frequency, Intensity & Wick Scaling",
-          text: "Identify the 55–65 Hz (60 Hz peak) and 100–102 dB regimes, and demonstrate slower, narrower suppression for dual-wick flames."
+          title: "Frequency, dB & Wick Geometry",
+          text: "Identify the 55–65 Hz (60 Hz peak) and 100–102 dB regime, and contrast single-wick vs. dual-wick flame scaling."
         },
         {
-          step: "04 ERROR ANALYSIS",
-          title: "Apparatus & Environmental Bounds",
-          text: "Account for ventilation drafts, uncollimated speaker dispersion, and high-speed tracking uncertainty when generalizing results."
+          step: "04 ERROR EVALUATION",
+          title: "Apparatus & Ventilation Bounds",
+          text: "Evaluate ambient ventilation airflow, speaker output limits, absence of a sound collimator, and video tracking uncertainty."
         }
       ]
     }
   },
 
   "motme": {
-    number: "05",
+    number: "06",
     category: "PRODUCT DESIGN & AI SYSTEMS",
-    subtitle: "Gamified travel and memory-keeping experience | Team hackathon project",
+    subtitle: "HackCMU 2026 Submission",
     title: "MotMe",
     cardSummary:
-      "MotMe turns exploring a city into a sequence of location-based quests. Completing a challenge with a photo adds the memory to an automatically themed digital scrapbook and reveals a hint for the next destination.",
-    cardNote: "My contribution: Originated the scrapbook & quest-unlocking concept, product architecture, and Figma UI.",
+      "Collaborated with a team to build the travel app MotMe that turns foreign city exploration into a game of tourist-site quests. Completing a challenge with a selfie at the correct location adds the photo to an automatically themed digital scrapbook and reveals a hint for the next destination.",
+    cardNotes: [
+      "My contribution: Originated the scrapbook and quest-unlocking concept, and co-designed the interface in Figma."
+    ],
     skills: [
       "Figma",
       "Gemini API",
@@ -339,29 +433,27 @@ const PROJECTS = {
       "Generative AI-assisted development"
     ],
     fullDescription: [
-      "MotMe is a gamified travel application created by a four-person hackathon team. It encourages travelers to experience a city through a sequence of location-based quests rather than following a conventional itinerary.",
-      "For each destination, the application presents the user with a challenge and a clue leading to a notable local place. When the user completes the challenge by submitting a photo, the image is automatically incorporated into a scrapbook styled around that city. Completing one quest also unlocks a hint for the next, creating a progression loop that connects exploration, discovery, and memory keeping.",
+      "MotMe is a travel app created by a four-person hackathon team. It encourages travelers to experience a city through a sequence of location-based quests rather than following a conventional itinerary.",
+      "For each destination, the app presents the user with a challenge and a clue related to a local place. When the user completes the challenge by submitting a photo of themselves at that site, the image is automatically incorporated into a scrapbook. The scrapbook’s decoration theme is related to the city the user is visiting. Completing one quest also unlocks a hint for the next site, automating exploration, discovery, and memory keeping.",
       "I originated the idea of combining automatic scrapbooking with sequential quest unlocking. I also helped design the interface in Figma and shape the user journey across destination selection, quest discovery, photo submission, scrapbook creation, and clue progression.",
-      "The team designed the application’s general architecture and used generative AI to accelerate its visual design and implementation. The Gemini API supplies location-specific destination and quest content. A teammate was responsible for connecting the application to Neon so that user, trip, quest, and scrapbook information could persist across sessions.",
-      "My work centered on product ideation, interaction design, and defining how the application’s features should operate together. I contributed to the implementation process with AI assistance, but I do not claim sole authorship of the generated code or ownership of the database integration."
+      "Our team designed the app’s general architecture and used generative AI for its visual design and implementation. The Gemini API supplies the list of countries, cities, and local sites for quest content. We also implemented KeyCloak to allow the user to sign in using Google, retaining their user, trip, quest, and scrapbook information. Thus, we connected the app to Neon so this information can be stored across sessions."
     ],
     aiTransparency: {
-      badge: "4-PERSON HACKATHON TEAM // AI-ASSISTED BUILD",
+      badge: "FOUR-PERSON HACKATHON TEAM // AI-ASSISTED BUILD",
       paragraphs: [
-        "MotMe was created by a four-person team. I originated the automatic scrapbook and sequential quest-unlocking concepts, contributed to the overall product architecture, and helped design the user interface in Figma. Another teammate led the Neon database integration.",
-        "We used generative AI to assist with interface design, integration, and application functionality, while the central product concept and user workflow were developed by the team."
+        "MotMe was created by a four-person team. I originated the automatic scrapbook and quest-unlocking concepts, contributed to the overall app architecture, and designed the general app layout. However, we used generative AI to assist with interface design, integration, and app functionality, while the central product concept and user workflow were developed by our team."
       ]
     },
     question:
-      "Transform rigid sightseeing itineraries into an interactive progression loop that pairs real-world city discovery with automatic digital memory keeping.",
+      "Turn foreign city exploration into an interactive game of location-based tourist quests that automatically builds a city-themed digital scrapbook.",
     contribution:
-      "Originated the automatic scrapbook and sequential quest-unlocking loop, co-designed the Figma interface, and shaped the end-to-end user journey and product architecture.",
+      "Originated the automatic scrapbook and sequential quest-unlocking concepts, contributed to the overall app architecture, and co-designed the interface in Figma.",
     githubUrl: "https://github.com/sophiez3/motme-travel-app",
     liveUrl: "https://motme.vercel.app/",
     slidesPdf: "",
     videoMp4: "",
     diagramHeader: "QUEST_LOOP / SCRAPBOOK × CLUES",
-    diagramFooter: "Photo Capture → Auto-Theme → Next Hint",
+    diagramFooter: "Selfie Verification → City Scrapbook → Next Hint",
     svgDiagram: `
       <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M55 70 C 55 32, 145 32, 160 70 C 175 108, 265 108, 265 70 C 265 32, 175 32, 160 70 C 145 108, 55 108, 55 70 Z" stroke="#8ab4f8" stroke-opacity="0.45" stroke-width="1.3"/>
@@ -369,32 +461,32 @@ const PROJECTS = {
         <circle cx="160" cy="70" r="5" fill="#fff1cc"/>
         <circle cx="248" cy="88" r="4.5" fill="#8ab4f8"/>
         <text x="38" y="34" fill="#e2a86b" font-family="monospace" font-size="8.5">Quest &amp; Clue</text>
-        <text x="128" y="26" fill="#94a3b8" font-family="monospace" font-size="8.5">Photo Verify</text>
+        <text x="128" y="26" fill="#94a3b8" font-family="monospace" font-size="8.5">Selfie Verify</text>
         <text x="212" y="114" fill="#8ab4f8" font-family="monospace" font-size="8.5">City Scrapbook</text>
       </svg>`,
     mindmap: {
-      centralQuestion: "How can travel software turn passive sightseeing into an active discovery and memory-keeping loop?",
-      tradeoff: "Balancing structured sequential quest progression with flexible photo-driven scrapbook assembly across diverse cities.",
+      centralQuestion: "How can travel software turn foreign city sightseeing into an active quest progression and memory-keeping loop?",
+      tradeoff: "Balancing structured sequential clue unlocking with seamless selfie-to-scrapbook theming and persistent multi-session storage.",
       nodes: [
         {
           step: "01 CORE IDEATION",
           title: "Sequential Quest + Scrapbook Loop",
-          text: "Combine progressive clue unlocking with automatic city-themed scrapbook generation upon photo completion."
+          text: "Combine progressive clue unlocking with automatic city-themed scrapbook assembly upon selfie completion."
         },
         {
           step: "02 INTERFACE DESIGN",
           title: "Figma User Journey",
-          text: "Design intuitive flows across city selection, quest clues, camera/photo submission, and real-time album layouts."
+          text: "Co-design the user flow across destination selection, quest discovery, photo submission, scrapbook creation, and clue progression."
         },
         {
           step: "03 AI CONTENT ENGINE",
-          title: "Gemini API Quest Generation",
-          text: "Generate location-specific destination challenges and progressive hints tailored to each selected city."
+          title: "Gemini API Destination Quests",
+          text: "Supply countries, cities, and local tourist-site challenges dynamically via the Gemini API."
         },
         {
-          step: "04 FULL-STACK PERSISTENCE",
-          title: "Neon Database & Vercel Deployment",
-          text: "Persist user trips, unlocked clues, and scrapbook entries across sessions (teammate-led Neon integration) hosted on Vercel."
+          step: "04 AUTH & PERSISTENCE",
+          title: "KeyCloak Google Sign-In & Neon DB",
+          text: "Authenticate travelers via KeyCloak and persist user, trip, quest, and scrapbook records across sessions in Neon."
         }
       ]
     }
