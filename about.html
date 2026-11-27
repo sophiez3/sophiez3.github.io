@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me | Sophie Zhao</title>
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
   <header>
@@ -23,28 +23,37 @@
   </header>
 
   <main class="container">
-    <div class="two-col-layout">
+    <div class="two-col-layout" style="padding-bottom: 5rem;">
       <div>
         <span class="mono-label mono-amber">02 &nbsp; ABOUT ME</span>
         <h1 class="serif-title" style="font-size: clamp(2.6rem, 4.5vw, 3.8rem); margin: 0.6rem 0 1.5rem;">
           A little about the person behind the projects.
         </h1>
 
-        <div class="bio-card">
-          <p style="margin-bottom: 1.1rem; font-size: 1.05rem;">
-            I'm <strong>Sophie Zhao</strong>, a student at <strong>Carnegie Mellon University</strong> studying Computational Physics and Computer Science.
-          </p>
-          <p style="color: var(--text-secondary); margin-bottom: 1.1rem;">
-            I enjoy taking a question apart, finding the underlying mathematical or physical model, and turning it into something I can test. Sometimes that becomes an acoustic physics experiment or numerical simulation; other times, it becomes a full-stack web application powered by AI agents and spatial data pipelines.
+        <div class="bio-card" style="display: flex; flex-direction: column; gap: 1.15rem;">
+          <p style="font-size: 1.03rem;">
+            I’m <strong>Sophie Zhao</strong>, a <strong>Carnegie Mellon University Class of 2030</strong> student studying Computational Physics with an intended additional major in Computer Science. I’m fascinated by the algorithmic side of physics, especially when simulations reproduce what we observe. Computational physics reveals behavior I cannot easily measure with limited equipment, and lets me explore systems that otherwise wouldn’t be observed in real life. It simultaneously hones my technical skills in computer science when I encounter unexpected challenges in simulations.
           </p>
           <p style="color: var(--text-secondary);">
-            I am pursuing technical roles where rigorous analytical thinking and hands-on engineering meet: software engineering, computational physics, quantitative research, and data science.
+            For example, in my Voyager gravity-assist simulator, I had to balance accuracy against runtime by adjusting the integration time step near planetary encounters. I also managed the states behind interactive controls like buttons and sliders so that the interface responded correctly as the simulation evolved. Seeing a visible gravity assist emerge from the physics I had programmed was especially rewarding. This project made me feel like I was exploring a universe whose rules I understood because I had implemented them myself.
+          </p>
+          <p style="color: var(--text-secondary);">
+            I bring that exploratory mindset when learning about emerging technology. I like to begin with tutorials on IBM-SkillsBuild and LinkedIn Learning to establish a foundation, then learn by building and testing new projects. I now also use AI as a tutor and pair programmer to ask questions, examine unfamiliar tools, and accelerate iteration. Whether I am working on a simulation or a web app, I like to test edge cases to try to break the system. That process helps me understand both how it works and when the final product can be trusted.
+          </p>
+          <p style="color: var(--text-secondary);">
+            In team projects, I gravitate toward leadership and technical responsibilities. I enjoy generating concepts, organizing workflows, and still getting into the technical details for implementation. Throughout my experience in team projects, I have also learned to view feedback as part of making an idea stronger rather than as a rejection of the work already invested in it. I became more receptive to other people’s ideas and opinions which sometimes taught me new skills and methodologies. I now realize that being open-minded is essential to both project and personal development.
+          </p>
+          <p style="color: var(--text-secondary);">
+            Community also is very important to me. I once participated in a Girls Who Code program as a high school student. Now, I’m a teaching assistant in CMU’s Girls Who Code chapter. I help middle school students learn Python fundamentals and debug their projects. I want girls to feel enthusiastic about programming in a supportive environment where women in technology feel ordinary rather than exceptional. My experience as a TA also sharpens my own technical judgment. Helping students debug their code simultaneously enforced my understanding of Python, especially in an era when it is easy to ask AI for a correction without understanding why the original code failed.
+          </p>
+          <p style="color: var(--text-secondary);">
+            Outside academics, I enjoy playing chess, card games, and Tetris. In my free time, I also like reading fantasy novels, watching Chinese dramas, visiting museums, traveling to other countries, and spending time with friends. I always try to stay curious, diligent, creative, and trustworthy. And, of course, I keep finding new things worth exploring!
           </p>
         </div>
       </div>
 
       <div>
-        <div class="sidebar-card">
+        <div class="sidebar-card" style="position: sticky; top: 6.5rem;">
           <span class="mono-label mono-amber">HOW I APPROACH A PROBLEM</span>
           <ul class="approach-steps">
             <li><span>Question.</span><span class="mono-label">01</span></li>
@@ -58,29 +67,6 @@
         </div>
       </div>
     </div>
-
-    <section style="padding-bottom: 4rem;">
-      <span class="mono-label mono-amber">AWAY FROM THE KEYBOARD</span>
-      <h2 class="serif-title" style="font-size: 2.3rem; margin-top: 0.4rem;">A few things that keep me curious.</h2>
-
-      <div class="hobbies-grid">
-        <div class="hobby-card">
-          <span class="mono-label mono-amber">01 / OUTDOORS</span>
-          <h4>Exploring &amp; Long Walks</h4>
-          <p>Finding a different perspective away from screens—walking new neighborhoods and trails to think through problems.</p>
-        </div>
-        <div class="hobby-card">
-          <span class="mono-label mono-amber">02 / READING</span>
-          <h4>Following a Good Question</h4>
-          <p>Reading across physics history, complex systems, and how everyday infrastructure actually works.</p>
-        </div>
-        <div class="hobby-card">
-          <span class="mono-label mono-amber">03 / TINKERING</span>
-          <h4>Building Without a Deadline</h4>
-          <p>Small hardware, acoustics, and creative coding experiments built purely out of curiosity.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -89,6 +75,6 @@
       <span class="mono-label">CMU &bull; 2026</span>
     </div>
   </footer>
-  <script src="physics-interactions.js?v=16"></script>
+  <script src="physics-interactions.js?v=17"></script>
 </body>
 </html>
