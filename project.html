@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Overview | Sophie Zhao</title>
-  <link rel="stylesheet" href="style.css?v=22">
+  <link rel="stylesheet" href="style.css?v=26">
 </head>
 <body>
   <header>
@@ -36,7 +36,6 @@
     <section id="panel-overview" class="view-panel active">
       <div class="overview-hero">
         <div>
-          <span id="ov-meta" class="mono-label mono-amber"></span>
           <h1 id="ov-title" class="serif-title"></h1>
           <p id="ov-subtitle" class="overview-subtitle"></p>
           <div id="ov-skills" class="skill-pills"></div>
@@ -119,7 +118,6 @@
 
     <!-- TAB 2: SLIDES & DEMO -->
     <section id="panel-media" class="view-panel">
-      <span id="media-meta" class="mono-label mono-amber"></span>
       <h1 id="media-title" class="serif-title" style="font-size: 3rem; margin: 0.5rem 0;">The idea, in motion.</h1>
       <p style="color: var(--text-secondary);">A guided walkthrough of the problem, methodology, and working system.</p>
 
@@ -128,7 +126,6 @@
 
     <!-- TAB 3: IDEATION / DESIGN PROCESS MINDMAP -->
     <section id="panel-process" class="view-panel">
-      <span id="proc-meta" class="mono-label mono-amber"></span>
       <h1 class="serif-title" style="font-size: 3rem; margin: 0.5rem 0;">Follow the thinking.</h1>
       <p style="color: var(--text-secondary);">A structured map of the core question, modeling decisions, and engineering workflow.</p>
 
@@ -146,14 +143,7 @@
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <span>SOPHIE ZHAO / PORTFOLIO — Built with curiosity. Grounded in first principles.</span>
-      <span class="mono-label">CMU &bull; 2026</span>
-    </div>
-  </footer>
-
-  <script src="projects-data.js?v=22"></script>
+  <script src="projects-data.js?v=26"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get("id") || "voyager-grand-tour";
@@ -161,7 +151,6 @@
 
     document.title = `${p.title} | Sophie Zhao`;
 
-    document.getElementById("ov-meta").textContent = `${p.number} / ${p.category}`;
     document.getElementById("ov-title").textContent = p.title;
     document.getElementById("ov-subtitle").textContent = p.subtitle;
     document.getElementById("ov-skills").innerHTML = p.skills.map(s => `<span class="skill-pill">${s}</span>`).join("");
@@ -191,7 +180,6 @@
       .map(para => `<p>${para}</p>`)
       .join("");
 
-    document.getElementById("media-meta").textContent = `${p.number} / PRESENTATION & DEMO — ${p.title.toUpperCase()}`;
     const mediaStack = document.getElementById("media-stack");
     let mediaHtml = "";
 
@@ -244,7 +232,6 @@
     }
     mediaStack.innerHTML = mediaHtml;
 
-    document.getElementById("proc-meta").textContent = `${p.number} / DESIGN PROCESS — ${p.title.toUpperCase()}`;
     document.getElementById("proc-tradeoff").textContent = p.mindmap.tradeoff;
 
     const [n1, n2, n3, n4] = p.mindmap.nodes;
@@ -298,6 +285,6 @@
       btn.addEventListener("click", () => switchTab(btn.dataset.tab));
     });
   </script>
-  <script src="physics-interactions.js?v=22"></script>
+  <script src="physics-interactions.js?v=26"></script>
 </body>
 </html>

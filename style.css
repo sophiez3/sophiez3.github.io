@@ -168,31 +168,41 @@ nav a.cradle-item.active {
   color: var(--accent-amber);
 }
 
-/* Hero Section */
-.hero {
-  padding: 6rem 0 5rem;
+/* Compact Horizontal Hero Section */
+.hero.hero-compact {
+  padding: 1.65rem 0 1.5rem;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
+.hero-horizontal {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.hero h1 {
-  font-size: clamp(3.4rem, 6vw, 5.2rem);
-  margin: 1rem 0 1.25rem;
+.hero-horizontal-text {
+  flex: 1 1 560px;
 }
 
-.hero-sub {
+.hero.hero-compact h1 {
+  font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+  margin: 0.35rem 0 0.35rem;
+  line-height: 1.1;
+}
+
+.hero.hero-compact .hero-sub {
   color: var(--text-secondary);
-  font-size: 1.12rem;
-  max-width: 520px;
-  margin-bottom: 2.25rem;
+  font-size: 0.98rem;
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.hero-cta {
+  flex-shrink: 0;
 }
 
 .btn-outline {
@@ -224,11 +234,11 @@ nav a.cradle-item.active {
 
 /* Selected Work Section */
 .section-block {
-  padding: 5rem 0;
+  padding: 1.75rem 0 4.5rem;
 }
 
 .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: 1.25rem;
 }
 
 .section-header h2 {
@@ -1102,50 +1112,6 @@ footer {
 
 .card-highlight-pulse {
   animation: cardTargetPulse 1.5s ease-out;
-}
-
-
-/* ==========================================================================
-   INTERACTIVE BOHR ATOM & RADIOACTIVE DECAY HERO WIDGET
-   ========================================================================== */
-.hero-atom-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 360px;
-  aspect-ratio: 1 / 1;
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: crosshair;
-}
-
-#hero-atom-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.atom-telemetry {
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.66rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-  pointer-events: none;
-  transition: color 0.25s ease;
-}
-
-.hero-atom-wrapper:hover .atom-telemetry {
-  color: var(--accent-amber);
-}
-
-@media (max-width: 860px) {
-  .hero-atom-wrapper {
-    display: none;
-  }
 }
 
 
