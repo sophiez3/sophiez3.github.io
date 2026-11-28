@@ -1,26 +1,35 @@
 (() => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* 1. MAGNETIC MONOPOLE CURSOR + IRON-FILING GRID & FIELD LINES */
+  /* 1. GLOBAL TWINKLING CONSTELLATIONS BACKGROUND WITH HOVER HIGHLIGHT */
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
+  canvas.id = "global-constellation-canvas";
   canvas.style.position = "fixed";
   canvas.style.inset = "0";
   canvas.style.width = "100vw";
   canvas.style.height = "100vh";
   canvas.style.pointerEvents = "none";
-  canvas.style.zIndex = "1";
+  canvas.style.zIndex = "0";
   document.body.prepend(canvas);
 
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
 
-  window.addEventListener("resize", () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
+  function resizeSky() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
 
-  const pointer = { x: width * 0.5, y: height * 0.35, active: false };
+  resizeSky();
+  window.addEventListener("resize", resizeSky);
+
+  const pointer = { x: -9999, y: -9999, active: false };
 
   window.addEventListener("pointermove", (e) => {
     if (e.pointerType === "touch") return;
@@ -29,100 +38,289 @@
     pointer.active = true;
   });
 
+  window.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "touch") return;
+    pointer.x = e.clientX;
+    pointer.y = e.clientY;
+    pointer.active = true;
+  }, { passive: true });
+
   window.addEventListener("pointerleave", () => {
     pointer.active = false;
+    pointer.x = -9999;
+    pointer.y = -9999;
   });
 
-  const SPACING = 38;
-  let time = 0;
+  // Twinkling background field stars (denser starfield)
+  const ambientStars = Array.from({ length: 280 }, () => ({
+    nx: Math.random(),
+    ny: Math.random(),
+    r: 0.5 + Math.random() * 1.35,
+    baseAlpha: 0.16 + Math.random() * 0.36,
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.015 + Math.random() * 0.028
+  }));
 
-  function drawMagneticField() {
+  // Dispersed constellations across the viewport (normalized 0..1 coordinates)
+  const CONSTELLATIONS = [
+    {
+      name: "CASSIOPEIA",
+      hoverLevel: 0,
+      stars: [
+        [0.05, 0.14],
+        [0.09, 0.20],
+        [0.13, 0.16],
+        [0.17, 0.22],
+        [0.21, 0.15]
+      ],
+      lines: [[0, 1], [1, 2], [2, 3], [3, 4]]
+    },
+    {
+      name: "URSA MAJOR",
+      hoverLevel: 0,
+      stars: [
+        [0.71, 0.11],
+        [0.76, 0.13],
+        [0.80, 0.17],
+        [0.84, 0.20],
+        [0.85, 0.26],
+        [0.92, 0.25],
+        [0.91, 0.19]
+      ],
+      lines: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 3]]
+    },
+    {
+      name: "ORION",
+      hoverLevel: 0,
+      stars: [
+        [0.06, 0.46],
+        [0.14, 0.48],
+        [0.09, 0.55],
+        [0.105, 0.56],
+        [0.12, 0.57],
+        [0.07, 0.66],
+        [0.15, 0.65]
+      ],
+      lines: [[0, 1], [0, 2], [1, 4], [2, 3], [3, 4], [2, 5], [4, 6], [5, 6]]
+    },
+    {
+      name: "CYGNUS",
+      hoverLevel: 0,
+      stars: [
+        [0.88, 0.42],
+        [0.85, 0.49],
+        [0.81, 0.58],
+        [0.78, 0.46],
+        [0.92, 0.52]
+      ],
+      lines: [[0, 1], [1, 2], [3, 1], [1, 4]]
+    },
+    {
+      name: "LYRA",
+      hoverLevel: 0,
+      stars: [
+        [0.08, 0.81],
+        [0.11, 0.83],
+        [0.10, 0.87],
+        [0.14, 0.85],
+        [0.13, 0.89]
+      ],
+      lines: [[0, 1], [1, 2], [1, 3], [2, 4], [3, 4]]
+    },
+    {
+      name: "LEO",
+      hoverLevel: 0,
+      stars: [
+        [0.89, 0.75],
+        [0.86, 0.73],
+        [0.84, 0.77],
+        [0.86, 0.81],
+        [0.80, 0.83],
+        [0.75, 0.86],
+        [0.83, 0.87]
+      ],
+      lines: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 3]]
+    },
+    {
+      name: "TRIANGULUM",
+      hoverLevel: 0,
+      stars: [
+        [0.44, 0.13],
+        [0.52, 0.16],
+        [0.48, 0.21]
+      ],
+      lines: [[0, 1], [1, 2], [2, 0]]
+    },
+    {
+      name: "CORONA BOREALIS",
+      hoverLevel: 0,
+      stars: [
+        [0.42, 0.84],
+        [0.45, 0.88],
+        [0.49, 0.89],
+        [0.53, 0.88],
+        [0.56, 0.84]
+      ],
+      lines: [[0, 1], [1, 2], [2, 3], [3, 4]]
+    },
+    {
+      name: "GEMINI",
+      hoverLevel: 0,
+      stars: [
+        [0.33, 0.44],
+        [0.38, 0.43],
+        [0.32, 0.52],
+        [0.37, 0.51],
+        [0.31, 0.60],
+        [0.36, 0.59]
+      ],
+      lines: [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [2, 3]]
+    },
+    {
+      name: "AQUILA",
+      hoverLevel: 0,
+      stars: [
+        [0.62, 0.45],
+        [0.65, 0.48],
+        [0.68, 0.51],
+        [0.61, 0.52],
+        [0.69, 0.44],
+        [0.64, 0.57]
+      ],
+      lines: [[0, 1], [1, 2], [3, 1], [1, 4], [1, 5]]
+    }
+  ];
+
+  // Point-to-segment distance helper so hovering near any star OR constellation line highlights that constellation
+  function distToSegment(px, py, x1, y1, x2, y2) {
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const lenSq = dx * dx + dy * dy;
+    if (lenSq === 0) return Math.hypot(px - x1, py - y1);
+    let t = ((px - x1) * dx + (py - y1) * dy) / lenSq;
+    t = Math.max(0, Math.min(1, t));
+    return Math.hypot(px - (x1 + t * dx), py - (y1 + t * dy));
+  }
+
+  let frame = 0;
+
+  function drawConstellations() {
+    frame++;
     ctx.clearRect(0, 0, width, height);
-    time += 0.025;
 
-    const cols = Math.ceil(width / SPACING) + 1;
-    const rows = Math.ceil(height / SPACING) + 1;
-
-    if (pointer.active && !reducedMotion) {
-      const numRays = 16;
-      const maxR = 230;
-      for (let r = 0; r < numRays; r++) {
-        const baseAngle = (r / numRays) * Math.PI * 2 + time * 0.08;
-        const grad = ctx.createRadialGradient(
-          pointer.x, pointer.y, 8,
-          pointer.x, pointer.y, maxR
-        );
-        grad.addColorStop(0, "rgba(226, 168, 107, 0.24)");
-        grad.addColorStop(0.5, "rgba(248, 212, 138, 0.08)");
-        grad.addColorStop(1, "rgba(226, 168, 107, 0)");
-
-        ctx.beginPath();
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 1;
-
-        for (let step = 10; step <= maxR; step += 12) {
-          const curl = Math.sin(step * 0.03 - time * 1.6 + r) * 0.05;
-          const a = baseAngle + curl;
-          const px = pointer.x + Math.cos(a) * step;
-          const py = pointer.y + Math.sin(a) * step;
-          if (step === 10) ctx.moveTo(px, py);
-          else ctx.lineTo(px, py);
-        }
-        ctx.stroke();
-      }
-
-      const core = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 42);
-      core.addColorStop(0, "rgba(255, 236, 194, 0.22)");
-      core.addColorStop(1, "rgba(226, 168, 107, 0)");
-      ctx.fillStyle = core;
+    // 1. Draw faint twinkling background stars
+    for (let i = 0; i < ambientStars.length; i++) {
+      const st = ambientStars[i];
+      const twinkle = reducedMotion ? 0 : Math.sin(frame * st.speed + st.phase) * 0.11;
+      const alpha = Math.max(0.04, st.baseAlpha + twinkle);
       ctx.beginPath();
-      ctx.arc(pointer.x, pointer.y, 42, 0, Math.PI * 2);
+      ctx.arc(st.nx * width, st.ny * height, st.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(203, 213, 225, ${alpha.toFixed(3)})`;
       ctx.fill();
     }
 
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        const gx = i * SPACING;
-        const gy = j * SPACING;
-        const dx = gx - pointer.x;
-        const dy = gy - pointer.y;
-        const dist = Math.hypot(dx, dy);
-
-        const influence = pointer.active ? Math.max(0, 1 - dist / 300) : 0;
-        const shimmer = 0.7 + 0.3 * Math.sin(time * 2 + i * 0.7 + j * 0.5);
-
-        if (influence > 0.04 && !reducedMotion) {
-          const angle = Math.atan2(dy, dx);
-          const halfLen = 2.5 + influence * 7.5;
-          const alpha = (0.14 + influence * 0.52) * shimmer;
-
-          ctx.save();
-          ctx.translate(gx, gy);
-          ctx.rotate(angle);
-          ctx.beginPath();
-          ctx.moveTo(-halfLen, 0);
-          ctx.lineTo(halfLen, 0);
-          ctx.strokeStyle = `rgba(226, 168, 107, ${alpha.toFixed(3)})`;
-          ctx.lineWidth = 1 + influence * 0.9;
-          ctx.shadowBlur = influence * 6;
-          ctx.shadowColor = "rgba(248, 212, 138, 0.65)";
-          ctx.stroke();
-          ctx.restore();
-        } else {
-          const dotAlpha = 0.11 * shimmer;
-          ctx.beginPath();
-          ctx.arc(gx, gy, 1.15, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(226, 168, 107, ${dotAlpha.toFixed(3)})`;
-          ctx.fill();
+    // 2. Determine which single constellation (if any) is closest under the cursor
+    let hoveredIndex = -1;
+    if (pointer.active && !reducedMotion) {
+      let bestDist = 44; // hover threshold in pixels around stars/lines
+      CONSTELLATIONS.forEach((c, idx) => {
+        // Check distance to stars
+        for (let s = 0; s < c.stars.length; s++) {
+          const sx = c.stars[s][0] * width;
+          const sy = c.stars[s][1] * height;
+          const d = Math.hypot(pointer.x - sx, pointer.y - sy);
+          if (d < bestDist) {
+            bestDist = d;
+            hoveredIndex = idx;
+          }
         }
-      }
+        // Check distance to connecting lines
+        for (let l = 0; l < c.lines.length; l++) {
+          const [a, b] = c.lines[l];
+          const x1 = c.stars[a][0] * width;
+          const y1 = c.stars[a][1] * height;
+          const x2 = c.stars[b][0] * width;
+          const y2 = c.stars[b][1] * height;
+          const d = distToSegment(pointer.x, pointer.y, x1, y1, x2, y2);
+          if (d < bestDist) {
+            bestDist = d;
+            hoveredIndex = idx;
+          }
+        }
+      });
     }
 
-    ctx.shadowBlur = 0;
-    requestAnimationFrame(drawMagneticField);
+    // 3. Render each constellation with smooth hover highlight transition
+    CONSTELLATIONS.forEach((c, cIdx) => {
+      const targetHover = cIdx === hoveredIndex ? 1 : 0;
+      c.hoverLevel += (targetHover - c.hoverLevel) * 0.1;
+      const h = c.hoverLevel;
+
+      // Constellation connecting lines (brighter baseline visibility + amber hover glow)
+      const lineAlpha = 0.24 + h * 0.38;
+      ctx.save();
+      ctx.strokeStyle = h > 0.05
+        ? `rgba(226, 168, 107, ${lineAlpha.toFixed(3)})`
+        : `rgba(155, 194, 255, ${lineAlpha.toFixed(3)})`;
+      ctx.lineWidth = 1.15 + h * 0.8;
+      if (h > 0.05) {
+        ctx.shadowBlur = 9 * h;
+        ctx.shadowColor = "rgba(226, 168, 107, 0.65)";
+      }
+
+      for (let l = 0; l < c.lines.length; l++) {
+        const [i, j] = c.lines[l];
+        const x1 = c.stars[i][0] * width;
+        const y1 = c.stars[i][1] * height;
+        const x2 = c.stars[j][0] * width;
+        const y2 = c.stars[j][1] * height;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // Constellation star vertices (brighter default glow + twinkling)
+      for (let s = 0; s < c.stars.length; s++) {
+        const px = c.stars[s][0] * width;
+        const py = c.stars[s][1] * height;
+        const twinkle = reducedMotion ? 0 : Math.sin(frame * 0.024 + cIdx * 1.7 + s * 1.1) * 0.14;
+        const starAlpha = Math.min(0.98, 0.44 + twinkle + h * 0.5);
+        const radius = (s === 0 ? 2.25 : 1.7) + h * 1.15;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(px, py, radius, 0, Math.PI * 2);
+        if (h > 0.05) {
+          ctx.fillStyle = `rgba(255, 232, 188, ${starAlpha.toFixed(3)})`;
+          ctx.shadowBlur = 11 * h;
+          ctx.shadowColor = "rgba(226, 168, 107, 0.85)";
+        } else {
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = s === 0 ? "rgba(226, 168, 107, 0.35)" : "rgba(138, 180, 248, 0.3)";
+          ctx.fillStyle = s === 0
+            ? `rgba(234, 178, 118, ${Math.min(0.95, starAlpha + 0.1).toFixed(3)})`
+            : `rgba(196, 222, 255, ${starAlpha.toFixed(3)})`;
+        }
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Constellation name label (clearer baseline visibility + amber hover highlight)
+      const [lx, ly] = c.stars[0];
+      const labelAlpha = 0.26 + h * 0.48;
+      ctx.font = "500 9px ui-monospace, SFMono-Regular, Menlo, monospace";
+      ctx.fillStyle = h > 0.05
+        ? `rgba(226, 168, 107, ${labelAlpha.toFixed(3)})`
+        : `rgba(148, 163, 184, ${labelAlpha.toFixed(3)})`;
+      ctx.fillText(c.name, lx * width + 7, ly * height - 6);
+    });
+
+    requestAnimationFrame(drawConstellations);
   }
 
-  drawMagneticField();
+  drawConstellations();
 
   /* 2. NEWTON'S CRADLE NAVBAR PENDULUMS */
   const navLinks = Array.from(document.querySelectorAll("header nav a"));
@@ -380,32 +578,37 @@
     resizeWfCanvas();
     window.addEventListener("resize", resizeWfCanvas);
 
-    wfShell.addEventListener("pointerenter", (e) => {
+    function observeWavefunction(clientX, clientY) {
       const rect = wfShell.getBoundingClientRect();
-      focusPoint.x = (e.clientX - rect.left) / rect.width;
-      focusPoint.y = (e.clientY - rect.top) / rect.height;
+      focusPoint.x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      focusPoint.y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
       collapsed = true;
       wfShell.classList.add("collapsed");
       if (wfStatus) {
         wfStatus.textContent = "EIGENSTATE OBSERVED // |ψ|² → 1 (RESUME RESOLVED)";
       }
+    }
+
+    wfShell.addEventListener("pointerenter", (e) => {
+      observeWavefunction(e.clientX, e.clientY);
     });
 
     wfShell.addEventListener("pointermove", (e) => {
       if (!collapsed) {
-        const rect = wfShell.getBoundingClientRect();
-        focusPoint.x = (e.clientX - rect.left) / rect.width;
-        focusPoint.y = (e.clientY - rect.top) / rect.height;
-        collapsed = true;
-        wfShell.classList.add("collapsed");
+        observeWavefunction(e.clientX, e.clientY);
       }
     });
 
-    wfShell.addEventListener("pointerleave", () => {
+    wfShell.addEventListener("pointerdown", (e) => {
+      observeWavefunction(e.clientX, e.clientY);
+    });
+
+    wfShell.addEventListener("pointerleave", (e) => {
+      if (e.pointerType === "touch") return;
       collapsed = false;
       wfShell.classList.remove("collapsed");
       if (wfStatus) {
-        wfStatus.textContent = "SUPERPOSITION STATE // HOVER TO OBSERVE & COLLAPSE |ψ⟩";
+        wfStatus.textContent = "SUPERPOSITION STATE // HOVER OR TAP TO OBSERVE & COLLAPSE |ψ⟩";
       }
     });
 
@@ -514,7 +717,7 @@
 
             wctx.font = "13px 'Inter', sans-serif";
             wctx.fillStyle = "#f1f5f9";
-            wctx.fillText("Hover to observe & collapse wavefunction", w * 0.5, by + 48);
+            wctx.fillText("Hover or tap to observe & collapse", w * 0.5, by + 48);
             wctx.restore();
           }
         }

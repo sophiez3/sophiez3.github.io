@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astronomy | Sophie Zhao</title>
+  <link rel="stylesheet" href="style.css?v=34">
+</head>
+<body class="astronomy-page">
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">[SZ]</span>
+        <span>SOPHIE ZHAO</span>
+      </a>
+      <nav>
+        <a href="index.html">Projects</a>
+        <a href="about.html">About me</a>
+        <a href="astronomy.html" class="active">Astronomy</a>
+        <a href="contact.html">Contact</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 3.25rem 0 5.5rem; position: relative; z-index: 1;">
+    <section class="astro-intro">
+      <h1 class="serif-title" style="font-size: clamp(2.5rem, 4.5vw, 3.6rem); margin: 0 0 1.1rem;">
+        Astronomy
+      </h1>
+      <p class="astro-bio">
+        I have always been fascinated with astronomy. When I was younger, I would read books about astrophysics. At Stuyvesant High School, I lead an astronomy club called StuySky. I would host telescope nights and coordinate field trips to museums, exhibits, and even an observatory!
+      </p>
+    </section>
+
+    <section class="constellation-stage" aria-label="Astronomy Photo Constellation">
+      <!-- Celestial coordinate grid + bright constellation lines & diffraction stars -->
+      <svg id="constellation-lines" class="constellation-svg" aria-hidden="true"></svg>
+
+      <!-- Star α: Allegheny Observatory -->
+      <article class="star-card star-pos-1" data-star="0" data-bayer="α" data-mag="1.4m" tabindex="0">
+        <div class="star-beacon" aria-hidden="true">
+          <span class="star-flare-h"></span>
+          <span class="star-flare-v"></span>
+          <span class="star-core"></span>
+        </div>
+        <div class="star-header-row">
+          <span class="star-designation">α &bull; mag 1.4</span>
+          <span class="star-coords">40°29'N 80°01'W</span>
+        </div>
+        <div class="star-frame">
+          <img src="assets/allegheny.jpg" onerror="this.onerror=null; this.src='allegheny.jpg';" alt="Allegheny Observatory - CMU AstroC Trip">
+        </div>
+        <h2 class="star-title">Allegheny Observatory - CMU AstroC Trip</h2>
+      </article>
+
+      <!-- Star β: Hayden Planetarium -->
+      <article class="star-card star-pos-2" data-star="1" data-bayer="β" data-mag="1.8m" tabindex="0">
+        <div class="star-beacon" aria-hidden="true">
+          <span class="star-flare-h"></span>
+          <span class="star-flare-v"></span>
+          <span class="star-core"></span>
+        </div>
+        <div class="star-header-row">
+          <span class="star-designation">β &bull; mag 1.8</span>
+          <span class="star-coords">40°46'N 73°58'W</span>
+        </div>
+        <div class="star-frame">
+          <img src="assets/hayden.png" onerror="this.onerror=null; this.src='hayden.png';" alt="Hayden Planetarium - StuySky Trip">
+        </div>
+        <h2 class="star-title">Hayden Planetarium - StuySky Trip</h2>
+      </article>
+
+      <!-- Star γ: Intrepid Museum -->
+      <article class="star-card star-pos-3" data-star="2" data-bayer="γ" data-mag="2.1m" tabindex="0">
+        <div class="star-beacon" aria-hidden="true">
+          <span class="star-flare-h"></span>
+          <span class="star-flare-v"></span>
+          <span class="star-core"></span>
+        </div>
+        <div class="star-header-row">
+          <span class="star-designation">γ &bull; mag 2.1</span>
+          <span class="star-coords">40°45'N 74°00'W</span>
+        </div>
+        <div class="star-frame">
+          <img src="assets/intrepid.png" onerror="this.onerror=null; this.src='intrepid.png';" alt="Intrepid Museum - StuySky Trip">
+        </div>
+        <h2 class="star-title">Intrepid Museum - StuySky Trip</h2>
+      </article>
+
+      <!-- Star δ: Compilation of Past StuySky Events -->
+      <article class="star-card star-pos-4" data-star="3" data-bayer="δ" data-mag="1.9m" tabindex="0">
+        <div class="star-beacon" aria-hidden="true">
+          <span class="star-flare-h"></span>
+          <span class="star-flare-v"></span>
+          <span class="star-core"></span>
+        </div>
+        <div class="star-header-row">
+          <span class="star-designation">δ &bull; mag 1.9</span>
+          <span class="star-coords">40°43'N 74°00'W</span>
+        </div>
+        <div class="star-frame">
+          <img src="assets/past-stuysky.png" onerror="this.onerror=null; this.src='past-stuysky.png';" alt="Compilation of Past StuySky Events">
+        </div>
+        <h2 class="star-title">Compilation of Past StuySky Events</h2>
+      </article>
+
+      <!-- Star ε: Pupin Hall Teaching Observatory -->
+      <article class="star-card star-pos-5" data-star="4" data-bayer="ε" data-mag="2.2m" tabindex="0">
+        <div class="star-beacon" aria-hidden="true">
+          <span class="star-flare-h"></span>
+          <span class="star-flare-v"></span>
+          <span class="star-core"></span>
+        </div>
+        <div class="star-header-row">
+          <span class="star-designation">ε &bull; mag 2.2</span>
+          <span class="star-coords">40°48'N 73°57'W</span>
+        </div>
+        <div class="star-frame">
+          <img src="assets/pupin.png" onerror="this.onerror=null; this.src='pupin.png';" alt="Pupin Hall Teaching Observatory - StuySky Trip">
+        </div>
+        <h2 class="star-title">Pupin Hall Teaching Observatory - StuySky Trip</h2>
+      </article>
+
+      <!-- Star ζ: StuySky Members -->
+      <article class="star-card star-pos-6" data-star="5" data-bayer="ζ" data-mag="1.6m" tabindex="0">
+        <div class="star-beacon" aria-hidden="true">
+          <span class="star-flare-h"></span>
+          <span class="star-flare-v"></span>
+          <span class="star-core"></span>
+        </div>
+        <div class="star-header-row">
+          <span class="star-designation">ζ &bull; mag 1.6</span>
+          <span class="star-coords">40°43'N 74°01'W</span>
+        </div>
+        <div class="star-frame">
+          <img src="assets/stuysky.jpg" onerror="this.onerror=null; this.src='stuysky.jpg';" alt="StuySky Members">
+        </div>
+        <h2 class="star-title">StuySky Members</h2>
+      </article>
+    </section>
+  </main>
+
+  <!-- Lightbox Modal for full-size photo inspection -->
+  <div id="astro-lightbox" class="astro-lightbox" hidden>
+    <div class="astro-lightbox-backdrop" id="astro-lightbox-close"></div>
+    <div class="astro-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="astro-lightbox-caption">
+      <button type="button" id="astro-lightbox-btn" class="astro-lightbox-close-btn" aria-label="Close photo">&times;</button>
+      <img id="astro-lightbox-img" src="" alt="">
+      <p id="astro-lightbox-caption" class="astro-lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script src="physics-interactions.js?v=34"></script>
+  <script>
+    (function () {
+      /* --------------------------------------------------------------------
+         2. FOREGROUND PHOTO CONSTELLATION (DIPPER / HUNTER ASTERISM)
+         -------------------------------------------------------------------- */
+      const stage = document.querySelector(".constellation-stage");
+      const svg = document.getElementById("constellation-lines");
+      const cards = Array.from(document.querySelectorAll(".star-card"));
+
+      // Forms a recognizable celestial Dipper / Orion-bowl asterism:
+      // Bowl: α (0) — β (1) — δ (3) — γ (2) — α (0), with handle extending δ (3) — ε (4) — ζ (5)
+      const EDGES = [
+        [0, 1], // α -> β (top rim of bowl)
+        [1, 3], // β -> δ (outer wall of bowl)
+        [3, 2], // δ -> γ (bottom of bowl)
+        [2, 0], // γ -> α (inner wall of bowl)
+        [3, 4], // δ -> ε (first handle segment)
+        [4, 5]  // ε -> ζ (tail star of handle)
+      ];
+
+      function drawConstellation() {
+        if (!stage || !svg) return;
+        const stageRect = stage.getBoundingClientRect();
+        const w = stageRect.width;
+        const h = stageRect.height;
+        svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+        svg.innerHTML = "";
+
+        // 1. Draw subtle celestial Right Ascension / Declination grid arcs in the background of the stage
+        const gridGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        gridGroup.setAttribute("class", "celestial-grid");
+
+        [0.22, 0.5, 0.78].forEach((rx) => {
+          const vLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          vLine.setAttribute("x1", (w * rx).toFixed(1));
+          vLine.setAttribute("y1", "0");
+          vLine.setAttribute("x2", (w * rx).toFixed(1));
+          vLine.setAttribute("y2", h.toFixed(1));
+          vLine.setAttribute("class", "celestial-grid-line");
+          gridGroup.appendChild(vLine);
+        });
+
+        [0.2, 0.52, 0.84].forEach((ry) => {
+          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          const y0 = h * ry;
+          path.setAttribute("d", `M 0 ${y0.toFixed(1)} Q ${(w * 0.5).toFixed(1)} ${(y0 - 28).toFixed(1)}, ${w.toFixed(1)} ${y0.toFixed(1)}`);
+          path.setAttribute("class", "celestial-grid-line");
+          gridGroup.appendChild(path);
+        });
+        svg.appendChild(gridGroup);
+
+        // 2. Compute exact coordinates of each star beacon
+        const centers = cards.map((card) => {
+          const beacon = card.querySelector(".star-beacon") || card;
+          const r = beacon.getBoundingClientRect();
+          return {
+            x: r.left - stageRect.left + r.width / 2,
+            y: r.top - stageRect.top + r.height / 2,
+            bayer: card.dataset.bayer || ""
+          };
+        });
+
+        // 3. Draw glowing double-layered constellation lines between star vertices
+        EDGES.forEach(([a, b]) => {
+          if (!centers[a] || !centers[b]) return;
+
+          // Soft outer aura line
+          const glow = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          glow.setAttribute("x1", centers[a].x.toFixed(1));
+          glow.setAttribute("y1", centers[a].y.toFixed(1));
+          glow.setAttribute("x2", centers[b].x.toFixed(1));
+          glow.setAttribute("y2", centers[b].y.toFixed(1));
+          glow.dataset.a = a;
+          glow.dataset.b = b;
+          glow.classList.add("constellation-edge-glow");
+          svg.appendChild(glow);
+
+          // Crisp primary star-chart connector line
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("x1", centers[a].x.toFixed(1));
+          line.setAttribute("y1", centers[a].y.toFixed(1));
+          line.setAttribute("x2", centers[b].x.toFixed(1));
+          line.setAttribute("y2", centers[b].y.toFixed(1));
+          line.dataset.a = a;
+          line.dataset.b = b;
+          line.classList.add("constellation-edge");
+          svg.appendChild(line);
+        });
+
+        // 4. Draw orbital halo rings & Greek Bayer labels directly beside each star vertex
+        centers.forEach((pt, idx) => {
+          const ring = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          ring.setAttribute("cx", pt.x.toFixed(1));
+          ring.setAttribute("cy", pt.y.toFixed(1));
+          ring.setAttribute("r", "15");
+          ring.dataset.star = idx;
+          ring.classList.add("constellation-star-ring");
+          svg.appendChild(ring);
+
+          const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          label.setAttribute("x", (pt.x + 18).toFixed(1));
+          label.setAttribute("y", (pt.y - 8).toFixed(1));
+          label.classList.add("constellation-bayer-label");
+          label.textContent = `${pt.bayer} Stu`;
+          svg.appendChild(label);
+        });
+      }
+
+      // Highlight connected constellation segments & star rings on hover
+      cards.forEach((card, idx) => {
+        card.addEventListener("pointerenter", () => {
+          svg.querySelectorAll(".constellation-edge, .constellation-edge-glow").forEach((edge) => {
+            if (Number(edge.dataset.a) === idx || Number(edge.dataset.b) === idx) {
+              edge.classList.add("active");
+            }
+          });
+          svg.querySelectorAll(".constellation-star-ring").forEach((ring) => {
+            if (Number(ring.dataset.star) === idx) {
+              ring.classList.add("active");
+            }
+          });
+        });
+        card.addEventListener("pointerleave", () => {
+          svg.querySelectorAll(".constellation-edge, .constellation-edge-glow").forEach((edge) => {
+            edge.classList.remove("active");
+          });
+          svg.querySelectorAll(".constellation-star-ring").forEach((ring) => {
+            ring.classList.remove("active");
+          });
+        });
+
+        const openLightbox = () => {
+          const img = card.querySelector("img");
+          const title = card.querySelector(".star-title");
+          const lb = document.getElementById("astro-lightbox");
+          const lbImg = document.getElementById("astro-lightbox-img");
+          const lbCap = document.getElementById("astro-lightbox-caption");
+          if (!lb || !img) return;
+          lbImg.src = img.currentSrc || img.src;
+          lbImg.alt = img.alt;
+          lbCap.textContent = title ? title.textContent : "";
+          lb.hidden = false;
+        };
+
+        card.addEventListener("click", openLightbox);
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox();
+          }
+        });
+      });
+
+      const lb = document.getElementById("astro-lightbox");
+      const closeLb = () => { if (lb) lb.hidden = true; };
+      document.getElementById("astro-lightbox-close")?.addEventListener("click", closeLb);
+      document.getElementById("astro-lightbox-btn")?.addEventListener("click", closeLb);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLb();
+      });
+
+      window.addEventListener("load", drawConstellation);
+      window.addEventListener("resize", drawConstellation);
+      if ("ResizeObserver" in window && stage) {
+        new ResizeObserver(drawConstellation).observe(stage);
+      }
+      setTimeout(drawConstellation, 150);
+    })();
+  </script>
+</body>
+</html>

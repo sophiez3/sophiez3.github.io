@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Sophie Zhao</title>
-  <link rel="stylesheet" href="style.css?v=28">
+  <link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
   <header>
@@ -16,98 +16,155 @@
       <nav>
         <a href="index.html">Projects</a>
         <a href="about.html">About me</a>
+        <a href="astronomy.html">Astronomy</a>
         <a href="contact.html" class="active">Contact</a>
         <a href="resume.html">Resume</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <div class="two-col-layout">
+  <main class="container" style="padding: 3rem 0 5rem;">
+    <div class="contact-solar-layout">
       <div>
-        <h1 class="serif-title" style="font-size: clamp(2.8rem, 5vw, 4.2rem); margin: 0.6rem 0 1.25rem;">
+        <h1 class="serif-title" style="font-size: clamp(2.6rem, 4.5vw, 3.8rem); margin: 0 0 0.85rem;">
           Contact Sophie!
         </h1>
-        <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2.25rem; max-width: 480px;">
+        <p style="color: var(--text-secondary); font-size: 1.04rem; margin-bottom: 2rem; max-width: 560px;">
           Have an opportunity you want to share? Have questions for me? Feel free to reach out to me!
         </p>
 
-        <div class="circuit-board">
-          <div class="circuit-bus"></div>
+        <!-- Interactive Solar System Contact Orrery -->
+        <div class="solar-contact-stage" id="solar-contact-stage">
+          <!-- Concentric Orbital Rings & Animated Planets -->
+          <div class="solar-orrery" aria-hidden="true">
+            <div class="orbit-ring orbit-1" data-planet="0">
+              <a href="mailto:sophiez3@andrew.cmu.edu" class="orbit-planet planet-1" tabindex="-1" title="University Email: sophiez3@andrew.cmu.edu">
+                <span class="planet-tag">CMU Email</span>
+              </a>
+            </div>
+            <div class="orbit-ring orbit-2" data-planet="1">
+              <a href="mailto:zhaosophie4@gmail.com" class="orbit-planet planet-2" tabindex="-1" title="Personal Email: zhaosophie4@gmail.com">
+                <span class="planet-tag">Gmail</span>
+              </a>
+            </div>
+            <div class="orbit-ring orbit-3" data-planet="2">
+              <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer" class="orbit-planet planet-3" tabindex="-1" title="GitHub: @sophiez3">
+                <span class="planet-tag">GitHub</span>
+              </a>
+            </div>
+            <div class="orbit-ring orbit-4" data-planet="3">
+              <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer" class="orbit-planet planet-4 has-ring" tabindex="-1" title="LinkedIn: /in/sophie-zhao-0b7b07269">
+                <span class="planet-tag">LinkedIn</span>
+              </a>
+            </div>
 
-          <div class="circuit-source-badge">
-            <span class="mono-label mono-amber">V_CC = +5.0V &nbsp;|&nbsp; ACTIVE SIGNAL BUS</span>
+            <!-- Central Sun with Sophie Zhao's name -->
+            <div class="solar-sun">
+              <span class="sun-name">SOPHIE<br>ZHAO</span>
+            </div>
           </div>
 
-          <a href="mailto:sophiez3@andrew.cmu.edu" class="circuit-node">
-            <span class="branch-pulse"></span>
-            <div>
-              <span class="mono-label mono-amber" style="display:block;">NODE 01 // UNIVERSITY EMAIL</span>
-              <strong>sophiez3@andrew.cmu.edu</strong>
-            </div>
-            <div class="node-telemetry">
-              <span class="current-indicator">I₁ &rarr; 12.4 mA</span>
-              <span>&nearr;</span>
-            </div>
-          </a>
+          <!-- Companion Planetary Contact Cards (synced with each orbiting planet on hover) -->
+          <div class="planet-cards-list">
+            <a href="mailto:sophiez3@andrew.cmu.edu" class="planet-contact-card" data-planet="0">
+              <div class="planet-card-left">
+                <span class="planet-swatch swatch-1"></span>
+                <div>
+                  <span class="mono-label mono-amber" style="display:block;">ORBIT I // UNIVERSITY EMAIL</span>
+                  <strong>sophiez3@andrew.cmu.edu</strong>
+                </div>
+              </div>
+              <span class="planet-arrow">&nearr;</span>
+            </a>
 
-          <a href="mailto:zhaosophie4@gmail.com" class="circuit-node">
-            <span class="branch-pulse"></span>
-            <div>
-              <span class="mono-label mono-amber" style="display:block;">NODE 02 // PERSONAL EMAIL</span>
-              <strong>zhaosophie4@gmail.com</strong>
-            </div>
-            <div class="node-telemetry">
-              <span class="current-indicator">I₂ &rarr; 10.8 mA</span>
-              <span>&nearr;</span>
-            </div>
-          </a>
+            <a href="mailto:zhaosophie4@gmail.com" class="planet-contact-card" data-planet="1">
+              <div class="planet-card-left">
+                <span class="planet-swatch swatch-2"></span>
+                <div>
+                  <span class="mono-label mono-amber" style="display:block;">ORBIT II // PERSONAL EMAIL</span>
+                  <strong>zhaosophie4@gmail.com</strong>
+                </div>
+              </div>
+              <span class="planet-arrow">&nearr;</span>
+            </a>
 
-          <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer" class="circuit-node">
-            <span class="branch-pulse"></span>
-            <div>
-              <span class="mono-label mono-amber" style="display:block;">NODE 03 // GITHUB REPOSITORIES</span>
-              <strong>@sophiez3</strong>
-            </div>
-            <div class="node-telemetry">
-              <span class="current-indicator">I₃ &rarr; 8.2 mA</span>
-              <span>&nearr;</span>
-            </div>
-          </a>
+            <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer" class="planet-contact-card" data-planet="2">
+              <div class="planet-card-left">
+                <span class="planet-swatch swatch-3"></span>
+                <div>
+                  <span class="mono-label mono-amber" style="display:block;">ORBIT III // GITHUB</span>
+                  <strong>@sophiez3</strong>
+                </div>
+              </div>
+              <span class="planet-arrow">&nearr;</span>
+            </a>
 
-          <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer" class="circuit-node">
-            <span class="branch-pulse"></span>
-            <div>
-              <span class="mono-label mono-amber" style="display:block;">NODE 04 // LINKEDIN NETWORK</span>
-              <strong>/in/sophie-zhao-0b7b07269</strong>
-            </div>
-            <div class="node-telemetry">
-              <span class="current-indicator">I₄ &rarr; 6.8 mA</span>
-              <span>&nearr;</span>
-            </div>
-          </a>
-
-          <div class="circuit-ground">
-            <span class="mono-label" style="color:#64748b;">GND (0.0V) // PITTSBURGH, PA</span>
+            <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer" class="planet-contact-card" data-planet="3">
+              <div class="planet-card-left">
+                <span class="planet-swatch swatch-4"></span>
+                <div>
+                  <span class="mono-label mono-amber" style="display:block;">ORBIT IV // LINKEDIN</span>
+                  <strong>/in/sophie-zhao-0b7b07269</strong>
+                </div>
+              </div>
+              <span class="planet-arrow">&nearr;</span>
+            </a>
           </div>
         </div>
       </div>
 
       <div>
-        <div class="sidebar-card">
+        <div class="sidebar-card" style="position: sticky; top: 6.5rem;">
           <span class="mono-label mono-amber">AREAS OF INTEREST</span>
           <ul class="approach-steps" style="margin-bottom: 1.75rem;">
-            <li style="font-size: 1.25rem;"><span>Computational physics &amp; research</span></li>
-            <li style="font-size: 1.25rem;"><span>Software engineering</span></li>
-            <li style="font-size: 1.25rem;"><span>Data science &amp; applied math</span></li>
-            <li style="font-size: 1.25rem;"><span>AI systems</span></li>
-            <li style="font-size: 1.25rem;"><span>Quantum computing</span></li>
+            <li style="font-size: 1.2rem;"><span>Computational physics &amp; research</span></li>
+            <li style="font-size: 1.2rem;"><span>Software engineering</span></li>
+            <li style="font-size: 1.2rem;"><span>Data science &amp; applied math</span></li>
+            <li style="font-size: 1.2rem;"><span>AI systems</span></li>
+            <li style="font-size: 1.2rem;"><span>Quantum computing</span></li>
           </ul>
           <a href="index.html#selected-work" class="action-link">Back to selected projects &rarr;</a>
         </div>
       </div>
     </div>
   </main>
-  <script src="physics-interactions.js?v=28"></script>
+
+  <script src="physics-interactions.js?v=34"></script>
+  <script>
+    (function () {
+      const cards = document.querySelectorAll(".planet-contact-card");
+      const orbits = document.querySelectorAll(".orbit-ring");
+
+      function setActivePlanet(idx) {
+        orbits.forEach((o) => {
+          o.classList.toggle("is-highlighted", Number(o.dataset.planet) === idx);
+        });
+        cards.forEach((c) => {
+          c.classList.toggle("is-highlighted", Number(c.dataset.planet) === idx);
+        });
+      }
+
+      function clearActivePlanet() {
+        orbits.forEach((o) => o.classList.remove("is-highlighted"));
+        cards.forEach((c) => c.classList.remove("is-highlighted"));
+      }
+
+      cards.forEach((card) => {
+        const idx = Number(card.dataset.planet);
+        card.addEventListener("pointerenter", () => setActivePlanet(idx));
+        card.addEventListener("pointerleave", clearActivePlanet);
+        card.addEventListener("focus", () => setActivePlanet(idx));
+        card.addEventListener("blur", clearActivePlanet);
+      });
+
+      orbits.forEach((orbit) => {
+        const idx = Number(orbit.dataset.planet);
+        const planet = orbit.querySelector(".orbit-planet");
+        if (!planet) return;
+        planet.addEventListener("pointerenter", () => setActivePlanet(idx));
+        planet.addEventListener("pointerleave", clearActivePlanet);
+      });
+    })();
+  </script>
 </body>
 </html>

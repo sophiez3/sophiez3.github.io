@@ -818,163 +818,297 @@ nav a.cradle-item.active {
   color: var(--text-secondary);
 }
 
-/* Electrical Circuit Contact Nodes & Current Flow */
-.circuit-board {
-  position: relative;
-  padding-left: 2.75rem;
-  margin-top: 1rem;
+/* ==========================================================================
+   SOLAR SYSTEM CONTACT PAGE (SUN + ORBITING CONTACT PLANETS)
+   ========================================================================== */
+.contact-solar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: 3rem;
+  align-items: start;
 }
 
-.circuit-bus {
-  position: absolute;
-  left: 0.85rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(226, 168, 107, 0.22);
-  overflow: hidden;
-}
-
-.circuit-bus::after {
-  content: '';
-  position: absolute;
-  left: -1px;
-  top: -35%;
-  width: 4px;
-  height: 35%;
-  background: linear-gradient(to bottom, transparent, var(--accent-amber), #fff1cc);
-  box-shadow: 0 0 10px var(--accent-amber);
-  animation: busCurrent 3.2s linear infinite;
-}
-
-@keyframes busCurrent {
-  0% { top: -35%; }
-  100% { top: 105%; }
-}
-
-.circuit-source-badge {
-  display: inline-flex;
+.solar-contact-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   align-items: center;
-  gap: 0.55rem;
-  margin-bottom: 1.25rem;
-  position: relative;
 }
 
-.circuit-source-badge::before {
+.solar-orrery {
+  position: relative;
+  width: 100%;
+  max-width: 470px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(226, 168, 107, 0.08) 0%, rgba(138, 180, 248, 0.03) 45%, transparent 72%);
+}
+
+/* Central Sun with Sophie Zhao */
+.solar-sun {
+  position: relative;
+  z-index: 5;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff6d6 0%, #f5b963 45%, #d97724 88%, #9a3412 100%);
+  box-shadow:
+    0 0 26px rgba(245, 185, 99, 0.72),
+    0 0 56px rgba(226, 168, 107, 0.35),
+    inset 0 0 14px rgba(255, 250, 230, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.4rem;
+}
+
+.sun-name {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.25;
+  color: #1a0f05;
+  text-shadow: 0 1px 0 rgba(255, 248, 225, 0.65);
+  user-select: none;
+}
+
+/* Concentric Planetary Orbit Rings */
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(148, 163, 184, 0.26);
+  pointer-events: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.orbit-ring.is-highlighted {
+  border-style: solid;
+  border-color: rgba(226, 168, 107, 0.85);
+  box-shadow: 0 0 18px rgba(226, 168, 107, 0.22), inset 0 0 14px rgba(226, 168, 107, 0.12);
+}
+
+.orbit-1 {
+  width: 38%;
+  height: 38%;
+  animation: orbitSpin 18s linear infinite;
+}
+
+.orbit-2 {
+  width: 57%;
+  height: 57%;
+  animation: orbitSpin 26s linear infinite reverse;
+}
+
+.orbit-3 {
+  width: 76%;
+  height: 76%;
+  animation: orbitSpin 35s linear infinite;
+}
+
+.orbit-4 {
+  width: 95%;
+  height: 95%;
+  animation: orbitSpin 46s linear infinite reverse;
+}
+
+.orbit-ring.is-highlighted,
+.solar-orrery:hover .orbit-ring {
+  animation-play-state: paused;
+}
+
+.orbit-ring.is-highlighted .orbit-planet,
+.solar-orrery:hover .orbit-planet {
+  animation-play-state: paused;
+}
+
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes counterSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes counterSpinRev {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Orbiting Planets */
+.orbit-planet {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.orbit-1 .orbit-planet {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #fde68a, #d97706);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
+  animation: counterSpin 18s linear infinite;
+}
+
+.orbit-2 .orbit-planet {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #bae6fd, #2563eb);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.7);
+  animation: counterSpinRev 26s linear infinite;
+}
+
+.orbit-3 .orbit-planet {
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(circle at 30% 30%, #fecaca, #dc2626);
+  box-shadow: 0 0 14px rgba(248, 113, 113, 0.65);
+  animation: counterSpin 35s linear infinite;
+}
+
+.orbit-4 .orbit-planet {
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle at 30% 30%, #e9d5ff, #7c3aed);
+  box-shadow: 0 0 16px rgba(167, 139, 250, 0.75);
+  animation: counterSpinRev 46s linear infinite;
+}
+
+/* Saturn-like ring around LinkedIn planet */
+.orbit-planet.has-ring::before {
   content: '';
   position: absolute;
-  left: -2.18rem;
-  width: 10px;
-  height: 10px;
+  width: 42px;
+  height: 12px;
   border-radius: 50%;
-  background: var(--accent-amber);
-  box-shadow: 0 0 10px var(--accent-amber);
+  border: 2px solid rgba(216, 180, 254, 0.75);
+  transform: rotate(-24deg);
+  pointer-events: none;
 }
 
-.circuit-node {
-  position: relative;
+.orbit-ring.is-highlighted .orbit-planet {
+  box-shadow: 0 0 20px #fff1cc, 0 0 30px var(--accent-amber);
+}
+
+.planet-tag {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  background: rgba(11, 16, 27, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Companion Contact Cards below the Solar Orrery */
+.planet-cards-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.planet-contact-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.15rem 1.5rem;
-  background: var(--bg-card);
+  gap: 0.75rem;
+  padding: 0.95rem 1.15rem;
+  background: rgba(15, 22, 36, 0.9);
   border: 1px solid var(--border-subtle);
   border-radius: 6px;
-  margin-bottom: 1.25rem;
   text-decoration: none;
   color: var(--text-primary);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
 
-.circuit-node::before {
-  content: '';
-  position: absolute;
-  left: -1.9rem;
-  top: 50%;
-  width: 1.9rem;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(226, 168, 107, 0.35), var(--accent-blue));
-}
-
-.circuit-node::after {
-  content: '';
-  position: absolute;
-  left: -5px;
-  top: calc(50% - 4px);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--bg-primary);
-  border: 2px solid var(--accent-amber);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.branch-pulse {
-  position: absolute;
-  left: -1.9rem;
-  top: calc(50% - 2px);
-  width: 6px;
-  height: 4px;
-  border-radius: 2px;
-  background: #fff1cc;
-  box-shadow: 0 0 8px var(--accent-amber);
-  animation: branchFlow 2s ease-in-out infinite;
-}
-
-.circuit-node:nth-of-type(2) .branch-pulse { animation-delay: 0.65s; }
-.circuit-node:nth-of-type(3) .branch-pulse { animation-delay: 1.3s; }
-
-@keyframes branchFlow {
-  0% { left: -1.9rem; opacity: 0; }
-  20% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { left: -0.15rem; opacity: 0; }
-}
-
-.circuit-node:hover {
+.planet-contact-card:hover,
+.planet-contact-card.is-highlighted {
   border-color: var(--accent-amber);
-  box-shadow: 0 0 22px rgba(226, 168, 107, 0.14);
-  transform: translateX(3px);
+  box-shadow: 0 0 20px rgba(226, 168, 107, 0.18);
+  transform: translateY(-2px);
 }
 
-.circuit-node:hover::after {
-  background: var(--accent-amber);
-  box-shadow: 0 0 10px var(--accent-amber);
-}
-
-.node-telemetry {
+.planet-card-left {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
+  min-width: 0;
 }
 
-.current-indicator {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--accent-blue);
-  background: rgba(138, 180, 248, 0.08);
-  border: 1px solid rgba(138, 180, 248, 0.25);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
+.planet-card-left strong {
+  display: block;
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
 }
 
-.circuit-ground {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 0.35rem;
-  position: relative;
+.planet-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-.circuit-ground::before {
-  content: '';
-  position: absolute;
-  left: -2.28rem;
-  top: 50%;
-  width: 14px;
-  height: 2px;
-  background: var(--accent-amber);
-  box-shadow: 0 4px 0 -0.5px rgba(226, 168, 107, 0.65), 0 8px 0 -1px rgba(226, 168, 107, 0.4);
+.swatch-1 {
+  background: radial-gradient(circle at 30% 30%, #fde68a, #d97706);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.65);
+}
+
+.swatch-2 {
+  background: radial-gradient(circle at 30% 30%, #bae6fd, #2563eb);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.65);
+}
+
+.swatch-3 {
+  background: radial-gradient(circle at 30% 30%, #fecaca, #dc2626);
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.6);
+}
+
+.swatch-4 {
+  background: radial-gradient(circle at 30% 30%, #e9d5ff, #7c3aed);
+  box-shadow: 0 0 8px rgba(167, 139, 250, 0.65);
+}
+
+.planet-arrow {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.planet-contact-card:hover .planet-arrow,
+.planet-contact-card.is-highlighted .planet-arrow {
+  color: var(--accent-amber);
+}
+
+@media (max-width: 860px) {
+  .contact-solar-layout {
+    grid-template-columns: 1fr;
+  }
+  .planet-cards-list {
+    grid-template-columns: 1fr;
+  }
+  .solar-orrery {
+    max-width: 360px;
+  }
 }
 
 /* Parabolic Scroll-To-Top Launcher Button */
@@ -1191,4 +1325,720 @@ footer {
   }
 }
 
-.circuit-node:nth-of-type(4) .branch-pulse { animation-delay: 1.95s; }
+
+
+/* ==========================================================================
+   ASTRONOMY CONSTELLATION GALLERY PAGE
+   ========================================================================== */
+.astro-sky-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.astro-intro {
+  max-width: 780px;
+  margin-bottom: 3rem;
+}
+
+.astro-bio {
+  color: var(--text-secondary);
+  font-size: 1.06rem;
+  line-height: 1.72;
+}
+
+.constellation-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2.75rem 1.5rem;
+  padding: 2.25rem 1rem 2.5rem;
+  border-radius: 10px;
+  background: radial-gradient(ellipse at 50% 45%, rgba(24, 38, 68, 0.28) 0%, rgba(11, 16, 27, 0) 75%);
+}
+
+.constellation-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.celestial-grid-line {
+  stroke: rgba(148, 163, 184, 0.08);
+  stroke-width: 1;
+  fill: none;
+}
+
+.constellation-edge-glow {
+  stroke: rgba(138, 180, 248, 0.16);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke 0.25s ease;
+}
+
+.constellation-edge-glow.active {
+  stroke: rgba(226, 168, 107, 0.28);
+}
+
+.constellation-edge {
+  stroke: rgba(165, 203, 255, 0.62);
+  stroke-width: 1.85;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 5px rgba(138, 180, 248, 0.45));
+  transition: stroke 0.25s ease, stroke-width 0.25s ease, filter 0.25s ease;
+}
+
+.constellation-edge.active {
+  stroke: #ffd296;
+  stroke-width: 2.6;
+  filter: drop-shadow(0 0 9px rgba(226, 168, 107, 0.9));
+}
+
+.constellation-star-ring {
+  fill: none;
+  stroke: rgba(226, 168, 107, 0.36);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  transition: stroke 0.25s ease, transform 0.25s ease;
+}
+
+.constellation-star-ring.active {
+  stroke: #ffd296;
+  stroke-width: 1.4;
+  stroke-dasharray: none;
+}
+
+.constellation-bayer-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: rgba(226, 168, 107, 0.78);
+  letter-spacing: 0.05em;
+}
+
+.star-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(13, 20, 34, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(138, 180, 248, 0.22);
+  border-radius: 6px;
+  padding: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.star-card:hover,
+.star-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--border-amber);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55), 0 0 22px rgba(226, 168, 107, 0.22);
+  outline: none;
+}
+
+/* Intentional Dipper / Hunter-style celestial asterism layout:
+   α (1) and β (2) form the upper rim; γ (3) and δ (4) form the lower bowl;
+   ε (5) and ζ (6) sweep out as the curved tail/handle */
+.star-pos-1 {
+  grid-column: 1 / span 4;
+  margin-top: 0.5rem;
+}
+
+.star-pos-2 {
+  grid-column: 7 / span 4;
+  margin-top: 0;
+}
+
+.star-pos-3 {
+  grid-column: 2 / span 4;
+  margin-top: 1.5rem;
+}
+
+.star-pos-4 {
+  grid-column: 7 / span 4;
+  margin-top: 1.25rem;
+}
+
+.star-pos-5 {
+  grid-column: 9 / span 4;
+  margin-top: 1.75rem;
+}
+
+.star-pos-6 {
+  grid-column: 5 / span 4;
+  margin-top: 0.5rem;
+}
+
+/* Four-point diffraction-spiked star beacon at the top center of each card */
+.star-beacon {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+
+.star-flare-h {
+  position: absolute;
+  width: 28px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #fff1cc, transparent);
+  opacity: 0.85;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.star-flare-v {
+  position: absolute;
+  width: 1.5px;
+  height: 28px;
+  background: linear-gradient(180deg, transparent, #fff1cc, transparent);
+  opacity: 0.85;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.star-core {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff4d4;
+  box-shadow: 0 0 10px #ffd296, 0 0 20px rgba(138, 180, 248, 0.9);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.star-card:hover .star-core {
+  transform: scale(1.35);
+  background: #ffffff;
+}
+
+.star-card:hover .star-flare-h,
+.star-card:hover .star-flare-v {
+  transform: scale(1.3);
+  opacity: 1;
+}
+
+.star-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
+.star-designation {
+  color: var(--accent-amber);
+}
+
+.star-coords {
+  color: var(--text-muted);
+}
+
+.star-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #080c14;
+  margin-bottom: 0.75rem;
+}
+
+.star-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.star-card:hover .star-frame img {
+  transform: scale(1.03);
+}
+
+.star-title {
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* Lightbox modal */
+.astro-lightbox[hidden] {
+  display: none;
+}
+
+.astro-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.astro-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 9, 16, 0.86);
+  backdrop-filter: blur(6px);
+}
+
+.astro-lightbox-dialog {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-amber);
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+}
+
+.astro-lightbox-dialog img {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+  background: #060910;
+}
+
+.astro-lightbox-caption {
+  margin-top: 0.85rem;
+  font-size: 0.98rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.astro-lightbox-close-btn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: rgba(11, 16, 27, 0.88);
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.astro-lightbox-close-btn:hover {
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+}
+
+@media (max-width: 920px) {
+  .constellation-stage {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+  .star-pos-1,
+  .star-pos-2,
+  .star-pos-3,
+  .star-pos-4,
+  .star-pos-5,
+  .star-pos-6 {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+}
+
+
+/* Ensure page content sits cleanly above the global constellation background */
+main, .hero, .section-block {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+img, svg, video, iframe, canvas {
+  max-width: 100%;
+}
+
+/* Tablet breakpoint (<= 920px) */
+@media (max-width: 920px) {
+  .container {
+    padding: 0 1.4rem;
+  }
+
+  .nav-wrapper {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+
+  nav {
+    gap: 1.15rem;
+  }
+
+  .projects-grid,
+  .closer-look-grid,
+  .mindmap-flow,
+  .two-col-layout,
+  .contact-solar-layout,
+  .hobbies-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .about-photo-stack {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .about-photo-card {
+    margin-left: 0;
+    max-width: 280px;
+    flex: 1 1 240px;
+  }
+
+  .constellation-stage {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding: 1.75rem 0.25rem 2rem;
+  }
+
+  .star-pos-1,
+  .star-pos-2,
+  .star-pos-3,
+  .star-pos-4,
+  .star-pos-5,
+  .star-pos-6 {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+
+  .wavefunction-shell {
+    height: 580px;
+  }
+}
+
+/* Mobile phone breakpoint (<= 640px) */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Header & Newton's Cradle Navbar */
+  header {
+    padding: 0.45rem 0 0.65rem;
+  }
+
+  .nav-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .brand {
+    padding-bottom: 0.15rem;
+    font-size: 0.82rem;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.35rem;
+    padding-top: 0.15rem;
+  }
+
+  nav::before {
+    left: 0;
+    right: 0;
+  }
+
+  nav a.cradle-item {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.15rem;
+    min-height: 44px;
+    justify-content: flex-start;
+  }
+
+  .cradle-string {
+    height: 11px;
+  }
+
+  .cradle-bob {
+    width: 10px;
+    height: 10px;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Compact Hero */
+  .hero.hero-compact {
+    padding: 1.25rem 0 1.2rem;
+  }
+
+  .hero-horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .hero-horizontal-text {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .hero.hero-compact h1 {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+
+  .hero.hero-compact .hero-sub {
+    font-size: 0.92rem;
+  }
+
+  .hero-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1.1rem;
+  }
+
+  /* Quick-Jump Project Tabs */
+  .section-block {
+    padding: 1.25rem 0 3.25rem;
+  }
+
+  .project-jump-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.5rem;
+    margin-bottom: 1.35rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .project-jump-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .jump-tab {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  /* Project Cards */
+  .projects-grid {
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    padding: 1.2rem;
+    scroll-margin-top: 125px;
+  }
+
+  .project-card h3 {
+    font-size: 1.55rem;
+  }
+
+  .card-ai-box {
+    padding: 0.7rem 0.8rem;
+  }
+
+  /* Project Detail Workspace */
+  .workspace-topbar {
+    padding: 1.25rem 0 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .view-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3rem;
+  }
+
+  .tab-btn {
+    padding: 0.55rem 0.4rem;
+    font-size: 0.78rem;
+    text-align: center;
+    min-height: 40px;
+  }
+
+  .view-panel {
+    padding: 1.75rem 0 3rem;
+  }
+
+  .overview-hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .glance-box,
+  .detail-article,
+  .ai-transparency-box,
+  .action-card,
+  .bio-card,
+  .sidebar-card,
+  .media-box {
+    padding: 1.25rem;
+  }
+
+  .glance-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .mindmap-canvas {
+    padding: 1.25rem 1rem;
+  }
+
+  .mm-node.central-node {
+    padding: 1.25rem;
+  }
+
+  .mm-node.central-node h3 {
+    font-size: 1.45rem;
+  }
+
+  /* About Me */
+  .two-col-layout {
+    padding: 2rem 0 3.25rem;
+  }
+
+  .about-photo-stack {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-photo-card {
+    max-width: 100%;
+    flex: none;
+  }
+
+  .about-portrait-img {
+    max-height: 380px;
+  }
+
+  /* Astronomy Constellation & Lightbox */
+  .astro-intro {
+    margin-bottom: 1.75rem;
+  }
+
+  .astro-bio {
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .star-header-row {
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+  }
+
+  .constellation-bayer-label {
+    font-size: 10px;
+  }
+
+  .astro-lightbox {
+    padding: 0.75rem;
+  }
+
+  .astro-lightbox-dialog {
+    padding: 0.75rem;
+  }
+
+  .astro-lightbox-dialog img {
+    max-height: 68vh;
+  }
+
+  /* Solar System Contact Orrery */
+  .solar-orrery {
+    max-width: 295px;
+    margin: 0.5rem auto;
+  }
+
+  .solar-sun {
+    width: 74px;
+    height: 74px;
+  }
+
+  .sun-name {
+    font-size: 0.62rem;
+  }
+
+  .orbit-1 .orbit-planet {
+    width: 16px;
+    height: 16px;
+  }
+
+  .orbit-2 .orbit-planet {
+    width: 19px;
+    height: 19px;
+  }
+
+  .orbit-3 .orbit-planet {
+    width: 18px;
+    height: 18px;
+  }
+
+  .orbit-4 .orbit-planet {
+    width: 20px;
+    height: 20px;
+  }
+
+  .orbit-planet.has-ring::before {
+    width: 32px;
+    height: 10px;
+  }
+
+  .planet-tag {
+    font-size: 0.56rem;
+    padding: 0.08rem 0.32rem;
+  }
+
+  .planet-cards-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .planet-contact-card {
+    padding: 0.85rem 1rem;
+    min-height: 54px;
+  }
+
+  /* Resume Wavefunction Viewer */
+  .wavefunction-shell {
+    height: 480px;
+  }
+
+  /* Scroll-To-Top Button */
+  .projectile-top-btn {
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.78rem;
+  }
+}
