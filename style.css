@@ -1227,3 +1227,5 @@ footer {
     margin-left: 0;
   }
 }
+
+.circuit-node:nth-of-type(4) .branch-pulse { animation-delay: 1.95s; }
