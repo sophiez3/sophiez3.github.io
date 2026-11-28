@@ -638,7 +638,7 @@ nav a.cradle-item.active {
   border: 1px solid var(--border-subtle);
 }
 
-/* Quantum Wavefunction Collapse Résumé Viewer */
+/* Quantum Wavefunction Collapse Resume Viewer */
 .wavefunction-shell {
   position: relative;
   width: 100%;
