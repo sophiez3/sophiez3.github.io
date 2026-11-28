@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Sophie Zhao</title>
-  <link rel="stylesheet" href="style.css?v=34">
+  <link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
   <header>
@@ -23,93 +23,75 @@
     </div>
   </header>
 
-  <main class="container" style="padding: 3rem 0 5rem;">
-    <div class="contact-solar-layout">
+  <main class="container">
+    <div class="two-col-layout">
       <div>
         <h1 class="serif-title" style="font-size: clamp(2.6rem, 4.5vw, 3.8rem); margin: 0 0 0.85rem;">
           Contact Sophie!
         </h1>
-        <p style="color: var(--text-secondary); font-size: 1.04rem; margin-bottom: 2rem; max-width: 560px;">
+        <p style="color: var(--text-secondary); font-size: 1.04rem; margin-bottom: 2rem; max-width: 520px;">
           Have an opportunity you want to share? Have questions for me? Feel free to reach out to me!
         </p>
 
-        <!-- Interactive Solar System Contact Orrery -->
-        <div class="solar-contact-stage" id="solar-contact-stage">
-          <!-- Concentric Orbital Rings & Animated Planets -->
-          <div class="solar-orrery" aria-hidden="true">
-            <div class="orbit-ring orbit-1" data-planet="0">
-              <a href="mailto:sophiez3@andrew.cmu.edu" class="orbit-planet planet-1" tabindex="-1" title="University Email: sophiez3@andrew.cmu.edu">
-                <span class="planet-tag">CMU Email</span>
-              </a>
-            </div>
-            <div class="orbit-ring orbit-2" data-planet="1">
-              <a href="mailto:zhaosophie4@gmail.com" class="orbit-planet planet-2" tabindex="-1" title="Personal Email: zhaosophie4@gmail.com">
-                <span class="planet-tag">Gmail</span>
-              </a>
-            </div>
-            <div class="orbit-ring orbit-3" data-planet="2">
-              <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer" class="orbit-planet planet-3" tabindex="-1" title="GitHub: @sophiez3">
-                <span class="planet-tag">GitHub</span>
-              </a>
-            </div>
-            <div class="orbit-ring orbit-4" data-planet="3">
-              <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer" class="orbit-planet planet-4 has-ring" tabindex="-1" title="LinkedIn: /in/sophie-zhao-0b7b07269">
-                <span class="planet-tag">LinkedIn</span>
-              </a>
-            </div>
+        <!-- Executive Contact Constellation Stage -->
+        <div class="contact-constellation-stage" aria-label="Contact Constellation">
+          <svg id="contact-constellation-svg" class="contact-constellation-svg" aria-hidden="true"></svg>
 
-            <!-- Central Sun with Sophie Zhao's name -->
-            <div class="solar-sun">
-              <span class="sun-name">SOPHIE<br>ZHAO</span>
+          <!-- Star α: University Email -->
+          <a href="mailto:sophiez3@andrew.cmu.edu" class="contact-star-card c-star-1" data-cstar="0" data-bayer="α">
+            <div class="star-beacon" aria-hidden="true">
+              <span class="star-flare-h"></span>
+              <span class="star-flare-v"></span>
+              <span class="star-core"></span>
             </div>
-          </div>
+            <div class="contact-star-top">
+              <span class="mono-label mono-amber">α &bull; UNIVERSITY EMAIL</span>
+              <span class="contact-star-arrow">&nearr;</span>
+            </div>
+            <strong>sophiez3@andrew.cmu.edu</strong>
+          </a>
 
-          <!-- Companion Planetary Contact Cards (synced with each orbiting planet on hover) -->
-          <div class="planet-cards-list">
-            <a href="mailto:sophiez3@andrew.cmu.edu" class="planet-contact-card" data-planet="0">
-              <div class="planet-card-left">
-                <span class="planet-swatch swatch-1"></span>
-                <div>
-                  <span class="mono-label mono-amber" style="display:block;">ORBIT I // UNIVERSITY EMAIL</span>
-                  <strong>sophiez3@andrew.cmu.edu</strong>
-                </div>
-              </div>
-              <span class="planet-arrow">&nearr;</span>
-            </a>
+          <!-- Star β: Personal Email -->
+          <a href="mailto:zhaosophie4@gmail.com" class="contact-star-card c-star-2" data-cstar="1" data-bayer="β">
+            <div class="star-beacon" aria-hidden="true">
+              <span class="star-flare-h"></span>
+              <span class="star-flare-v"></span>
+              <span class="star-core"></span>
+            </div>
+            <div class="contact-star-top">
+              <span class="mono-label mono-amber">β &bull; PERSONAL EMAIL</span>
+              <span class="contact-star-arrow">&nearr;</span>
+            </div>
+            <strong>zhaosophie4@gmail.com</strong>
+          </a>
 
-            <a href="mailto:zhaosophie4@gmail.com" class="planet-contact-card" data-planet="1">
-              <div class="planet-card-left">
-                <span class="planet-swatch swatch-2"></span>
-                <div>
-                  <span class="mono-label mono-amber" style="display:block;">ORBIT II // PERSONAL EMAIL</span>
-                  <strong>zhaosophie4@gmail.com</strong>
-                </div>
-              </div>
-              <span class="planet-arrow">&nearr;</span>
-            </a>
+          <!-- Star γ: GitHub -->
+          <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer" class="contact-star-card c-star-3" data-cstar="2" data-bayer="γ">
+            <div class="star-beacon" aria-hidden="true">
+              <span class="star-flare-h"></span>
+              <span class="star-flare-v"></span>
+              <span class="star-core"></span>
+            </div>
+            <div class="contact-star-top">
+              <span class="mono-label mono-amber">γ &bull; GITHUB</span>
+              <span class="contact-star-arrow">&nearr;</span>
+            </div>
+            <strong>@sophiez3</strong>
+          </a>
 
-            <a href="https://github.com/sophiez3" target="_blank" rel="noopener noreferrer" class="planet-contact-card" data-planet="2">
-              <div class="planet-card-left">
-                <span class="planet-swatch swatch-3"></span>
-                <div>
-                  <span class="mono-label mono-amber" style="display:block;">ORBIT III // GITHUB</span>
-                  <strong>@sophiez3</strong>
-                </div>
-              </div>
-              <span class="planet-arrow">&nearr;</span>
-            </a>
-
-            <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer" class="planet-contact-card" data-planet="3">
-              <div class="planet-card-left">
-                <span class="planet-swatch swatch-4"></span>
-                <div>
-                  <span class="mono-label mono-amber" style="display:block;">ORBIT IV // LINKEDIN</span>
-                  <strong>/in/sophie-zhao-0b7b07269</strong>
-                </div>
-              </div>
-              <span class="planet-arrow">&nearr;</span>
-            </a>
-          </div>
+          <!-- Star δ: LinkedIn -->
+          <a href="https://www.linkedin.com/in/sophie-zhao-0b7b07269/" target="_blank" rel="noopener noreferrer" class="contact-star-card c-star-4" data-cstar="3" data-bayer="δ">
+            <div class="star-beacon" aria-hidden="true">
+              <span class="star-flare-h"></span>
+              <span class="star-flare-v"></span>
+              <span class="star-core"></span>
+            </div>
+            <div class="contact-star-top">
+              <span class="mono-label mono-amber">δ &bull; LINKEDIN</span>
+              <span class="contact-star-arrow">&nearr;</span>
+            </div>
+            <strong>/in/sophie-zhao-0b7b07269</strong>
+          </a>
         </div>
       </div>
 
@@ -129,41 +111,111 @@
     </div>
   </main>
 
-  <script src="physics-interactions.js?v=34"></script>
+  <script src="physics-interactions.js?v=35"></script>
   <script>
     (function () {
-      const cards = document.querySelectorAll(".planet-contact-card");
-      const orbits = document.querySelectorAll(".orbit-ring");
+      const stage = document.querySelector(".contact-constellation-stage");
+      const svg = document.getElementById("contact-constellation-svg");
+      const cards = Array.from(document.querySelectorAll(".contact-star-card"));
 
-      function setActivePlanet(idx) {
-        orbits.forEach((o) => {
-          o.classList.toggle("is-highlighted", Number(o.dataset.planet) === idx);
+      // Connects α (0) — β (1) — δ (3) — γ (2) — α (0) + diagonal α — δ into a crisp quadrilateral asterism
+      const EDGES = [
+        [0, 1],
+        [1, 3],
+        [3, 2],
+        [2, 0],
+        [0, 3]
+      ];
+
+      function drawContactConstellation() {
+        if (!stage || !svg) return;
+        const rect = stage.getBoundingClientRect();
+        const w = rect.width;
+        const h = rect.height;
+        svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+        svg.innerHTML = "";
+
+        // Subtle celestial grid lines
+        [0.25, 0.75].forEach((rx) => {
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("x1", (w * rx).toFixed(1));
+          line.setAttribute("y1", "0");
+          line.setAttribute("x2", (w * rx).toFixed(1));
+          line.setAttribute("y2", h.toFixed(1));
+          line.setAttribute("class", "celestial-grid-line");
+          svg.appendChild(line);
         });
-        cards.forEach((c) => {
-          c.classList.toggle("is-highlighted", Number(c.dataset.planet) === idx);
+
+        const centers = cards.map((card) => {
+          const beacon = card.querySelector(".star-beacon") || card;
+          const r = beacon.getBoundingClientRect();
+          return {
+            x: r.left - rect.left + r.width / 2,
+            y: r.top - rect.top + r.height / 2,
+            bayer: card.dataset.bayer || ""
+          };
+        });
+
+        EDGES.forEach(([a, b]) => {
+          if (!centers[a] || !centers[b]) return;
+          const glow = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          glow.setAttribute("x1", centers[a].x.toFixed(1));
+          glow.setAttribute("y1", centers[a].y.toFixed(1));
+          glow.setAttribute("x2", centers[b].x.toFixed(1));
+          glow.setAttribute("y2", centers[b].y.toFixed(1));
+          glow.dataset.a = a;
+          glow.dataset.b = b;
+          glow.classList.add("constellation-edge-glow");
+          svg.appendChild(glow);
+
+          const edge = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          edge.setAttribute("x1", centers[a].x.toFixed(1));
+          edge.setAttribute("y1", centers[a].y.toFixed(1));
+          edge.setAttribute("x2", centers[b].x.toFixed(1));
+          edge.setAttribute("y2", centers[b].y.toFixed(1));
+          edge.dataset.a = a;
+          edge.dataset.b = b;
+          edge.classList.add("constellation-edge");
+          svg.appendChild(edge);
+        });
+
+        centers.forEach((pt, idx) => {
+          const ring = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          ring.setAttribute("cx", pt.x.toFixed(1));
+          ring.setAttribute("cy", pt.y.toFixed(1));
+          ring.setAttribute("r", "14");
+          ring.dataset.star = idx;
+          ring.classList.add("constellation-star-ring");
+          svg.appendChild(ring);
         });
       }
 
-      function clearActivePlanet() {
-        orbits.forEach((o) => o.classList.remove("is-highlighted"));
-        cards.forEach((c) => c.classList.remove("is-highlighted"));
+      cards.forEach((card, idx) => {
+        const highlight = (active) => {
+          svg.querySelectorAll(".constellation-edge, .constellation-edge-glow").forEach((el) => {
+            if (Number(el.dataset.a) === idx || Number(el.dataset.b) === idx) {
+              el.classList.toggle("active", active);
+            }
+          });
+          svg.querySelectorAll(".constellation-star-ring").forEach((ring) => {
+            if (Number(ring.dataset.star) === idx) {
+              ring.classList.toggle("active", active);
+            }
+          });
+        };
+
+        card.addEventListener("pointerenter", () => highlight(true));
+        card.addEventListener("pointerleave", () => highlight(false));
+        card.addEventListener("focus", () => highlight(true));
+        card.addEventListener("blur", () => highlight(false));
+      });
+
+      window.addEventListener("load", drawContactConstellation);
+      window.addEventListener("resize", drawContactConstellation);
+      if ("ResizeObserver" in window && stage) {
+        new ResizeObserver(drawContactConstellation).observe(stage);
       }
-
-      cards.forEach((card) => {
-        const idx = Number(card.dataset.planet);
-        card.addEventListener("pointerenter", () => setActivePlanet(idx));
-        card.addEventListener("pointerleave", clearActivePlanet);
-        card.addEventListener("focus", () => setActivePlanet(idx));
-        card.addEventListener("blur", clearActivePlanet);
-      });
-
-      orbits.forEach((orbit) => {
-        const idx = Number(orbit.dataset.planet);
-        const planet = orbit.querySelector(".orbit-planet");
-        if (!planet) return;
-        planet.addEventListener("pointerenter", () => setActivePlanet(idx));
-        planet.addEventListener("pointerleave", clearActivePlanet);
-      });
+      setTimeout(drawContactConstellation, 150);
     })();
   </script>
 </body>

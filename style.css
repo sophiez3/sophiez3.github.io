@@ -71,13 +71,13 @@ header, main, footer {
   line-height: 1.08;
 }
 
-/* Top Navigation & Newton's Cradle Pendulums */
+/* Top Navigation & Solar System Planetary Alignment */
 header {
   border-bottom: 1px solid var(--border-subtle);
-  padding: 0 0 0.85rem 0;
+  padding: 0.65rem 0 0.75rem 0;
   position: sticky;
   top: 0;
-  background: rgba(9, 13, 22, 0.9);
+  background: rgba(9, 13, 22, 0.92);
   backdrop-filter: blur(12px);
   z-index: 100;
 }
@@ -85,7 +85,7 @@ header {
 .nav-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .brand {
@@ -97,7 +97,6 @@ header {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   letter-spacing: 0.08em;
-  padding-bottom: 0.45rem;
 }
 
 .brand-badge {
@@ -107,64 +106,130 @@ header {
 
 nav {
   display: flex;
-  gap: 1.75rem;
-  align-items: flex-start;
+  gap: 1.85rem;
+  align-items: center;
   position: relative;
 }
 
+/* Faint ecliptic orbital track passing through the planets */
 nav::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -8px;
-  right: -8px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(226, 168, 107, 0.45), transparent);
+  top: 10px;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(226, 168, 107, 0.35) 0px,
+    rgba(226, 168, 107, 0.35) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  pointer-events: none;
 }
 
-nav a.cradle-item {
+nav a.solar-nav-item {
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.84rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform-origin: top center;
-  will-change: transform;
   padding: 0 0.25rem;
-  transition: color 0.2s ease;
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.cradle-string {
-  width: 1px;
-  height: 16px;
-  background: linear-gradient(to bottom, rgba(148, 163, 184, 0.5), rgba(226, 168, 107, 0.65));
+.nav-planet-slot {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+  position: relative;
+}
+
+.nav-planet-orb {
   display: block;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.cradle-bob {
+/* Distinct planets along the ecliptic */
+.planet-orb-mercury {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 32% 30%, #f1f5f9, #94a3b8 65%, #475569 100%);
+  box-shadow: 0 0 6px rgba(148, 163, 184, 0.45);
+}
+
+.planet-orb-venus {
   width: 12px;
   height: 12px;
+  background: radial-gradient(circle at 32% 30%, #fef3c7, #e2a86b 60%, #b45309 100%);
+  box-shadow: 0 0 8px rgba(226, 168, 107, 0.5);
+}
+
+.planet-orb-earth {
+  width: 13px;
+  height: 13px;
+  background: radial-gradient(circle at 32% 30%, #bae6fd, #38bdf8 55%, #1d4ed8 100%);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.55);
+}
+
+.planet-orb-saturn {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 32% 30%, #fde68a, #d97706 65%, #92400e 100%);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+.planet-orb-saturn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 7px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fff1cc, #e2a86b 55%, #8c5828 100%);
-  box-shadow: 0 0 8px rgba(226, 168, 107, 0.35);
-  margin-bottom: 0.35rem;
-  display: block;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1.4px solid rgba(253, 230, 138, 0.75);
+  transform: translate(-50%, -50%) rotate(-22deg);
+  pointer-events: none;
 }
 
-nav a.cradle-item:hover .cradle-bob,
-nav a.cradle-item.active .cradle-bob {
-  box-shadow: 0 0 14px rgba(226, 168, 107, 0.85);
-  transform: scale(1.15);
+.planet-orb-neptune {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 32% 30%, #ddd6fe, #818cf8 60%, #3730a3 100%);
+  box-shadow: 0 0 8px rgba(129, 140, 248, 0.55);
 }
 
-nav a.cradle-item:hover,
-nav a.cradle-item.active {
+/* Active orbital ring & hover lift */
+nav a.solar-nav-item.active .nav-planet-slot::after,
+nav a.solar-nav-item:hover .nav-planet-slot::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(226, 168, 107, 0.75);
+  box-shadow: 0 0 10px rgba(226, 168, 107, 0.35);
+  pointer-events: none;
+}
+
+nav a.solar-nav-item:hover .nav-planet-orb,
+nav a.solar-nav-item.active .nav-planet-orb {
+  transform: scale(1.22);
+}
+
+nav a.solar-nav-item:hover {
   color: var(--text-primary);
 }
 
-nav a.cradle-item.active {
+nav a.solar-nav-item.active {
   color: var(--accent-amber);
 }
 
@@ -819,296 +884,93 @@ nav a.cradle-item.active {
 }
 
 /* ==========================================================================
-   SOLAR SYSTEM CONTACT PAGE (SUN + ORBITING CONTACT PLANETS)
+   CONTACT CONSTELLATION PAGE
    ========================================================================== */
-.contact-solar-layout {
+.contact-constellation-stage {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2.5rem 1.25rem;
+  padding: 2rem 0.5rem 1.5rem;
 }
 
-.solar-contact-stage {
+.contact-constellation-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contact-star-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(13, 20, 34, 0.9);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(138, 180, 248, 0.24);
+  border-radius: 6px;
+  padding: 1.2rem 1.35rem;
+  text-decoration: none;
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  align-items: center;
+  gap: 0.35rem;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
-.solar-orrery {
-  position: relative;
-  width: 100%;
-  max-width: 470px;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(226, 168, 107, 0.08) 0%, rgba(138, 180, 248, 0.03) 45%, transparent 72%);
+.contact-star-card:hover,
+.contact-star-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--border-amber);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 18px rgba(226, 168, 107, 0.2);
+  outline: none;
 }
 
-/* Central Sun with Sophie Zhao */
-.solar-sun {
-  position: relative;
-  z-index: 5;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff6d6 0%, #f5b963 45%, #d97724 88%, #9a3412 100%);
-  box-shadow:
-    0 0 26px rgba(245, 185, 99, 0.72),
-    0 0 56px rgba(226, 168, 107, 0.35),
-    inset 0 0 14px rgba(255, 250, 230, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0.4rem;
-}
-
-.sun-name {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  line-height: 1.25;
-  color: #1a0f05;
-  text-shadow: 0 1px 0 rgba(255, 248, 225, 0.65);
-  user-select: none;
-}
-
-/* Concentric Planetary Orbit Rings */
-.orbit-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px dashed rgba(148, 163, 184, 0.26);
-  pointer-events: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.orbit-ring.is-highlighted {
-  border-style: solid;
-  border-color: rgba(226, 168, 107, 0.85);
-  box-shadow: 0 0 18px rgba(226, 168, 107, 0.22), inset 0 0 14px rgba(226, 168, 107, 0.12);
-}
-
-.orbit-1 {
-  width: 38%;
-  height: 38%;
-  animation: orbitSpin 18s linear infinite;
-}
-
-.orbit-2 {
-  width: 57%;
-  height: 57%;
-  animation: orbitSpin 26s linear infinite reverse;
-}
-
-.orbit-3 {
-  width: 76%;
-  height: 76%;
-  animation: orbitSpin 35s linear infinite;
-}
-
-.orbit-4 {
-  width: 95%;
-  height: 95%;
-  animation: orbitSpin 46s linear infinite reverse;
-}
-
-.orbit-ring.is-highlighted,
-.solar-orrery:hover .orbit-ring {
-  animation-play-state: paused;
-}
-
-.orbit-ring.is-highlighted .orbit-planet,
-.solar-orrery:hover .orbit-planet {
-  animation-play-state: paused;
-}
-
-@keyframes orbitSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes counterSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(-360deg); }
-}
-
-@keyframes counterSpinRev {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Orbiting Planets */
-.orbit-planet {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  border-radius: 50%;
-  pointer-events: auto;
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.orbit-1 .orbit-planet {
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 30% 30%, #fde68a, #d97706);
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
-  animation: counterSpin 18s linear infinite;
-}
-
-.orbit-2 .orbit-planet {
-  width: 24px;
-  height: 24px;
-  background: radial-gradient(circle at 30% 30%, #bae6fd, #2563eb);
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.7);
-  animation: counterSpinRev 26s linear infinite;
-}
-
-.orbit-3 .orbit-planet {
-  width: 22px;
-  height: 22px;
-  background: radial-gradient(circle at 30% 30%, #fecaca, #dc2626);
-  box-shadow: 0 0 14px rgba(248, 113, 113, 0.65);
-  animation: counterSpin 35s linear infinite;
-}
-
-.orbit-4 .orbit-planet {
-  width: 26px;
-  height: 26px;
-  background: radial-gradient(circle at 30% 30%, #e9d5ff, #7c3aed);
-  box-shadow: 0 0 16px rgba(167, 139, 250, 0.75);
-  animation: counterSpinRev 46s linear infinite;
-}
-
-/* Saturn-like ring around LinkedIn planet */
-.orbit-planet.has-ring::before {
-  content: '';
-  position: absolute;
-  width: 42px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(216, 180, 254, 0.75);
-  transform: rotate(-24deg);
-  pointer-events: none;
-}
-
-.orbit-ring.is-highlighted .orbit-planet {
-  box-shadow: 0 0 20px #fff1cc, 0 0 30px var(--accent-amber);
-}
-
-.planet-tag {
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.05em;
-  color: var(--text-primary);
-  background: rgba(11, 16, 27, 0.85);
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-
-/* Companion Contact Cards below the Solar Orrery */
-.planet-cards-list {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-
-.planet-contact-card {
+.contact-star-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.95rem 1.15rem;
-  background: rgba(15, 22, 36, 0.9);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  text-decoration: none;
+  gap: 0.5rem;
+}
+
+.contact-star-arrow {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-star-card:hover .contact-star-arrow {
+  color: var(--accent-amber);
+  transform: translate(2px, -2px);
+}
+
+.contact-star-card strong {
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--text-primary);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
-}
-
-.planet-contact-card:hover,
-.planet-contact-card.is-highlighted {
-  border-color: var(--accent-amber);
-  box-shadow: 0 0 20px rgba(226, 168, 107, 0.18);
-  transform: translateY(-2px);
-}
-
-.planet-card-left {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  min-width: 0;
-}
-
-.planet-card-left strong {
-  display: block;
-  font-size: 0.92rem;
   overflow-wrap: anywhere;
 }
 
-.planet-swatch {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  flex-shrink: 0;
+/* Staggered constellation vertices across the 12-column sky */
+.c-star-1 {
+  grid-column: 1 / span 6;
+  margin-top: 0.25rem;
 }
 
-.swatch-1 {
-  background: radial-gradient(circle at 30% 30%, #fde68a, #d97706);
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.65);
+.c-star-2 {
+  grid-column: 7 / span 6;
+  margin-top: 1.65rem;
 }
 
-.swatch-2 {
-  background: radial-gradient(circle at 30% 30%, #bae6fd, #2563eb);
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.65);
+.c-star-3 {
+  grid-column: 2 / span 5;
+  margin-top: 0.5rem;
 }
 
-.swatch-3 {
-  background: radial-gradient(circle at 30% 30%, #fecaca, #dc2626);
-  box-shadow: 0 0 8px rgba(248, 113, 113, 0.6);
-}
-
-.swatch-4 {
-  background: radial-gradient(circle at 30% 30%, #e9d5ff, #7c3aed);
-  box-shadow: 0 0 8px rgba(167, 139, 250, 0.65);
-}
-
-.planet-arrow {
-  color: var(--text-secondary);
-  flex-shrink: 0;
-}
-
-.planet-contact-card:hover .planet-arrow,
-.planet-contact-card.is-highlighted .planet-arrow {
-  color: var(--accent-amber);
-}
-
-@media (max-width: 860px) {
-  .contact-solar-layout {
-    grid-template-columns: 1fr;
-  }
-  .planet-cards-list {
-    grid-template-columns: 1fr;
-  }
-  .solar-orrery {
-    max-width: 360px;
-  }
+.c-star-4 {
+  grid-column: 7 / span 6;
+  margin-top: 1.25rem;
 }
 
 /* Parabolic Scroll-To-Top Launcher Button */
@@ -1700,8 +1562,7 @@ img, svg, video, iframe, canvas {
   .closer-look-grid,
   .mindmap-flow,
   .two-col-layout,
-  .contact-solar-layout,
-  .hobbies-grid {
+    .hobbies-grid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
   }
@@ -1747,19 +1608,18 @@ img, svg, video, iframe, canvas {
     padding: 0 1rem;
   }
 
-  /* Header & Newton's Cradle Navbar */
+  /* Header & Solar System Planetary Navbar */
   header {
-    padding: 0.45rem 0 0.65rem;
+    padding: 0.5rem 0 0.65rem;
   }
 
   .nav-wrapper {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
 
   .brand {
-    padding-bottom: 0.15rem;
     font-size: 0.82rem;
   }
 
@@ -1767,29 +1627,24 @@ img, svg, video, iframe, canvas {
     width: 100%;
     justify-content: space-between;
     gap: 0.35rem;
-    padding-top: 0.15rem;
   }
 
   nav::before {
-    left: 0;
-    right: 0;
+    top: 9px;
+    left: 6px;
+    right: 6px;
   }
 
-  nav a.cradle-item {
+  nav a.solar-nav-item {
     font-size: 0.78rem;
-    padding: 0.2rem 0.15rem;
+    padding: 0.1rem 0.15rem;
     min-height: 44px;
     justify-content: flex-start;
   }
 
-  .cradle-string {
-    height: 11px;
-  }
-
-  .cradle-bob {
-    width: 10px;
-    height: 10px;
-    margin-bottom: 0.25rem;
+  .nav-planet-slot {
+    height: 18px;
+    margin-bottom: 0.22rem;
   }
 
   /* Compact Hero */
@@ -1974,59 +1829,19 @@ img, svg, video, iframe, canvas {
     max-height: 68vh;
   }
 
-  /* Solar System Contact Orrery */
-  .solar-orrery {
-    max-width: 295px;
-    margin: 0.5rem auto;
-  }
-
-  .solar-sun {
-    width: 74px;
-    height: 74px;
-  }
-
-  .sun-name {
-    font-size: 0.62rem;
-  }
-
-  .orbit-1 .orbit-planet {
-    width: 16px;
-    height: 16px;
-  }
-
-  .orbit-2 .orbit-planet {
-    width: 19px;
-    height: 19px;
-  }
-
-  .orbit-3 .orbit-planet {
-    width: 18px;
-    height: 18px;
-  }
-
-  .orbit-4 .orbit-planet {
-    width: 20px;
-    height: 20px;
-  }
-
-  .orbit-planet.has-ring::before {
-    width: 32px;
-    height: 10px;
-  }
-
-  .planet-tag {
-    font-size: 0.56rem;
-    padding: 0.08rem 0.32rem;
-  }
-
-  .planet-cards-list {
+  /* Contact Constellation */
+  .contact-constellation-stage {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 1.75rem;
+    padding: 1.5rem 0 1rem;
   }
 
-  .planet-contact-card {
-    padding: 0.85rem 1rem;
-    min-height: 54px;
+  .c-star-1,
+  .c-star-2,
+  .c-star-3,
+  .c-star-4 {
+    grid-column: 1 / -1;
+    margin-top: 0;
   }
 
   /* Resume Wavefunction Viewer */

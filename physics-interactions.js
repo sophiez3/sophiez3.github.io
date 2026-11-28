@@ -322,60 +322,28 @@
 
   drawConstellations();
 
-  /* 2. NEWTON'S CRADLE NAVBAR PENDULUMS */
+  /* 2. SOLAR SYSTEM PLANETARY NAVBAR */
   const navLinks = Array.from(document.querySelectorAll("header nav a"));
-  if (navLinks.length > 0 && !reducedMotion) {
-    const N = navLinks.length;
-    const theta = new Array(N).fill(0);
-    const omega = new Array(N).fill(0);
+  if (navLinks.length > 0) {
+    const planetClasses = [
+      "planet-orb-mercury", // Projects
+      "planet-orb-venus",   // About me
+      "planet-orb-earth",   // Astronomy
+      "planet-orb-saturn",  // Contact
+      "planet-orb-neptune"  // Resume
+    ];
 
     navLinks.forEach((link, idx) => {
-      link.classList.add("cradle-item");
-      const stringEl = document.createElement("span");
-      stringEl.className = "cradle-string";
-      const bobEl = document.createElement("span");
-      bobEl.className = "cradle-bob";
-      link.prepend(bobEl);
-      link.prepend(stringEl);
+      link.classList.add("solar-nav-item");
+      const orbitWrapper = document.createElement("span");
+      orbitWrapper.className = "nav-planet-slot";
 
-      link.addEventListener("mouseenter", () => {
-        const dir = idx < N / 2 ? -1 : 1;
-        omega[idx] += dir * 0.055;
-      });
+      const planetOrb = document.createElement("span");
+      planetOrb.className = `nav-planet-orb ${planetClasses[idx % planetClasses.length]}`;
+
+      orbitWrapper.appendChild(planetOrb);
+      link.prepend(orbitWrapper);
     });
-
-    const K_SPRING = 0.018;
-    const DAMPING = 0.988;
-    const RESTITUTION = 0.92;
-
-    function updateCradle() {
-      for (let i = 0; i < N; i++) {
-        const alpha = -K_SPRING * Math.sin(theta[i]);
-        omega[i] = (omega[i] + alpha) * DAMPING;
-        theta[i] += omega[i];
-      }
-
-      for (let i = 0; i < N - 1; i++) {
-        if (theta[i] - theta[i + 1] > 0.015) {
-          const v1 = omega[i];
-          const v2 = omega[i + 1];
-          omega[i] = v2 * RESTITUTION;
-          omega[i + 1] = v1 * RESTITUTION;
-          const mid = (theta[i] + theta[i + 1]) * 0.5;
-          theta[i] = mid;
-          theta[i + 1] = mid;
-        }
-      }
-
-      for (let i = 0; i < N; i++) {
-        const deg = (theta[i] * 180) / Math.PI;
-        navLinks[i].style.transform = `rotate(${deg.toFixed(2)}deg)`;
-      }
-
-      requestAnimationFrame(updateCradle);
-    }
-
-    updateCradle();
   }
 
   /* 3. PARABOLIC PROJECTILE SCROLL-TO-TOP */
