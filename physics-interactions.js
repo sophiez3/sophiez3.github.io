@@ -522,6 +522,7 @@
   const wfShell = document.getElementById("wavefunction-shell");
   const wfCanvas = document.getElementById("wavefunction-canvas");
   const wfStatus = document.getElementById("wf-status-text");
+  const wfCollapseBtn = document.getElementById("wf-collapse-btn");
 
   if (wfShell && wfCanvas) {
     const wctx = wfCanvas.getContext("2d");
@@ -529,6 +530,7 @@
     let collapseProgress = 0;
     let wavePhase = 0;
     let focusPoint = { x: 0.5, y: 0.5 };
+    let touchLockedCollapsed = false;
 
     const glitters = Array.from({ length: 140 }, () => ({
       rx: Math.random(),
@@ -546,47 +548,79 @@
     resizeWfCanvas();
     window.addEventListener("resize", resizeWfCanvas);
 
-    function observeWavefunction(clientX, clientY) {
+    function observeWavefunction(clientX, clientY, lockOpen) {
       const rect = wfShell.getBoundingClientRect();
-      focusPoint.x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      focusPoint.y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+      if (typeof clientX === "number" && typeof clientY === "number" && rect.width > 0 && rect.height > 0) {
+        focusPoint.x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        focusPoint.y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+      } else {
+        focusPoint.x = 0.5;
+        focusPoint.y = 0.5;
+      }
       collapsed = true;
+      if (lockOpen) touchLockedCollapsed = true;
       wfShell.classList.add("collapsed");
+      wfCanvas.style.pointerEvents = "none";
       if (wfStatus) {
         wfStatus.textContent = "EIGENSTATE OBSERVED // |ψ|² → 1 (RESUME RESOLVED)";
       }
+      if (wfCollapseBtn) {
+        wfCollapseBtn.textContent = "Re-Superpose |ψ⟩";
+      }
     }
 
-    wfShell.addEventListener("pointerenter", (e) => {
-      observeWavefunction(e.clientX, e.clientY);
-    });
-
-    wfShell.addEventListener("pointermove", (e) => {
-      if (!collapsed) {
-        observeWavefunction(e.clientX, e.clientY);
+    function resetWavefunction() {
+      collapsed = false;
+      touchLockedCollapsed = false;
+      wfShell.classList.remove("collapsed");
+      wfCanvas.style.pointerEvents = "auto";
+      if (wfStatus) {
+        wfStatus.textContent = "SUPERPOSITION STATE // TAP OR HOVER TO OBSERVE |ψ⟩";
       }
+      if (wfCollapseBtn) {
+        wfCollapseBtn.textContent = "Observe & Reveal ψ";
+      }
+    }
+
+    // Intercept taps & clicks directly on the canvas overlay (above the iframe)
+    wfCanvas.style.pointerEvents = "auto";
+    wfCanvas.style.cursor = "pointer";
+
+    wfCanvas.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "touch") return;
+      observeWavefunction(e.clientX, e.clientY, false);
     });
 
-    wfShell.addEventListener("pointerdown", (e) => {
-      observeWavefunction(e.clientX, e.clientY);
+    wfCanvas.addEventListener("pointerdown", (e) => {
+      observeWavefunction(e.clientX, e.clientY, e.pointerType === "touch");
+    });
+
+    wfCanvas.addEventListener("click", (e) => {
+      observeWavefunction(e.clientX, e.clientY, true);
     });
 
     wfShell.addEventListener("pointerleave", (e) => {
-      if (e.pointerType === "touch") return;
-      collapsed = false;
-      wfShell.classList.remove("collapsed");
-      if (wfStatus) {
-        wfStatus.textContent = "SUPERPOSITION STATE // HOVER OR TAP TO OBSERVE & COLLAPSE |ψ⟩";
-      }
+      if (e.pointerType === "touch" || touchLockedCollapsed) return;
+      resetWavefunction();
     });
 
+    if (wfCollapseBtn) {
+      wfCollapseBtn.addEventListener("click", () => {
+        if (collapsed) {
+          resetWavefunction();
+        } else {
+          observeWavefunction(null, null, true);
+        }
+      });
+    }
+
     if (reducedMotion) {
-      wfShell.classList.add("collapsed");
+      observeWavefunction(null, null, true);
       wfCanvas.style.display = "none";
     } else {
       function renderWavefunction() {
         const target = collapsed ? 1 : 0;
-        collapseProgress += (target - collapseProgress) * 0.075;
+        collapseProgress += (target - collapseProgress) * 0.085;
         wavePhase += 0.04;
 
         const w = wfCanvas.width;
@@ -665,14 +699,14 @@
           if (visibility > 0.25) {
             wctx.save();
             wctx.globalAlpha = visibility;
-            const boxW = Math.min(340, w - 32);
-            const boxH = 66;
+            const boxW = Math.min(340, w - 28);
+            const boxH = 72;
             const bx = (w - boxW) * 0.5;
             const by = (h - boxH) * 0.5;
 
-            wctx.fillStyle = "rgba(15, 22, 36, 0.92)";
-            wctx.strokeStyle = "rgba(226, 168, 107, 0.65)";
-            wctx.lineWidth = 1.2;
+            wctx.fillStyle = "rgba(15, 22, 36, 0.94)";
+            wctx.strokeStyle = "rgba(226, 168, 107, 0.75)";
+            wctx.lineWidth = 1.4;
             wctx.beginPath();
             wctx.roundRect(bx, by, boxW, boxH, 6);
             wctx.fill();
@@ -681,11 +715,11 @@
             wctx.textAlign = "center";
             wctx.font = "11px 'JetBrains Mono', monospace";
             wctx.fillStyle = "#e2a86b";
-            wctx.fillText("|Ψ⟩ = ∑ cₙ |φₙ⟩  •  SUPERPOSITION", w * 0.5, by + 26);
+            wctx.fillText("|Ψ⟩ = ∑ cₙ |φₙ⟩  •  SUPERPOSITION", w * 0.5, by + 27);
 
-            wctx.font = "13px 'Inter', sans-serif";
+            wctx.font = "500 13.5px 'Inter', sans-serif";
             wctx.fillStyle = "#f1f5f9";
-            wctx.fillText("Hover or tap to observe & collapse", w * 0.5, by + 48);
+            wctx.fillText("Tap anywhere here to reveal resume", w * 0.5, by + 51);
             wctx.restore();
           }
         }
