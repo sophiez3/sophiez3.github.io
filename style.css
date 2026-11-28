@@ -450,11 +450,8 @@ nav a.cradle-item.active {
 
 /* Overview Tab Layout */
 .overview-hero {
-  display: grid;
-  grid-template-columns: 1.25fr 0.85fr;
-  gap: 2.5rem;
-  margin-bottom: 2.75rem;
-  align-items: start;
+  display: block;
+  margin-bottom: 2.25rem;
 }
 
 .overview-hero h1 {

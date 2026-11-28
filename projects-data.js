@@ -39,18 +39,6 @@ const PROJECTS = {
     liveUrl: "",
     slidesPdf: "",
     videoMp4: "",
-    diagramHeader: "N-BODY / RK4 + HILL SPHERES",
-    diagramFooter: "Δt(r) Adaptive   |   Sun + 8 Planets + Probe",
-    svgDiagram: `
-      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="145" cy="74" rx="115" ry="44" transform="rotate(-10 145 74)" stroke="#8ab4f8" stroke-opacity="0.35" stroke-width="1.2"/>
-        <ellipse cx="145" cy="74" rx="68" ry="26" transform="rotate(-10 145 74)" stroke="#8ab4f8" stroke-opacity="0.55" stroke-width="1.2"/>
-        <circle cx="145" cy="74" r="6" fill="#e2a86b"/>
-        <circle cx="206" cy="54" r="4.5" fill="#8ab4f8"/>
-        <circle cx="206" cy="54" r="18" stroke="#e2a86b" stroke-dasharray="3 3" stroke-opacity="0.75"/>
-        <path d="M92 98 Q 165 76, 204 42 T 288 18" stroke="#e2a86b" stroke-width="1.6" fill="none"/>
-        <circle cx="204" cy="42" r="3" fill="#fff1cc"/>
-      </svg>`,
     mindmap: {
       centralQuestion: "How can an N-body orbital solver accurately resolve fast planetary gravity assists across multi-year heliocentric timescales?",
       tradeoff: "Fixed large time steps distort periapsis deflection, while globally tiny steps slow down the simulation—solved via Hill-sphere adaptive step refinement and camera zoom.",
@@ -125,18 +113,6 @@ const PROJECTS = {
     liveLabel: "Launch Vercel Sample Demo ↗",
     slidesPdf: "",
     videoMp4: "assets/carefinder-demo.mp4",
-    diagramHeader: "SELECTION FACTORS / 10K × 121K OSM",
-    diagramFooter: "Dynamic Weight Rescaling   |   PIN Validation",
-    svgDiagram: `
-      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="160" cy="70" rx="115" ry="44" stroke="#8ab4f8" stroke-opacity="0.35" stroke-width="1.2"/>
-        <ellipse cx="160" cy="70" rx="72" ry="26" stroke="#e2a86b" stroke-opacity="0.65" stroke-width="1.3"/>
-        <circle cx="160" cy="70" r="5" fill="#e2a86b"/>
-        <circle cx="105" cy="52" r="3.5" fill="#8ab4f8"/>
-        <circle cx="212" cy="84" r="3.5" fill="#8ab4f8"/>
-        <line x1="105" y1="52" x2="160" y2="70" stroke="#8ab4f8" stroke-dasharray="2 2"/>
-        <line x1="212" y1="84" x2="160" y2="70" stroke="#8ab4f8" stroke-dasharray="2 2"/>
-      </svg>`,
     mindmap: {
       centralQuestion: "How do we recommend hospitals safely when directory records contain gaps, weak claims, or coordinate errors?",
       tradeoff: "Exclude missing fields and dynamically rescale remaining weights rather than inventing values that could mislead urgent care decisions.",
@@ -208,20 +184,6 @@ const PROJECTS = {
     liveUrl: "",
     slidesPdf: "assets/smart-kitchen-slides.pdf",
     videoMp4: "assets/smart-kitchen-demo.mp4",
-    diagramHeader: "STATE_SYNC / SQLITE + PYDANTIC",
-    diagramFooter: "Order → Schema → Deduction → QR Handoff",
-    svgDiagram: `
-      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="30" y="52" width="68" height="36" rx="4" fill="#131c2e" stroke="#8ab4f8"/>
-        <text x="42" y="74" fill="#8ab4f8" font-family="monospace" font-size="9">NL Order</text>
-        <path d="M98 70 H 126" stroke="#e2a86b" stroke-width="1.5"/>
-        <rect x="126" y="46" width="68" height="48" rx="4" fill="#182236" stroke="#e2a86b"/>
-        <text x="136" y="67" fill="#e2a86b" font-family="monospace" font-size="9">Pydantic</text>
-        <text x="136" y="80" fill="#f1f5f9" font-family="monospace" font-size="9">Schema</text>
-        <path d="M194 70 H 222" stroke="#e2a86b" stroke-width="1.5"/>
-        <rect x="222" y="52" width="68" height="36" rx="4" fill="#131c2e" stroke="#8ab4f8"/>
-        <text x="233" y="74" fill="#8ab4f8" font-family="monospace" font-size="9">DB &amp; QR</text>
-      </svg>`,
     mindmap: {
       centralQuestion: "How do we synchronize customer ordering, unstructured modifications, supplier notes, and driver pickup in real time?",
       tradeoff: "Constrain OpenRouter LLM outputs with JSON schemas and Pydantic validation plus human confirmation before committing database changes.",
@@ -292,25 +254,6 @@ const PROJECTS = {
     liveUrl: "",
     slidesPdf: "assets/housing-peer-slides.pdf",
     videoMp4: "assets/housing-peer-demo.mp4",
-    diagramHeader: "PEER CITIES / 4 ARCHETYPES",
-    diagramFooter: "Score ∈ [0, 1]   |   Fact-Grounded Memos",
-    svgDiagram: `
-      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="75" y1="35" x2="160" y2="70" stroke="#8ab4f8" stroke-opacity="0.5" stroke-width="1.3"/>
-        <line x1="75" y1="105" x2="160" y2="70" stroke="#8ab4f8" stroke-opacity="0.5" stroke-width="1.3"/>
-        <line x1="160" y1="70" x2="248" y2="42" stroke="#e2a86b" stroke-width="1.5"/>
-        <line x1="160" y1="70" x2="248" y2="98" stroke="#8ab4f8" stroke-opacity="0.5" stroke-width="1.3"/>
-        <rect x="25" y="22" width="95" height="26" rx="4" fill="#131c2e" stroke="#334155"/>
-        <text x="34" y="39" fill="#94a3b8" font-family="monospace" font-size="9">City Peer Fit</text>
-        <rect x="25" y="92" width="95" height="26" rx="4" fill="#131c2e" stroke="#334155"/>
-        <text x="34" y="109" fill="#94a3b8" font-family="monospace" font-size="9">Tract Metrics</text>
-        <rect x="122" y="56" width="76" height="28" rx="4" fill="#182236" stroke="#e2a86b"/>
-        <text x="131" y="74" fill="#e2a86b" font-family="monospace" font-size="9">0-1 Triage</text>
-        <rect x="215" y="28" width="85" height="26" rx="4" fill="#131c2e" stroke="#e2a86b"/>
-        <text x="223" y="45" fill="#f1f5f9" font-family="monospace" font-size="9">Bank Product</text>
-        <rect x="215" y="84" width="85" height="26" rx="4" fill="#131c2e" stroke="#334155"/>
-        <text x="223" y="101" fill="#94a3b8" font-family="monospace" font-size="9">Grounded Memo</text>
-      </svg>`,
     mindmap: {
       centralQuestion: "How can financial institutions target housing-affordability interventions across comparable cities and neighborhoods?",
       tradeoff: "Transparent threshold-based calculations for classification, restricting the OpenRouter LLM strictly to post-analysis memo generation from verified facts.",
@@ -377,16 +320,6 @@ const PROJECTS = {
     liveUrl: "",
     slidesPdf: "assets/sound-fire-research.pdf",
     videoMp4: "",
-    diagramHeader: "RESONANCE / 55–65 Hz @ 100–102 dB",
-    diagramFooter: "Damped Oscillator + FFT   |   Schlieren Flow",
-    svgDiagram: `
-      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 70 Q 45 20, 80 70 T 150 70 T 220 70 T 290 70" stroke="#8ab4f8" stroke-width="1.5"/>
-        <path d="M10 70 Q 45 38, 80 70 T 150 70 T 220 70 T 290 70" stroke="#8ab4f8" stroke-opacity="0.45" stroke-width="1.2"/>
-        <path d="M10 70 Q 45 110, 80 70 T 150 70 T 220 70 T 290 70" stroke="#e2a86b" stroke-width="1.5"/>
-        <circle cx="150" cy="70" r="5" fill="#e2a86b"/>
-        <circle cx="150" cy="70" r="14" stroke="#e2a86b" stroke-dasharray="3 3" stroke-opacity="0.7"/>
-      </svg>`,
     mindmap: {
       centralQuestion: "How do acoustic frequency, sound intensity, and flame geometry interact to extinguish a convective flame?",
       tradeoff: "Optimal suppression occurs near the flame's natural frequency (55–65 Hz, peak at 60 Hz) at 100–102 dB, while larger dual-wick flames narrow the effective frequency window.",
@@ -452,18 +385,6 @@ const PROJECTS = {
     liveUrl: "https://motme.vercel.app/",
     slidesPdf: "",
     videoMp4: "",
-    diagramHeader: "QUEST_LOOP / SCRAPBOOK × CLUES",
-    diagramFooter: "Selfie Verification → City Scrapbook → Next Hint",
-    svgDiagram: `
-      <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M55 70 C 55 32, 145 32, 160 70 C 175 108, 265 108, 265 70 C 265 32, 175 32, 160 70 C 145 108, 55 108, 55 70 Z" stroke="#8ab4f8" stroke-opacity="0.45" stroke-width="1.3"/>
-        <circle cx="72" cy="52" r="4.5" fill="#e2a86b"/>
-        <circle cx="160" cy="70" r="5" fill="#fff1cc"/>
-        <circle cx="248" cy="88" r="4.5" fill="#8ab4f8"/>
-        <text x="38" y="34" fill="#e2a86b" font-family="monospace" font-size="8.5">Quest &amp; Clue</text>
-        <text x="128" y="26" fill="#94a3b8" font-family="monospace" font-size="8.5">Selfie Verify</text>
-        <text x="212" y="114" fill="#8ab4f8" font-family="monospace" font-size="8.5">City Scrapbook</text>
-      </svg>`,
     mindmap: {
       centralQuestion: "How can travel software turn foreign city sightseeing into an active quest progression and memory-keeping loop?",
       tradeoff: "Balancing structured sequential clue unlocking with seamless selfie-to-scrapbook theming and persistent multi-session storage.",
